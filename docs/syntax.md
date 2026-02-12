@@ -125,6 +125,9 @@ ConstTypeName ::=
 LocalTypeName ::=
     TypeName `local`
     
+NullableTypeName ::=
+    TypeName `?`
+    
 ExtensionModifier ::=
     `&&` TypeName
     
@@ -141,6 +144,7 @@ TypeName ::=
     | ArrayTypeName
     | ConstTypeName
     | LocalTypeName
+    | NullableTypeName
     | TypeNameWithExtensions
 
 InheritedTypeConstraint ::=
