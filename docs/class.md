@@ -72,16 +72,16 @@ class Class {
     public fn method() {}
 
     public operator new(q: Class?) {
-        // this.method();              // Error: cannot call any instance method with `this`.
-        // this.p = this;              // Error: cannot pass `this` directly.
-        // externalClassMethod(this);  // Error: cannot pass `this` directly.
+        // this.method();              // Error: The class is not completely initialized.
+        // this.p = this;              // Error: The class is not completely initialized.
+        // externalClassMethod(this);  // Error: The class is not completely initialized.
         // p = q;                      // Error: q may be null
         //
         // let f = fn [this]() {};     // Error: Cannot capture `this` when the class is not completely initialized.
         //
-        if (q == null)
+        if (q === null)
             throw core.except.RuntimeError("q is null");
-        p = q;                      // OK: q is not null
+        this.p = q;                 // OK: q is not null
         this.method();              // Works here.
         externalClassMethod(this);  // OK, all members are initialized.
     }
@@ -119,7 +119,7 @@ class Test {
     }
 
     operator new() {
-        x = new object();
+        this.x = new object();
         setGlobalTest(this);
         globalTest(); // Calls Test's test().
     }
@@ -135,7 +135,7 @@ class Derived(Test) {
         globalTest(); // Calls Test's test().
 
         // Initialize Derived.
-        y = new object();
+        this.y = new object();
         // Derived is now initialized.
         globalTest(); // Calls Derived's test().
     }
