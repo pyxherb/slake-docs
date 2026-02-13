@@ -62,4 +62,9 @@ null <: f64?
 null <: bool?
 
 null <: object?
+
+Dervied? <: Base?
+Base <: Base?
+Derived <: Derived?
+Derived <: Base
 ```
