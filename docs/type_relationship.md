@@ -1,5 +1,168 @@
 # Type Relationships
 
+## Built-in Types
+
+### never_t
+
+`never_t` is the bottom type of all types.
+
+### Built-in Arithmetic Types
+
+#### Traits
+
+We have following trait set for the arithmetic types:
+
+$$
+\begin{aligned}
+\mathrm{ArithmTraits[T]} ::= \  &\mathrm{IAdd[T, T]}\\
+&\mid\mathrm{ISub[T,T]}\\
+&\mid\mathrm{IMul[T,T]}\\
+&\mid\mathrm{IDiv[T,T]}\\
+&\mid\mathrm{IMod[T,T]}\\
+&\mid\mathrm{IAddAssign[T,T]}\\
+&\mid\mathrm{ISubAssign[T,T]}\\
+&\mid\mathrm{IMulAssign[T,T]}\\
+&\mid\mathrm{IDivAssign[T,T]}\\
+&\mid\mathrm{IModAssign[T,T]}\\
+&\mid\mathrm{IEq[T,T]}\\
+&\mid\mathrm{INeq[T,T]}\\
+&\mid\mathrm{ILt[T,T]}\\
+&\mid\mathrm{IGt[T,T]}\\
+&\mid\mathrm{ILtEq[T,T]}\\
+&\mid\mathrm{IGtEq[T,T]}\\
+&\mid\mathrm{ICmp[T,T]}\\
+&\mid\mathrm{INeg[T,T]}\\
+\end{aligned}
+$$
+
+$$
+\mathrm{FloatTraits[T]} ::= \mathrm{ArithmTraits[T]}\\
+$$
+
+$$
+\begin{aligned}
+\mathrm{IntegerTraits[T]} ::= &\mathrm{ArithmTraits[T]}\\
+&\mid\mathrm{IAnd[T,T]}\\
+&\mid\mathrm{IOr[T,T]}\\
+&\mid\mathrm{IXor[T,T]}\\
+&\mid\mathrm{ILsh[T,u32]}\\
+&\mid\mathrm{IRsh[T,u32]}\\
+&\mid\mathrm{IAndAssign[T,T]}\\
+&\mid\mathrm{IOrAssign[T,T]}\\
+&\mid\mathrm{IXorAssign[T,T]}\\
+&\mid\mathrm{ILshAssign[T,u32]}\\
+&\mid\mathrm{IRshAssign[T,u32]}\\
+&\mid\mathrm{INot[T,T]}\\
+\end{aligned}
+$$
+
+#### Built-in Integer Types
+
+Signed integer types included `i8`, `i16`, `i32` and `i64`:
+
+$$\mathrm{SignedInteger} ::=
+\mathrm{i8}
+\mid\mathrm{i16}
+\mid\mathrm{i32}
+\mid\mathrm{i64}
+$$
+
+For signed integer types, their relationship is defined as following:
+
+$$
+\frac{}{\mathrm{i8} <: \mathrm{i16}}
+$$
+
+$$
+\frac{}{\mathrm{i16} <: \mathrm{i32}}
+$$
+
+$$
+\frac{}{\mathrm{i32} <: \mathrm{i64}}
+$$
+
+Unsigned integer types included `u8`, `u16`, `u32` and `u64`:
+
+$$\mathrm{UnsignedInteger} ::=
+\mathrm{u8}
+\mid\mathrm{u16}
+\mid\mathrm{u32}
+\mid\mathrm{u64}$$
+
+For unsigned integer types, their relationship is defined as following:
+
+$$
+\frac{}{\mathrm{u8} <: \mathrm{u16}}
+$$
+
+$$
+\frac{}{\mathrm{u16} <: \mathrm{u32}}
+$$
+
+$$
+\frac{}{\mathrm{u32} <: \mathrm{u64}}
+$$
+
+Integer types included the signed integer types and the unsigned integer types:
+
+$$
+\mathrm{Integer} ::= \mathrm{SignedInteger}\mid\mathrm{UnsignedInteger}
+$$
+
+Every integer type is subtype of all types of the `IntegerTraits`.
+
+$$
+\frac{\mathrm{T} \in \mathrm{Integer}}{\mathrm{T} <: \mathrm{IntegerTraits[T]}}
+$$
+
+#### Built-in Floating Point Types
+
+Floating point types includes `f32` and `f64`:
+
+$$
+\mathrm{Float} ::=
+\mathrm{f32}
+\mid\mathrm{f64}
+$$
+
+Their relationships are like following:
+
+$$
+\frac{}{\mathrm{f32} <: \mathrm{f64}}
+$$
+
+<!--
+$$
+\frac{Γ ⊢ a: \mathrm{i32} \quad Γ ⊢ b: \mathrm{i32}}{Γ ⊢ a + b: \mathrm{i32}}
+$$
+-->
+
+## Nullable Types
+
+Each nullable type's non-nullable version is its nullable version's parent type:
+
+$$
+\frac{}{\mathrm{T} <: \mathrm{T?}}
+$$
+
+If a type is a subtype of another type, the type's nullable version is subtype of another type's nullable version:
+
+$$
+\frac{\mathrm{T_1} <: \mathrm{T_2}}{\mathrm{T_1?} <: \mathrm{T_2?}}
+$$
+
+and `T?` is not `P`'s subtype where the `T` is subtype of `P`.
+
+$$
+\mathrm{T} <: \mathrm{P} \nRightarrow \mathrm{T?} <: \mathrm{P}
+$$
+
+`null` is subtype of all nullable types:
+
+$$
+\frac{}{\mathrm{Null} <: \mathrm{T?}}
+$$
+
 ## Overview
 
 ```txt
