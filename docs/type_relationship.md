@@ -131,12 +131,6 @@ $$
 \frac{}{\mathrm{f32} <: \mathrm{f64}}
 $$
 
-<!--
-$$
-\frac{Γ ⊢ a: \mathrm{i32} \quad Γ ⊢ b: \mathrm{i32}}{Γ ⊢ a + b: \mathrm{i32}}
-$$
--->
-
 ## Nullable Types
 
 Each nullable type's non-nullable version is its nullable version's parent type:
@@ -163,6 +157,65 @@ $$
 \frac{}{\mathrm{Null} <: \mathrm{T?}}
 $$
 
+## Type Operations
+
+### Least Upper Bound
+
+The Least Upper Bound $LUB(A, B)$ infers the upper bound between two types.
+
+If one of the input type is another input type's subtype, return the another input type.
+
+$$
+\frac{
+\mathrm{A} <: \mathrm{B}
+}{
+LUB(A, B) = B
+}
+$$
+
+$$
+\frac{
+\mathrm{B} <: \mathrm{A}
+}{
+LUB(A, B) = A
+}
+$$
+
+### Greatest Lower Bound
+
+The Least Upper Bound $GLB(A, B)$ infers the lower bound between two types.
+
+Selects and returns the most derived type from the parameters.
+
+$$
+\frac{
+\mathrm{A} <: \mathrm{B}
+}{
+GLB(A, B) = A
+}
+$$
+
+$$
+\frac{
+\mathrm{B} <: \mathrm{A}
+}{
+GLB(A, B) = B
+}
+$$
+
+### Common Result Type
+
+The Common Result Type Function $CommonResult(A, B)$ infers the common result value type between two result types.
+
+$$
+\frac{
+A <: B \mid B <: A
+}{
+CommonType(A, B) = LUB(A,B)
+}
+$$
+
+<!--
 ## Overview
 
 ```txt
@@ -231,3 +284,4 @@ Derived <: Derived?
 
 If Derived <: Base then Dervied? <: Base?
 ```
+-->
