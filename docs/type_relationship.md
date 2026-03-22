@@ -2,9 +2,21 @@
 
 ## Built-in Types
 
+### any
+
+`any` is the top type which can contain an instance of any type.
+
+$$
+\frac{\mathrm{T}\ \text{is\ a\ type}}{T <: \mathrm{any}}
+$$
+
 ### never_t
 
-`never_t` is the bottom type of all types.
+`never_t` is the bottom type which has no instance.
+
+$$
+\frac{\mathrm{T}\ \text{is\ a\ type}}{\mathrm{never\_t} <: \mathrm{T}}
+$$
 
 ### Built-in Arithmetic Types
 
@@ -181,6 +193,14 @@ LUB(A, B) = A
 }
 $$
 
+$$
+\frac{
+\mathrm{A} <: \mathrm{B}\ \text{and}\ \mathrm{B} <: \mathrm{A}
+}{
+LUB(A, B) = A
+}
+$$
+
 ### Greatest Lower Bound
 
 The Least Upper Bound $GLB(A, B)$ infers the lower bound between two types.
@@ -200,6 +220,14 @@ $$
 \mathrm{B} <: \mathrm{A}
 }{
 GLB(A, B) = B
+}
+$$
+
+$$
+\frac{
+\mathrm{A} <: \mathrm{B}\ \text{and}\ \mathrm{B} <: \mathrm{A}
+}{
+GLB(A, B) = A
 }
 $$
 

@@ -17,3 +17,55 @@ First, the compiler must look up the operation type:
   * Once the main operand type is determined, the compiler should lookup if the operation is viable by the main operand type, and generate corresponding codes if viable or generate an error message otherwise. Both sides of the expression should be converted to the main operand type. The result type is the main operand type.
   * For `<`, `>`, `<=`, `>=`, `==`, `!=`, `===`, `!==`, the result type is `bool`.
   * For `<=>`, the result type is `i32`.
+
+## Comma Expression
+
+Comma expression evaluates both side of the comma operator:
+
+$$
+\frac{
+e_1 \rightarrow e_2
+}{
+(e_1, e_3) \rightarrow (e_2, e_3)
+}
+$$
+
+$$
+\frac{
+e_1 \mid s \rightarrow e_1' \mid s'
+}{
+(e_1, e_2) \mid s \rightarrow (e_1', e_2) \mid s'
+}
+$$
+
+But discards the result of left operand:
+
+$$
+\frac{
+e_1 \mid s\ \text{is a value}
+}{
+(e_1, e_2) \mid s \rightarrow e_2 \mid s
+}
+$$
+
+And the result of the expression is the right operand:
+
+$$
+\frac{
+e_1 \mid s_0 \rightarrow v_1 \mid s_1
+\quad
+e_2 \mid s_1 \rightarrow v_2 \mid s_2
+}{
+(e_1, e_2) \mid s_0 \rightarrow v_2 \mid s_2
+}
+$$
+
+The result type is type of the right operand.
+
+$$
+\frac{
+\Gamma\vdash x: \mathrm{T_1} \quad \Gamma\vdash y: \mathrm{T_2}
+}{
+\Gamma\vdash (x,y): \mathrm{T_2}
+}
+$$
