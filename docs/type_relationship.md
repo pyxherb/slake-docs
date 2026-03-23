@@ -127,9 +127,9 @@ $$
 \frac{\mathrm{T} \in \mathrm{Integer}}{\mathrm{T} <: \mathrm{IntegerTraits[T]}}
 $$
 
-#### Built-in Floating Point Types
+#### Built-in Floating-point Types
 
-Floating point types includes `f32` and `f64`:
+Floating-point types includes `f32` and `f64`:
 
 $$
 \mathrm{Float} ::=
