@@ -166,7 +166,7 @@ $$
 `null` is subtype of all nullable types:
 
 $$
-\frac{}{\mathrm{Null} <: \mathrm{T?}}
+\frac{}{\mathrm{null} <: \mathrm{T?}}
 $$
 
 ## Type Operations
@@ -178,27 +178,10 @@ The Least Upper Bound $LUB(A, B)$ infers the upper bound between two types.
 If one of the input type is another input type's subtype, return the another input type.
 
 $$
-\frac{
-\mathrm{A} <: \mathrm{B}
-}{
-LUB(A, B) = B
-}
-$$
-
-$$
-\frac{
-\mathrm{B} <: \mathrm{A}
-}{
-LUB(A, B) = A
-}
-$$
-
-$$
-\frac{
-\mathrm{A} <: \mathrm{B}\ \text{and}\ \mathrm{B} <: \mathrm{A}
-}{
-LUB(A, B) = A
-}
+LUB(A, B)=\begin{cases}
+B &\mathrm{A} <: \mathrm{B}\\
+A &\text{otherwise}
+\end{cases}
 $$
 
 ### Greatest Lower Bound
@@ -208,27 +191,10 @@ The Least Upper Bound $GLB(A, B)$ infers the lower bound between two types.
 Selects and returns the most derived type from the parameters.
 
 $$
-\frac{
-\mathrm{A} <: \mathrm{B}
-}{
-GLB(A, B) = A
-}
-$$
-
-$$
-\frac{
-\mathrm{B} <: \mathrm{A}
-}{
-GLB(A, B) = B
-}
-$$
-
-$$
-\frac{
-\mathrm{A} <: \mathrm{B}\ \text{and}\ \mathrm{B} <: \mathrm{A}
-}{
-GLB(A, B) = A
-}
+GLB(A, B)=\begin{cases}
+B &\mathrm{B} <: \mathrm{A}\\
+A &\text{otherwise}
+\end{cases}
 $$
 
 ### Common Result Type

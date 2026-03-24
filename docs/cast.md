@@ -12,7 +12,7 @@ $$
 
 ## Functions and Operations
 
-We define following functions and operations for the specifications, note that the implementation may be different but the final result and side effects (if specified) must be the same to the specification:
+We define following functions and operations for the following explanation, note that the implementation may be different but the final result and side effects (if specified) must be the same to the specification:
 
 $\text{typeof}(v)$ - Evaluates type of the value $v$.
 
@@ -42,7 +42,7 @@ $$
 \quad
 \text{int\_width}(\mathrm{T}) < n
 }{
-\text{int\_to\_width}(v, n) = \text{widen\_int}(v, n)
+\text{int\_to\_width}(v, n) \rightarrow \text{widen\_int}(v, n)
 }
 $$
 
@@ -52,9 +52,9 @@ $$
 \quad
 \mathrm{T} \in SignedInteger
 \quad
-\text{int\_width}(\mathrm{T}) = n
+\text{int\_width}(\mathrm{T}) \rightarrow n
 }{
-\text{int\_to\_width}(v, n) = v
+\text{int\_to\_width}(v, n) \rightarrow v
 }
 $$
 
@@ -66,7 +66,7 @@ $$
 \quad
 \text{int\_width}(\mathrm{T}) > n
 }{
-\text{int\_to\_width}(v, n) = \text{narrow\_int}(v, n)
+\text{int\_to\_width}(v, n) \rightarrow \text{narrow\_int}(v, n)
 }
 $$
 
@@ -76,7 +76,7 @@ $$
 \quad
 \mathrm{T} \in UnsignedInteger
 }{
-\text{int\_to\_width}(v, n) = \text{int\_to\_width}(\text{to\_signed}(v), n)
+\text{int\_to\_width}(v, n) \rightarrow \text{int\_to\_width}(\text{to\_signed}(v), n)
 }
 $$
 
@@ -90,7 +90,7 @@ $$
 \quad
 \text{int\_width}(\mathrm{T}) < n
 }{
-\text{int\_to\_width}(v, n) = \text{widen\_uint}(v, n)
+\text{int\_to\_width}(v, n) \rightarrow \text{widen\_uint}(v, n)
 }
 $$
 
@@ -102,7 +102,7 @@ $$
 \quad
 \text{int\_width}(\mathrm{T}) = n
 }{
-\text{int\_to\_width}(v, n) = v
+\text{int\_to\_width}(v, n) \rightarrow v
 }
 $$
 
@@ -114,7 +114,7 @@ $$
 \quad
 \text{int\_width}(\mathrm{T}) > n
 }{
-\text{int\_to\_width}(v, n) = \text{narrow\_uint}(v, n)
+\text{int\_to\_width}(v, n) \rightarrow \text{narrow\_uint}(v, n)
 }
 $$
 
@@ -124,7 +124,7 @@ $$
 \quad
 \mathrm{T} \in SignedInteger
 }{
-\text{int\_to\_width}(v, n) = \text{int\_to\_width}(\text{to\_unsigned}(v), n)
+\text{int\_to\_width}(v, n) \rightarrow \text{int\_to\_width}(\text{to\_unsigned}(v), n)
 }
 $$
 
@@ -136,7 +136,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{int\_to\_i8}(v, n) = \text{int\_to\_width}(v, 8)
+\text{int\_to\_i8}(v, n) \rightarrow \text{int\_to\_width}(v, 8)
 }
 $$
 
@@ -148,7 +148,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{int\_to\_i16}(v, n) = \text{int\_to\_width}(v, 16)
+\text{int\_to\_i16}(v, n) \rightarrow \text{int\_to\_width}(v, 16)
 }
 $$
 
@@ -160,7 +160,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{int\_to\_i32}(v, n) = \text{int\_to\_width}(v, 32)
+\text{int\_to\_i32}(v, n) \rightarrow \text{int\_to\_width}(v, 32)
 }
 $$
 
@@ -172,7 +172,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{int\_to\_i64}(v, n) = \text{int\_to\_width}(v, 64)
+\text{int\_to\_i64}(v, n) \rightarrow \text{int\_to\_width}(v, 64)
 }
 $$
 
@@ -184,7 +184,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{int\_to\_u8}(v, n) = \text{int\_to\_width}(v, 8)
+\text{int\_to\_u8}(v, n) \rightarrow \text{int\_to\_width}(v, 8)
 }
 $$
 
@@ -196,7 +196,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{int\_to\_u16}(v, n) = \text{int\_to\_width}(v, 16)
+\text{int\_to\_u16}(v, n) \rightarrow \text{int\_to\_width}(v, 16)
 }
 $$
 
@@ -208,7 +208,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{int\_to\_u32}(v, n) = \text{int\_to\_width}(v, 32)
+\text{int\_to\_u32}(v, n) \rightarrow \text{int\_to\_width}(v, 32)
 }
 $$
 
@@ -220,7 +220,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{int\_to\_u64}(v, n) = \text{int\_to\_width}(v, 64)
+\text{int\_to\_u64}(v, n) \rightarrow \text{int\_to\_width}(v, 64)
 }
 $$
 
@@ -248,7 +248,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{to\_i8}(v, n) = \text{int\_to\_i8}(v, n)
+\text{to\_i8}(v, n) \rightarrow \text{int\_to\_i8}(v, n)
 }
 $$
 
@@ -258,7 +258,7 @@ $$
 \quad
 \mathrm{T} \in Float
 }{
-\text{to\_i8}(v, n) = \text{float\_to\_i8}(v, n)
+\text{to\_i8}(v, n) \rightarrow \text{float\_to\_i8}(v, n)
 }
 $$
 
@@ -270,7 +270,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{to\_i16}(v, n) = \text{int\_to\_i16}(v, n)
+\text{to\_i16}(v, n) \rightarrow \text{int\_to\_i16}(v, n)
 }
 $$
 
@@ -280,7 +280,7 @@ $$
 \quad
 \mathrm{T} \in Float
 }{
-\text{to\_i16}(v, n) = \text{float\_to\_i16}(v, n)
+\text{to\_i16}(v, n) \rightarrow \text{float\_to\_i16}(v, n)
 }
 $$
 
@@ -292,7 +292,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{to\_i32}(v, n) = \text{int\_to\_i32}(v, n)
+\text{to\_i32}(v, n) \rightarrow \text{int\_to\_i32}(v, n)
 }
 $$
 
@@ -302,7 +302,7 @@ $$
 \quad
 \mathrm{T} \in Float
 }{
-\text{to\_i32}(v, n) = \text{float\_to\_i32}(v, n)
+\text{to\_i32}(v, n) \rightarrow \text{float\_to\_i32}(v, n)
 }
 $$
 
@@ -313,7 +313,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{to\_i64}(v, n) = \text{int\_to\_i64}(v, n)
+\text{to\_i64}(v, n) \rightarrow \text{int\_to\_i64}(v, n)
 }
 $$
 
@@ -323,7 +323,7 @@ $$
 \quad
 \mathrm{T} \in Float
 }{
-\text{to\_i64}(v, n) = \text{float\_to\_i64}(v, n)
+\text{to\_i64}(v, n) \rightarrow \text{float\_to\_i64}(v, n)
 }
 $$
 
@@ -335,7 +335,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{to\_u8}(v, n) = \text{int\_to\_u8}(v, n)
+\text{to\_u8}(v, n) \rightarrow \text{int\_to\_u8}(v, n)
 }
 $$
 
@@ -345,7 +345,7 @@ $$
 \quad
 \mathrm{T} \in Float
 }{
-\text{to\_u8}(v, n) = \text{float\_to\_u8}(v, n)
+\text{to\_u8}(v, n) \rightarrow \text{float\_to\_u8}(v, n)
 }
 $$
 
@@ -357,7 +357,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{to\_u16}(v, n) = \text{int\_to\_u16}(v, n)
+\text{to\_u16}(v, n) \rightarrow \text{int\_to\_u16}(v, n)
 }
 $$
 
@@ -367,7 +367,7 @@ $$
 \quad
 \mathrm{T} \in Float
 }{
-\text{to\_u16}(v, n) = \text{float\_to\_u16}(v, n)
+\text{to\_u16}(v, n) \rightarrow \text{float\_to\_u16}(v, n)
 }
 $$
 
@@ -379,7 +379,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{to\_u32}(v, n) = \text{int\_to\_u32}(v, n)
+\text{to\_u32}(v, n) \rightarrow \text{int\_to\_u32}(v, n)
 }
 $$
 
@@ -389,7 +389,7 @@ $$
 \quad
 \mathrm{T} \in Float
 }{
-\text{to\_u32}(v, n) = \text{float\_to\_u32}(v, n)
+\text{to\_u32}(v, n) \rightarrow \text{float\_to\_u32}(v, n)
 }
 $$
 
@@ -401,7 +401,7 @@ $$
 \quad
 \mathrm{T} \in Integer
 }{
-\text{to\_u64}(v, n) = \text{int\_to\_u64}(v, n)
+\text{to\_u64}(v, n) \rightarrow \text{int\_to\_u64}(v, n)
 }
 $$
 
@@ -411,7 +411,7 @@ $$
 \quad
 \mathrm{T} \in Float
 }{
-\text{to\_u64}(v, n) = \text{float\_to\_u64}(v, n)
+\text{to\_u64}(v, n) \rightarrow \text{float\_to\_u64}(v, n)
 }
 $$
 
@@ -750,6 +750,68 @@ $$
 \mathrm{S} \not<: \mathrm{T}
 \quad
 \mathrm{T} \not<: \mathrm{S}
+}{
+v\ \text{as}\ \mathrm{T} \rightarrow \text{throw}\ \text{new}\ \mathrm{TypeCastException}()
+}
+$$
+
+## For Nullable Types
+
+Conversion from a non-nullable type to a nullable type is always viable:
+
+$$
+\frac{
+\Gamma\vdash e: \mathrm{T}
+}{
+e\ \text{as}\ \mathrm{T?}: \mathrm{T?}
+}
+$$
+
+Converting a value into nullable does not change itself anything:
+
+$$
+\frac{
+\text{typeof}(v): \mathrm{T}
+}{
+v\ \text{as}\ \mathrm{T?} \rightarrow v
+}
+$$
+
+And conversion from nullable type to non-nullable type is also viable in compile-time:
+
+$$
+\frac{
+\Gamma\vdash e: \mathrm{T?}
+}{
+e\ \text{as}\ \mathrm{T}: \mathrm{T}
+}
+$$
+
+But if the value is `null`, the runtime will throw a `TypeCastException` instance:
+
+$$
+\frac{
+\text{typeof}(v): \mathrm{T}
+}{
+v\ \text{as}\ \mathrm{T} \rightarrow v
+}
+$$
+
+$$
+\frac{
+\text{typeof}(v): \mathrm{null}
+}{
+v\ \text{as}\ \mathrm{T} \rightarrow \text{throw}\ \text{new}\ \mathrm{TypeCastException}()
+}
+$$
+
+## Fallback Operation
+
+If any condition listed above does not meet, the runtime should throw a `TypeCastException` by default instead of aborting:
+
+$$
+\frac{
+\text{otherwise}
 }{
 v\ \text{as}\ \mathrm{T} \rightarrow \text{throw}\ \text{new}\ \mathrm{TypeCastException}()
 }
