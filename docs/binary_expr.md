@@ -24,17 +24,17 @@ Comma expression evaluates both side of the comma operator:
 
 $$
 \frac{
-e_1 \rightarrow e_2
+    e_1 \rightarrow e_2
 }{
-(e_1, e_3) \rightarrow (e_2, e_3)
+    (e_1, e_3) \rightarrow (e_2, e_3)
 }
 $$
 
 $$
 \frac{
-e_1 \mid s \rightarrow e_1' \mid s'
+    e_1 \mid s \rightarrow e_1' \mid s'
 }{
-(e_1, e_2) \mid s \rightarrow (e_1', e_2) \mid s'
+    (e_1, e_2) \mid s \rightarrow (e_1', e_2) \mid s'
 }
 $$
 
@@ -42,9 +42,9 @@ But discards the result of left operand:
 
 $$
 \frac{
-e_1 \mid s\ \text{is a value}
+    e_1 \mid s\ \text{is a value}
 }{
-(e_1, e_2) \mid s \rightarrow e_2 \mid s
+    (e_1, e_2) \mid s \rightarrow e_2 \mid s
 }
 $$
 
@@ -52,9 +52,9 @@ And the result of the expression is the right operand:
 
 $$
 \frac{
-e_1 \mid s_0 \rightarrow v_1 \mid s_1
-\quad
-e_2 \mid s_1 \rightarrow v_2 \mid s_2
+    e_1 \mid s_0 \rightarrow v_1 \mid s_1
+    \quad
+    e_2 \mid s_1 \rightarrow v_2 \mid s_2
 }{
 (e_1, e_2) \mid s_0 \rightarrow v_2 \mid s_2
 }
@@ -64,8 +64,8 @@ The result type is type of the right operand.
 
 $$
 \frac{
-\Gamma\vdash x: \mathrm{T_1} \quad \Gamma\vdash y: \mathrm{T_2}
+    \Gamma\vdash x: \mathrm{T_1} \quad \Gamma\vdash y: \mathrm{T_2}
 }{
-\Gamma\vdash (x,y): \mathrm{T_2}
+    \Gamma\vdash (x,y): \mathrm{T_2}
 }
 $$

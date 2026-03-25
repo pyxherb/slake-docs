@@ -203,9 +203,9 @@ The Common Result Type Function $CommonResult(A, B)$ infers the common result va
 
 $$
 \frac{
-A <: B \mid B <: A
+    A <: B \mid B <: A
 }{
-CommonType(A, B) = LUB(A,B)
+    CommonType(A, B) = LUB(A,B)
 }
 $$
 

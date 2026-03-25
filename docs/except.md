@@ -46,9 +46,9 @@ $$
 
 $$
 \frac{
-e_1 \rightarrow e_2
+    e_1 \rightarrow e_2
 }{
-\text{throw}\ e_1 \rightarrow \text{throw}\ e_2
+    \text{throw}\ e_1 \rightarrow \text{throw}\ e_2
 }
 $$
 
@@ -62,9 +62,9 @@ The `throw` expression will always bring the type depends on the outer environme
 
 $$
 \frac{
-\Gamma\vdash e:\mathrm{E} \quad \mathrm{E} <: \mathrm{Excpetion}
+    \Gamma\vdash e:\mathrm{E} \quad \mathrm{E} <: \mathrm{Excpetion}
 }{
-\Gamma\vdash \text{throw}\ e:\mathrm{T}
+    \Gamma\vdash \text{throw}\ e:\mathrm{T}
 }
 $$
 
