@@ -919,19 +919,19 @@ $$
 Note that both conversions must be with operands with the same base type:
 
 $$
-\Gamma\vdash e: \mathrm{T}
+\Gamma\vdash e: \mathrm{S}
 \quad
 \mathrm{S} <: \mathrm{T}
 \nRightarrow
-e\ \text{as}\ \mathrm{S?}: \mathrm{S?}
+e\ \text{as}\ \mathrm{T?}: \mathrm{T?}
 $$
 
 $$
-\Gamma\vdash e: \mathrm{T?}
+\Gamma\vdash e: \mathrm{S?}
 \quad
 \mathrm{S} <: \mathrm{T}
 \nRightarrow
-e\ \text{as}\ \mathrm{S}: \mathrm{S}
+e\ \text{as}\ \mathrm{T}: \mathrm{T}
 $$
 
 ## Fallback Operation

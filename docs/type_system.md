@@ -1,8 +1,10 @@
-# Type Relationships
+# About The Type System
 
-## Built-in Types
+## Type Relationships
 
-### any
+### Built-in Types
+
+#### any
 
 `any` is the top type which can contain an instance of any type.
 
@@ -10,7 +12,7 @@ $$
 \frac{\mathrm{T}\ \text{is\ a\ type}}{T <: \mathrm{any}}
 $$
 
-### never_t
+#### never_t
 
 `never_t` is the bottom type which has no instance.
 
@@ -18,57 +20,53 @@ $$
 \frac{\mathrm{T}\ \text{is\ a\ type}}{\mathrm{never\_t} <: \mathrm{T}}
 $$
 
-### Built-in Arithmetic Types
-
-#### Traits
+#### Built-in Arithmetic Types
 
 We have following trait set for the arithmetic types:
 
 $$
 \begin{aligned}
-\mathrm{ArithmTraits[T]} ::= \  &\mathrm{IAdd[T, T]}\\
-&\mid\mathrm{ISub[T,T]}\\
-&\mid\mathrm{IMul[T,T]}\\
-&\mid\mathrm{IDiv[T,T]}\\
-&\mid\mathrm{IMod[T,T]}\\
-&\mid\mathrm{IAddAssign[T,T]}\\
-&\mid\mathrm{ISubAssign[T,T]}\\
-&\mid\mathrm{IMulAssign[T,T]}\\
-&\mid\mathrm{IDivAssign[T,T]}\\
-&\mid\mathrm{IModAssign[T,T]}\\
-&\mid\mathrm{IEq[T,T]}\\
-&\mid\mathrm{INeq[T,T]}\\
-&\mid\mathrm{ILt[T,T]}\\
-&\mid\mathrm{IGt[T,T]}\\
-&\mid\mathrm{ILtEq[T,T]}\\
-&\mid\mathrm{IGtEq[T,T]}\\
-&\mid\mathrm{ICmp[T,T]}\\
-&\mid\mathrm{INeg[T,T]}\\
+\mathrm{ArithmTraits \lang T \rang} ::= \  &\mathrm{IAdd \lang T, T \rang}\\
+&\mid\mathrm{ISub \lang T,T \rang}\\
+&\mid\mathrm{IMul \lang T,T \rang}\\
+&\mid\mathrm{IDiv \lang T,T \rang}\\
+&\mid\mathrm{IMod \lang T,T \rang}\\
+&\mid\mathrm{IAddAssign \lang T,T \rang}\\
+&\mid\mathrm{ISubAssign \lang T,T \rang}\\
+&\mid\mathrm{IMulAssign \lang T,T \rang}\\
+&\mid\mathrm{IDivAssign \lang T,T \rang}\\
+&\mid\mathrm{IModAssign \lang T,T \rang}\\
+&\mid\mathrm{IEq \lang T,T \rang}\\
+&\mid\mathrm{INeq \lang T,T \rang}\\
+&\mid\mathrm{ILt \lang T,T \rang}\\
+&\mid\mathrm{IGt \lang T,T \rang}\\
+&\mid\mathrm{ILtEq \lang T,T \rang}\\
+&\mid\mathrm{IGtEq \lang T,T \rang}\\
+&\mid\mathrm{ICmp \lang T,T \rang}\\
+&\mid\mathrm{INeg \lang T,T \rang}\\
 \end{aligned}
 $$
 
 $$
-\mathrm{FloatTraits[T]} ::= \mathrm{ArithmTraits[T]}\\
+\mathrm{FloatTraits \lang T \rang} ::= \mathrm{ArithmTraits \lang T \rang}\\
 $$
 
 $$
 \begin{aligned}
-\mathrm{IntegerTraits[T]} ::= &\mathrm{ArithmTraits[T]}\\
-&\mid\mathrm{IAnd[T,T]}\\
-&\mid\mathrm{IOr[T,T]}\\
-&\mid\mathrm{IXor[T,T]}\\
-&\mid\mathrm{ILsh[T,u32]}\\
-&\mid\mathrm{IRsh[T,u32]}\\
-&\mid\mathrm{IAndAssign[T,T]}\\
-&\mid\mathrm{IOrAssign[T,T]}\\
-&\mid\mathrm{IXorAssign[T,T]}\\
-&\mid\mathrm{ILshAssign[T,u32]}\\
-&\mid\mathrm{IRshAssign[T,u32]}\\
-&\mid\mathrm{INot[T,T]}\\
+\mathrm{IntegerTraits \lang T \rang} ::= &\mathrm{ArithmTraits \lang T \rang}\\
+&\mid\mathrm{IAnd \lang T,T \rang}\\
+&\mid\mathrm{IOr \lang T,T \rang}\\
+&\mid\mathrm{IXor \lang T,T \rang}\\
+&\mid\mathrm{ILsh \lang T,u32 \rang}\\
+&\mid\mathrm{IRsh \lang T,u32 \rang}\\
+&\mid\mathrm{IAndAssign \lang T,T \rang}\\
+&\mid\mathrm{IOrAssign \lang T,T \rang}\\
+&\mid\mathrm{IXorAssign \lang T,T \rang}\\
+&\mid\mathrm{ILshAssign \lang T,u32 \rang}\\
+&\mid\mathrm{IRshAssign \lang T,u32 \rang}\\
+&\mid\mathrm{INot \lang T,T \rang}\\
 \end{aligned}
 $$
-
-#### Built-in Integer Types
 
 Signed integer types included `i8`, `i16`, `i32` and `i64`:
 
@@ -124,10 +122,8 @@ $$
 Every integer type is subtype of all types of the `IntegerTraits`.
 
 $$
-\frac{\mathrm{T} \in \mathrm{Integer}}{\mathrm{T} <: \mathrm{IntegerTraits[T]}}
+\frac{\mathrm{T} \in \mathrm{Integer}}{\mathrm{T} <: \mathrm{IntegerTraits \lang T \rang}}
 $$
-
-#### Built-in Floating-point Types
 
 Floating-point types includes `f32` and `f64`:
 
@@ -143,7 +139,7 @@ $$
 \frac{}{\mathrm{f32} <: \mathrm{f64}}
 $$
 
-## Nullable Types
+### Nullable Types
 
 Each nullable type's non-nullable version is its nullable version's parent type:
 
@@ -167,6 +163,28 @@ $$
 
 $$
 \frac{}{\mathrm{null} <: \mathrm{T?}}
+$$
+
+### Array Types
+
+Array types are invariant, which means there's no subtyping between different array types:
+
+$$
+\mathrm{Derived} <: \mathrm{Base} \nRightarrow
+\mathrm{Derived[]} <: \mathrm{Base[]}
+$$
+
+### Generic and Instantiated Generic Types
+
+Instantiated generic types, or monomorphized types are generated (or monomorphized) from generic types.
+
+Type operations between generic types are prohibited, which means if there is a generic type $\mathrm{T} \lang x \rang$ and if $x$ has not been filled yet, then the type operations for the type $\mathrm{T}$ are not available.
+
+Unlike some programming languages, the instantiated generic types are **invariant** even the type parameters are covariant or contravariant:
+
+$$
+\mathrm{Derived} <: \mathrm{Base} \nRightarrow
+\mathrm{T \lang Derived \rang} <: \mathrm{T \lang Base \rang}
 $$
 
 ## Type Operations
@@ -210,7 +228,7 @@ $$
 $$
 
 <!--
-## Overview
+### Overview
 
 ```txt
 i8 <: i8?
