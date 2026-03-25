@@ -36,7 +36,7 @@ $\text{int\_to\_width}(v, n)$ - Converts $v$ into an signed integer value with s
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in SignedInteger
     \quad
@@ -48,11 +48,11 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in SignedInteger
     \quad
-    \text{int\_width}(\mathrm{T}) \rightarrow n
+    \text{int\_width}(\mathrm{T}) = n
 }{
     \text{int\_to\_width}(v, n) \rightarrow v
 }
@@ -60,7 +60,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in SignedInteger
     \quad
@@ -72,7 +72,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in UnsignedInteger
 }{
@@ -84,7 +84,7 @@ $\text{int\_to\_width}(v, n)$ - Converts $v$ into an unsigned uinteger value wit
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in UnsignedInteger
     \quad
@@ -96,7 +96,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in UnsignedInteger
     \quad
@@ -108,7 +108,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in UnsignedInteger
     \quad
@@ -120,7 +120,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in SignedInteger
 }{
@@ -132,7 +132,7 @@ $\text{int\_to\_i8}(v)$ - Converts $v$ into an `i8` value, where `v` must be an 
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -144,7 +144,7 @@ $\text{int\_to\_i16}(v)$ - Converts $v$ into an `i16` value, where `v` must be a
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -156,7 +156,7 @@ $\text{int\_to\_i32}(v)$ - Converts $v$ into an `i32` value, where `v` must be a
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -168,7 +168,7 @@ $\text{int\_to\_i64}(v)$ - Converts $v$ into an `i64` value, where `v` must be a
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -180,7 +180,7 @@ $\text{int\_to\_u8}(v)$ - Converts $v$ into an `u8` value, where `v` must be an 
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -192,7 +192,7 @@ $\text{int\_to\_u16}(v)$ - Converts $v$ into an `u16` value, where `v` must be a
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -204,7 +204,7 @@ $\text{int\_to\_u32}(v)$ - Converts $v$ into an `u32` value, where `v` must be a
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -216,7 +216,7 @@ $\text{int\_to\_u64}(v)$ - Converts $v$ into an `u64` value, where `v` must be a
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -244,7 +244,7 @@ $\text{to\_i8}(v)$ - Converts $v$ into an `i8` value, where `v` must be an $Arit
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -254,7 +254,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -266,7 +266,7 @@ $\text{to\_i16}(v)$ - Converts $v$ into an `i16` value, where `v` must be an $Ar
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -276,7 +276,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -288,7 +288,7 @@ $\text{to\_i32}(v)$ - Converts $v$ into an `i32` value, where `v` must be an $Ar
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -298,7 +298,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -309,7 +309,7 @@ $$
 $\text{to\_i64}(v)$ - Converts $v$ into an `i64` value, where `v` must be an $Arithm$ typed value.
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -319,7 +319,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -331,7 +331,7 @@ $\text{to\_u8}(v)$ - Converts $v$ into an `u8` value, where `v` must be an $Arit
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -341,7 +341,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -353,7 +353,7 @@ $\text{to\_u16}(v)$ - Converts $v$ into an `u16` value, where `v` must be an $Ar
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -363,7 +363,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -375,7 +375,7 @@ $\text{to\_u32}(v)$ - Converts $v$ into an `u32` value, where `v` must be an $Ar
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -385,7 +385,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -397,7 +397,7 @@ $\text{to\_u64}(v)$ - Converts $v$ into an `u64` value, where `v` must be an $Ar
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -407,7 +407,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -707,7 +707,7 @@ The runtime will return the object itself or throw a `TypeCastException` if the 
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -721,7 +721,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -780,7 +780,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -794,7 +794,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -824,7 +824,7 @@ The runtime should throw a `TypeCastException` instance when converting an objec
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -840,7 +840,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -882,7 +882,7 @@ Converting a value into nullable type does not change itself anything:
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
 }{
     v\ \text{as}\ \mathrm{T?} \rightarrow v
 }
@@ -902,7 +902,7 @@ But if the value is `null`, the runtime will throw a `TypeCastException` instanc
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
 }{
     v\ \text{as}\ \mathrm{T} \rightarrow v
 }
@@ -910,7 +910,7 @@ $$
 
 $$
 \frac{
-    \text{typeof}(v): \mathrm{null}
+    \text{typeof}(v) = \mathrm{null}
 }{
     v\ \text{as}\ \mathrm{T} \rightarrow \text{throw}\ \text{new}\ \mathrm{TypeCastException}()
 }
