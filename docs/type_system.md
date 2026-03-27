@@ -26,7 +26,7 @@ We have following trait set for the arithmetic types:
 
 $$
 \begin{aligned}
-\mathrm{ArithmTraits \lang T \rang} ::= \  &\mathrm{IAdd \lang T, T \rang}\\
+\mathrm{ArithmTraits \lang T \rang} ::=&\ \mathrm{IAdd \lang T, T \rang}\\
 &\mid\mathrm{ISub \lang T,T \rang}\\
 &\mid\mathrm{IMul \lang T,T \rang}\\
 &\mid\mathrm{IDiv \lang T,T \rang}\\
@@ -53,7 +53,7 @@ $$
 
 $$
 \begin{aligned}
-\mathrm{IntegerTraits \lang T \rang} ::= &\mathrm{ArithmTraits \lang T \rang}\\
+\mathrm{IntegerTraits \lang T \rang} ::=&\ \mathrm{ArithmTraits \lang T \rang}\\
 &\mid\mathrm{IAnd \lang T,T \rang}\\
 &\mid\mathrm{IOr \lang T,T \rang}\\
 &\mid\mathrm{IXor \lang T,T \rang}\\
@@ -122,7 +122,7 @@ $$
 Every integer type is subtype of all types of the `IntegerTraits`.
 
 $$
-\frac{\mathrm{T} \in \mathrm{Integer}}{\mathrm{T} <: \mathrm{IntegerTraits \lang T \rang}}
+\frac{\mathrm{T} \in \mathrm{Integer}}{\forall i \in \mathrm{IntegerTraits \lang T \rang}, \mathrm{T} <: i}
 $$
 
 Floating-point types includes `f32` and `f64`:
@@ -137,6 +137,12 @@ Their relationships are like following:
 
 $$
 \frac{}{\mathrm{f32} <: \mathrm{f64}}
+$$
+
+Every floating-point type is subtype of all types of the `FloatTraits`.
+
+$$
+\frac{\mathrm{T} \in \mathrm{Float}}{\forall i \in \mathrm{FloatTraits \lang T \rang}, \mathrm{T} <: i}
 $$
 
 ### Nullable Types
@@ -167,11 +173,20 @@ $$
 
 ### Array Types
 
-Array types are invariant, which means there's no subtyping between different array types:
+Array types are invariant, which means there's no subtyping relationship between different array types:
 
 $$
 \mathrm{Derived} <: \mathrm{Base} \nRightarrow
 \mathrm{Derived[]} <: \mathrm{Base[]}
+$$
+
+### Variable Reference Types
+
+Variable reference types are also invariant:
+
+$$
+\mathrm{Derived} <: \mathrm{Base} \nRightarrow
+\mathrm{Derived\And} <: \mathrm{Base\And}
 $$
 
 ### Generic and Instantiated Generic Types

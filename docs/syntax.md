@@ -159,7 +159,7 @@ GenericParam ::=
     
 GenericParamDefs ::=
     `<` GenericParam ( `,` GenericParam )* `>`
-    
+
 EnumItem ::=
     IDENTIFIER ( `=` Expr )?
     
@@ -292,6 +292,9 @@ CoroutineDef ::= CoroutineDecl `{` FnStmt* `}`
 
 ForStmt ::=
     `for` `(` VarDefEntry* `;` Expr? `;` Expr? `)` FnStmt
+
+MutableForStmt ::=
+    `for` `mutable` `(` VarDefEntry* `;` Expr? `;` Expr? `)` FnStmt
     
 ForEachStmt ::=
     `foreach` `(` VarDefEntry `:` Expr `)` FnStmt
@@ -332,6 +335,7 @@ FnStmt ::=
     | VarDef `;`
     | ConstDef `;`
     | ForStmt
+    | MutableForStmt
     | ForEachStmt
     | WhileStmt
     | DoWhileStmt
@@ -401,6 +405,9 @@ CallExpr ::=
     
 CastExpr ::=
     Expr `as` Expr
+
+NullableCastExpr ::=
+    Expr `as` `?` Expr
     
 NewExpr ::=
     `new` ( `static` | `local` )? TypeName `(` ArgList? `)`
@@ -472,6 +479,7 @@ Expr ::=
     | TernaryExpr
     | CallExpr
     | CastExpr
+    | NullableCastExpr
     | Literal
     | NewExpr
     | AllocaExpr
