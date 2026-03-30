@@ -1,5 +1,7 @@
 # Glossary
 
+$\text{\_\_name}$ - Built-in identifier
+
 $\mathrm{T}$ - Non-nullable type
 
 $\mathrm{T?}$ - Nullable type

@@ -6,6 +6,7 @@ UTF8_BYTE ::= <Any single byte that is greater than or equal to 0x80>
 IDENTIFIER_START ::= ( [`a`-`z``A`-`Z``_`] | UTF8_BYTE )
 IDENTIFIER_CONT ::= ( IDENTIFIER_START | [`0`-`9`] )
 
+RESERVED_IDENTIFIER ::= `__` IDENTIFIER_CONT*
 IDENTIFIER ::= IDENTIFIER_START IDENTIFIER_CONT*
 
 DEC_LITERAL ::= [`0`-`9`]+
