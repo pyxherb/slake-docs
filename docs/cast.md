@@ -16,7 +16,7 @@ We define following functions and operations for the following explanation, note
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in SignedInteger
     \quad
@@ -28,7 +28,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in SignedInteger
     \quad
@@ -40,7 +40,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in SignedInteger
     \quad
@@ -52,7 +52,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in UnsignedInteger
 }{
@@ -64,7 +64,7 @@ $\text{\_\_int\_to\_width}(v, n)$ - Converts $v$ into an unsigned uinteger value
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in UnsignedInteger
     \quad
@@ -76,7 +76,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in UnsignedInteger
     \quad
@@ -88,7 +88,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in UnsignedInteger
     \quad
@@ -100,7 +100,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in SignedInteger
 }{
@@ -112,7 +112,7 @@ $\text{\_\_int\_to\_i8}(v)$ - Converts $v$ into an `i8` value, where `v` must be
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -124,7 +124,7 @@ $\text{\_\_int\_to\_i16}(v)$ - Converts $v$ into an `i16` value, where `v` must 
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -136,7 +136,7 @@ $\text{\_\_int\_to\_i32}(v)$ - Converts $v$ into an `i32` value, where `v` must 
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -148,7 +148,7 @@ $\text{\_\_int\_to\_i64}(v)$ - Converts $v$ into an `i64` value, where `v` must 
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -160,7 +160,7 @@ $\text{\_\_int\_to\_u8}(v)$ - Converts $v$ into an `u8` value, where `v` must be
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -172,7 +172,7 @@ $\text{\_\_int\_to\_u16}(v)$ - Converts $v$ into an `u16` value, where `v` must 
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -184,7 +184,7 @@ $\text{\_\_int\_to\_u32}(v)$ - Converts $v$ into an `u32` value, where `v` must 
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -196,7 +196,7 @@ $\text{\_\_int\_to\_u64}(v)$ - Converts $v$ into an `u64` value, where `v` must 
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -208,7 +208,7 @@ $\text{\_\_to\_i8}(v)$ - Converts $v$ into an `i8` value, where `v` must be an $
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -218,7 +218,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -230,7 +230,7 @@ $\text{\_\_to\_i16}(v)$ - Converts $v$ into an `i16` value, where `v` must be an
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -240,7 +240,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -252,7 +252,7 @@ $\text{\_\_to\_i32}(v)$ - Converts $v$ into an `i32` value, where `v` must be an
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -262,7 +262,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -273,7 +273,7 @@ $$
 $\text{\_\_to\_i64}(v)$ - Converts $v$ into an `i64` value, where `v` must be an $Arithm$ typed value.
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -283,7 +283,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -295,7 +295,7 @@ $\text{\_\_to\_u8}(v)$ - Converts $v$ into an `u8` value, where `v` must be an $
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -305,7 +305,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -317,7 +317,7 @@ $\text{\_\_to\_u16}(v)$ - Converts $v$ into an `u16` value, where `v` must be an
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -327,7 +327,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -339,7 +339,7 @@ $\text{\_\_to\_u32}(v)$ - Converts $v$ into an `u32` value, where `v` must be an
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -349,7 +349,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -361,7 +361,7 @@ $\text{\_\_to\_u64}(v)$ - Converts $v$ into an `u64` value, where `v` must be an
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Integer
 }{
@@ -371,7 +371,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
     \quad
     \mathrm{T} \in Float
 }{
@@ -397,7 +397,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -407,7 +407,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -417,7 +417,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -427,7 +427,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -437,7 +437,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -447,7 +447,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -457,7 +457,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -467,7 +467,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -477,7 +477,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -487,7 +487,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -671,7 +671,7 @@ The runtime will return the object itself or throw a `TypeCastException` if the 
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -685,7 +685,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -744,7 +744,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -758,7 +758,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -788,7 +788,7 @@ The runtime should throw a `TypeCastException` instance when converting an objec
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -804,7 +804,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{S}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -846,7 +846,7 @@ Converting a value into nullable type does not change itself anything:
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
 }{
     v\ \text{as}\ \mathrm{T?} \rightarrow v
 }
@@ -866,7 +866,7 @@ But if the value is `null`, the runtime will throw a `TypeCastException` instanc
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{T}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
 }{
     v\ \text{as}\ \mathrm{T} \rightarrow v
 }
@@ -874,7 +874,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) = \mathrm{null}
+    \text{\_\_typeof}(v) \rightarrow \mathrm{null}
 }{
     v\ \text{as}\ \mathrm{T} \rightarrow \text{throw}\ \text{new}\ \mathrm{TypeCastException}()
 }

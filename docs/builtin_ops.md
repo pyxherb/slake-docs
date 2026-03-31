@@ -36,6 +36,10 @@ $\text{\_\_float\_to\_u64}(v)$ - Converts $v$ into an `u64` value, where `v` mus
 
 $\text{\_\_int\_to\_width}(v, n)$ - Converts $v$ into an signed integer value with specific width, where `v` must be an $Integer$ typed value:
 
-$\text{\_\_stack\_depth(s)}$ - Evaluate current stack depth in the runtime.
+$\text{\_\_stack\_depth}(\mu)$ - Evaluate current stack depth in the runtime.
 
-$\text{\_\_stack\_max(s)}$ - Evaluate maximum stack depth in the runtime.
+$\text{\_\_stack\_max}(\mu)$ - Evaluate maximum stack depth in the runtime.
+
+$\text{\_\_sizeof}(t)$ - Evaluate size of an instance of a type.
+
+$\text{\_\_alloca}(t, \mu)$ - Allocate an instance of a type on the stack.

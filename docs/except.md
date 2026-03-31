@@ -62,7 +62,7 @@ The `throw` expression will always bring the type depends on the outer environme
 
 $$
 \frac{
-    \Gamma\vdash e:\mathrm{E} \quad \mathrm{E} <: \mathrm{Excpetion}
+    \Gamma\vdash e:\mathrm{E} \quad \mathrm{E} <: \mathrm{Exception}
 }{
     \Gamma\vdash \text{throw}\ e:\mathrm{T}
 }

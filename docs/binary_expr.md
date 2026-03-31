@@ -32,9 +32,9 @@ $$
 
 $$
 \frac{
-    e_1 \mid s \rightarrow e_1' \mid s'
+    e_1 \mid \mu \rightarrow e_1' \mid \mu'
 }{
-    (e_1, e_2) \mid s \rightarrow (e_1', e_2) \mid s'
+    (e_1, e_2) \mid \mu \rightarrow (e_1', e_2) \mid \mu'
 }
 $$
 
@@ -42,9 +42,9 @@ But discards the result of left operand:
 
 $$
 \frac{
-    e_1 \mid s\ \text{is a value}
+    e_1 \mid \mu\ \text{is a value}
 }{
-    (e_1, e_2) \mid s \rightarrow e_2 \mid s
+    (e_1, e_2) \mid \mu \rightarrow e_2 \mid \mu
 }
 $$
 
@@ -52,11 +52,11 @@ And the result of the expression is the right operand:
 
 $$
 \frac{
-    e_1 \mid s_0 \rightarrow v_1 \mid s_1
+    e_1 \mid \mu_0 \rightarrow v_1 \mid \mu_1
     \quad
-    e_2 \mid s_1 \rightarrow v_2 \mid s_2
+    e_2 \mid \mu_1 \rightarrow v_2 \mid \mu_2
 }{
-(e_1, e_2) \mid s_0 \rightarrow v_2 \mid s_2
+(e_1, e_2) \mid \mu_0 \rightarrow v_2 \mid \mu_2
 }
 $$
 

@@ -9,7 +9,11 @@
 `any` is the top type which can contain an instance of any type.
 
 $$
-\frac{\mathrm{T}\ \text{is\ a\ type}}{T <: \mathrm{any}}
+\frac{
+    \Gamma\vdash \mathrm{T}\ \mathrm{type}
+}{
+    \Gamma\vdash \mathrm{T} <: \mathrm{any}
+}
 $$
 
 #### never_t
@@ -17,7 +21,11 @@ $$
 `never_t` is the bottom type which has no instance.
 
 $$
-\frac{\mathrm{T}\ \text{is\ a\ type}}{\mathrm{never\_t} <: \mathrm{T}}
+\frac{
+    \Gamma\vdash \mathrm{T}\ \mathrm{type}
+}{
+    \Gamma\vdash \mathrm{never\_t} <: \mathrm{T}
+}
 $$
 
 #### Built-in Arithmetic Types
@@ -77,20 +85,6 @@ $$\mathrm{SignedInteger} ::=
 \mid\mathrm{i64}
 $$
 
-For signed integer types, their relationship is defined as following:
-
-$$
-\frac{}{\mathrm{i8} <: \mathrm{i16}}
-$$
-
-$$
-\frac{}{\mathrm{i16} <: \mathrm{i32}}
-$$
-
-$$
-\frac{}{\mathrm{i32} <: \mathrm{i64}}
-$$
-
 Unsigned integer types included `u8`, `u16`, `u32` and `u64`:
 
 $$\mathrm{UnsignedInteger} ::=
@@ -101,18 +95,6 @@ $$\mathrm{UnsignedInteger} ::=
 
 For unsigned integer types, their relationship is defined as following:
 
-$$
-\frac{}{\mathrm{u8} <: \mathrm{u16}}
-$$
-
-$$
-\frac{}{\mathrm{u16} <: \mathrm{u32}}
-$$
-
-$$
-\frac{}{\mathrm{u32} <: \mathrm{u64}}
-$$
-
 Integer types included the signed integer types and the unsigned integer types:
 
 $$
@@ -122,7 +104,14 @@ $$
 Every integer type is subtype of all types of the `IntegerTraits`.
 
 $$
-\frac{\mathrm{T} \in \mathrm{Integer}}{\forall i \in \mathrm{IntegerTraits \lang T \rang}, \mathrm{T} <: i}
+\frac{
+    \Gamma\vdash \mathrm{T}\ \mathrm{type}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+}{
+    \forall i \in \mathrm{IntegerTraits \lang T \rang},
+    \Gamma\vdash \mathrm{T} <: i
+}
 $$
 
 Floating-point types includes `f32` and `f64`:
@@ -133,16 +122,17 @@ $$
 \mid\mathrm{f64}
 $$
 
-Their relationships are like following:
-
-$$
-\frac{}{\mathrm{f32} <: \mathrm{f64}}
-$$
-
 Every floating-point type is subtype of all types of the `FloatTraits`.
 
 $$
-\frac{\mathrm{T} \in \mathrm{Float}}{\forall i \in \mathrm{FloatTraits \lang T \rang}, \mathrm{T} <: i}
+\frac{
+    \Gamma\vdash \mathrm{T}\ \mathrm{type}
+    \quad
+    \mathrm{T} \in \mathrm{Float}
+}{
+    \forall i \in \mathrm{FloatTraits \lang T \rang},
+    \Gamma\vdash \mathrm{T} <: i
+}
 $$
 
 ### Nullable Types
@@ -150,25 +140,37 @@ $$
 Each nullable type's non-nullable version is its nullable version's parent type:
 
 $$
-\frac{}{\mathrm{T} <: \mathrm{T?}}
+\frac{
+    \Gamma\vdash \mathrm{T}\ \mathrm{type}
+}{
+    \Gamma\vdash\mathrm{T} <: \mathrm{T?}
+}
 $$
 
 If a type is a subtype of another type, the type's nullable version is subtype of another type's nullable version:
 
 $$
-\frac{\mathrm{T_1} <: \mathrm{T_2}}{\mathrm{T_1?} <: \mathrm{T_2?}}
+\frac{
+    \Gamma\vdash \mathrm{T_1} <: \mathrm{T_2}
+}{
+    \Gamma\vdash \mathrm{T_1?} <: \mathrm{T_2?}
+}
 $$
 
 and `T?` is not `P`'s subtype where the `T` is subtype of `P`.
 
 $$
-\mathrm{T} <: \mathrm{P} \nRightarrow \mathrm{T?} <: \mathrm{P}
+\Gamma\vdash\mathrm{T} <: \mathrm{P} \nRightarrow \Gamma\vdash\mathrm{T?} <: \mathrm{P}
 $$
 
 `null` is subtype of all nullable types:
 
 $$
-\frac{}{\mathrm{null} <: \mathrm{T?}}
+\frac{
+    \Gamma\vdash \mathrm{T}\ \mathrm{type}
+}{
+    \Gamma\vdash\mathrm{null} <: \mathrm{T?}
+}
 $$
 
 ### Array Types
@@ -176,8 +178,8 @@ $$
 Array types are invariant, which means there's no subtyping relationship between different array types:
 
 $$
-\mathrm{Derived} <: \mathrm{Base} \nRightarrow
-\mathrm{Derived[]} <: \mathrm{Base[]}
+\Gamma\vdash\mathrm{Derived} <: \mathrm{Base} \nRightarrow
+\Gamma\vdash\mathrm{Derived[]} <: \mathrm{Base[]}
 $$
 
 ### Variable Reference Types
@@ -185,8 +187,8 @@ $$
 Variable reference types are also invariant:
 
 $$
-\mathrm{Derived} <: \mathrm{Base} \nRightarrow
-\mathrm{Derived\And} <: \mathrm{Base\And}
+\Gamma\vdash\mathrm{Derived} <: \mathrm{Base} \nRightarrow
+\Gamma\vdash\mathrm{Derived\And} <: \mathrm{Base\And}
 $$
 
 ### Generic and Instantiated Generic Types
@@ -198,8 +200,8 @@ Type operations between generic types are prohibited, which means if there is a 
 Unlike some programming languages, the instantiated generic types are **invariant** even the type parameters are covariant or contravariant:
 
 $$
-\mathrm{Derived} <: \mathrm{Base} \nRightarrow
-\mathrm{T \lang Derived \rang} <: \mathrm{T \lang Base \rang}
+\Gamma\vdash\mathrm{Derived} <: \mathrm{Base} \nRightarrow
+\Gamma\vdash\mathrm{T \lang Derived \rang} <: \mathrm{T \lang Base \rang}
 $$
 
 ## Type Operations
@@ -236,79 +238,12 @@ The Common Result Type Function $CommonResult(A, B)$ infers the common result va
 
 $$
 \frac{
+    \Gamma\vdash \mathrm{T}\ \mathrm{type}
+    \quad
+    \Gamma\vdash \mathrm{B}\ \mathrm{type}
+    \quad
     A <: B \mid B <: A
 }{
     CommonType(A, B) = LUB(A,B)
 }
 $$
-
-<!--
-### Overview
-
-```txt
-i8 <: i8?
-i16 <: i16?
-i32 <: i32?
-i64 <: i64?
-
-u8 <: u8?
-u16 <: u16?
-u32 <: u32?
-u64 <: u64?
-
-f32 <: f32?
-f64 <: f64?
-
-bool <: bool?
-
-i8 <: i16
-i16 <: i32
-i32 <: i64
-
-u8 <: u16
-u16 <: u32
-u32 <: u64
-
-f32 <: f64
-
-i8? <: i16?
-i16? <: i32?
-i32? <: i64?
-
-u8? <: u16?
-u16? <: u32?
-u32? <: u64?
-
-object <: object?
-
-class? <: object?
-class <: class?
-
-string? <: object?
-string <: object
-
-null <: any
-
-null <: i8?
-null <: i16?
-null <: i32?
-null <: i64?
-
-null <: u8?
-null <: u16?
-null <: u32?
-null <: u64?
-
-null <: f32?
-null <: f64?
-
-null <: bool?
-
-null <: object?
-
-Base <: Base?
-Derived <: Derived?
-
-If Derived <: Base then Dervied? <: Base?
-```
--->
