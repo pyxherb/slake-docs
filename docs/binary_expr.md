@@ -1,5 +1,73 @@
 # Binary Expression
 
+## Operations
+
+$\text{BinaryExprMainOpType}(A, B)$ infers the main operation type of a common binary expression between types of two undecorated operands:
+
+$$
+\frac{
+    \mathrm{A} \in \mathrm{UnsignedInteger}
+    \quad
+    \mathrm{B} \in \mathrm{UnsignedInteger}
+}{
+    \text{BinaryExprMainOpType}(A, B) = \text{CommonType}(A, B)
+}
+$$
+
+$$
+\frac{
+    \mathrm{A} \in \mathrm{SignedInteger}
+    \quad
+    \mathrm{B} \in \mathrm{SignedInteger}
+}{
+    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \text{CommonType}(\mathrm{A}, \mathrm{B})
+}
+$$
+
+$$
+\frac{
+    \mathrm{A} \in \mathrm{Float}
+    \quad
+    \mathrm{B} \in \mathrm{Float}
+}{
+    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \text{CommonType}(\mathrm{A}, \mathrm{B})
+}
+$$
+
+$$
+\frac{
+    \mathrm{A} \in \mathrm{SignedInteger}
+    \quad
+    \mathrm{B} \in \mathrm{SignedInteger}
+}{
+    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \text{CommonType}(\mathrm{A}, \mathrm{B})
+}
+$$
+
+$$
+\frac{
+    \mathrm{A} \in \mathrm{Arithm}
+    \quad
+    \mathrm{B} \in \mathrm{Arithm}
+    \quad
+    \text{IsConvertible}(\mathrm{A}, \mathrm{B}) = \text{true}
+}{
+    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{B}
+}
+$$
+
+$$
+\frac{
+    \mathrm{A} \in \mathrm{Arithm}
+    \quad
+    \mathrm{B} \in \mathrm{Arithm}
+    \quad
+    \text{IsConvertible}(\mathrm{A}, \mathrm{B}) = \text{false}
+}{
+    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{A}
+}
+$$
+
 ## Non-overloaded Binary Expressions
 
 The non-overloaded binary expression requires a main operand type to determine which kind of operations can be performed by the type.

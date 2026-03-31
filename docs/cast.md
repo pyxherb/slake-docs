@@ -10,372 +10,478 @@ $$
 }
 $$
 
+## Operations
+
+$\text{IsConvertible}(A, B)$ checks if A can be converted into B.
+
+$$
+\frac{
+    \Gamma\vdash\mathrm{A}\ \mathrm{type}
+    \quad
+    \Gamma\vdash\mathrm{B}\ \mathrm{type}
+    \quad
+    \mathrm{A} \in \mathrm{Arithm}
+    \quad
+    \mathrm{B} \in \mathrm{Arithm}
+}{
+    \text{IsConvertible}(\mathrm{A}, \mathrm{B}) = \text{true}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash\mathrm{A}\ \mathrm{type}
+    \quad
+    \mathrm{A} \in \mathrm{Arithm}
+}{
+    \text{IsConvertible}(\mathrm{A}, \mathrm{bool}) = \text{true}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash\mathrm{B}\ \mathrm{type}
+    \quad
+    \mathrm{B} \in \mathrm{Arithm}
+}{
+    \text{IsConvertible}(\mathrm{bool}, \mathrm{B}) = \text{true}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash\mathrm{A}\ \mathrm{type}
+    \quad
+    \Gamma\vdash\mathrm{B}\ \mathrm{type}
+    \quad
+    \mathrm{A} <: \mathrm{B}
+    \mid
+    \mathrm{B} <: \mathrm{A}
+}{
+    \text{IsConvertible}(\mathrm{A}, \mathrm{B}) = \text{true}
+}
+$$
+
+$$
+\frac{
+    \text{otherwise}
+}{
+    \text{IsConvertible}(\mathrm{A}, \mathrm{B}) = \text{false}
+}
+$$
+
+$\text{RemoveRef}(T)$ removes the reference modifier if $T$ is a reference type.
+
+$$
+\frac{
+    \Gamma\vdash\mathrm{U}\ \mathrm{type}
+    \quad
+    \Gamma\vdash\mathrm{T} = \mathrm{U\And}
+}{
+    \text{RemoveRef}(\mathrm{T}) = \text{U}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash\mathrm{U}\ \mathrm{type}
+    \quad
+    \Gamma\vdash\mathrm{T} = \mathrm{U}
+}{
+    \text{RemoveRef}(\mathrm{T}) = \text{U}
+}
+$$
+
 ## Functions and Operations
 
-We define following functions and operations for the following explanation, note that the implementation may be different but the final result and side effects (if specified) must be the same to the specification (for pre-defined built-in operations, see [Built-in Operations](builtin_ops.md)):
+We define following functions and operations for the following explanation, note that the implementation may be different but the final result and side effects (if specified) must be the same to the specification (for pre-defined built-in operations, see [Built-in Operations](builtin_ops.md)).
+
+$\text{int\_to\_width}(v, n)$ - Converts $v$ into an unsigned uinteger value with specific width, where `v` must be an $\mathrm{Integer}$ typed value:
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in SignedInteger
+    \mathrm{T} \in \mathrm{SignedInteger}
     \quad
     \text{\_\_int\_width}(\mathrm{T}) < n
 }{
-    \text{\_\_int\_to\_width}(v, n) \rightarrow \text{widen\_int}(v, n)
+    \text{int\_to\_width}(v, n) \rightarrow \text{widen\_int}(v, n)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in SignedInteger
+    \mathrm{T} \in \mathrm{SignedInteger}
     \quad
     \text{\_\_int\_width}(\mathrm{T}) = n
 }{
-    \text{\_\_int\_to\_width}(v, n) \rightarrow v
+    \text{int\_to\_width}(v, n) \rightarrow v
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in SignedInteger
+    \mathrm{T} \in \mathrm{SignedInteger}
     \quad
     \text{\_\_int\_width}(\mathrm{T}) > n
 }{
-    \text{\_\_int\_to\_width}(v, n) \rightarrow \text{narrow\_int}(v, n)
+    \text{int\_to\_width}(v, n) \rightarrow \text{narrow\_int}(v, n)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in UnsignedInteger
+    \mathrm{T} \in \mathrm{UnsignedInteger}
 }{
-    \text{\_\_int\_to\_width}(v, n) \rightarrow \text{\_\_int\_to\_width}(\text{\_\_to\_signed}(v), n)
+    \text{int\_to\_width}(v, n) \rightarrow \text{int\_to\_width}(\text{\_\_to\_signed}(v), n)
 }
 $$
 
-$\text{\_\_int\_to\_width}(v, n)$ - Converts $v$ into an unsigned uinteger value with specific width, where `v` must be an $Integer$ typed value:
-
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in UnsignedInteger
+    \mathrm{T} \in \mathrm{UnsignedInteger}
     \quad
     \text{\_\_int\_width}(\mathrm{T}) < n
 }{
-    \text{\_\_int\_to\_width}(v, n) \rightarrow \text{widen\_uint}(v, n)
+    \text{int\_to\_width}(v, n) \rightarrow \text{widen\_uint}(v, n)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in UnsignedInteger
+    \mathrm{T} \in \mathrm{UnsignedInteger}
     \quad
     \text{\_\_int\_width}(\mathrm{T}) = n
 }{
-    \text{\_\_int\_to\_width}(v, n) \rightarrow v
+    \text{int\_to\_width}(v, n) \rightarrow v
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in UnsignedInteger
+    \mathrm{T} \in \mathrm{UnsignedInteger}
     \quad
     \text{\_\_int\_width}(\mathrm{T}) > n
 }{
-    \text{\_\_int\_to\_width}(v, n) \rightarrow \text{narrow\_uint}(v, n)
+    \text{int\_to\_width}(v, n) \rightarrow \text{narrow\_uint}(v, n)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in SignedInteger
+    \mathrm{T} \in \mathrm{SignedInteger}
 }{
-    \text{\_\_int\_to\_width}(v, n) \rightarrow \text{\_\_int\_to\_width}(\text{\_\_to\_unsigned}(v), n)
+    \text{int\_to\_width}(v, n) \rightarrow \text{int\_to\_width}(\text{\_\_to\_unsigned}(v), n)
 }
 $$
 
-$\text{\_\_int\_to\_i8}(v)$ - Converts $v$ into an `i8` value, where `v` must be an $Integer$ typed value, widening, narrowing or signed conversion may be applied.
+$\text{int\_to\_i8}(v)$ - Converts $v$ into an `i8` value, where `v` must be an $\mathrm{Integer}$ typed value, widening, narrowing or signed conversion may be applied.
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Integer
+    \mathrm{T} \in \mathrm{Integer}
 }{
-    \text{\_\_int\_to\_i8}(v, n) \rightarrow \text{\_\_int\_to\_width}(v, 8)
+    \text{int\_to\_i8}(v, n) \rightarrow \text{int\_to\_width}(v, 8)
 }
 $$
 
-$\text{\_\_int\_to\_i16}(v)$ - Converts $v$ into an `i16` value, where `v` must be an $Integer$ typed value, widening, narrowing or signed conversion may be applied.
+$\text{int\_to\_i16}(v)$ - Converts $v$ into an `i16` value, where `v` must be an $\mathrm{Integer}$ typed value, widening, narrowing or signed conversion may be applied.
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Integer
+    \mathrm{T} \in \mathrm{Integer}
 }{
-    \text{\_\_int\_to\_i16}(v, n) \rightarrow \text{\_\_int\_to\_width}(v, 16)
+    \text{int\_to\_i16}(v, n) \rightarrow \text{int\_to\_width}(v, 16)
 }
 $$
 
-$\text{\_\_int\_to\_i32}(v)$ - Converts $v$ into an `i32` value, where `v` must be an $Integer$ typed value, widening, narrowing or signed conversion may be applied.
+$\text{int\_to\_i32}(v)$ - Converts $v$ into an `i32` value, where `v` must be an $\mathrm{Integer}$ typed value, widening, narrowing or signed conversion may be applied.
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Integer
+    \mathrm{T} \in \mathrm{Integer}
 }{
-    \text{\_\_int\_to\_i32}(v, n) \rightarrow \text{\_\_int\_to\_width}(v, 32)
+    \text{int\_to\_i32}(v, n) \rightarrow \text{int\_to\_width}(v, 32)
 }
 $$
 
-$\text{\_\_int\_to\_i64}(v)$ - Converts $v$ into an `i64` value, where `v` must be an $Integer$ typed value, widening or signed conversion may be applied.
+$\text{int\_to\_i64}(v)$ - Converts $v$ into an `i64` value, where `v` must be an $\mathrm{Integer}$ typed value, widening or signed conversion may be applied.
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Integer
+    \mathrm{T} \in \mathrm{Integer}
 }{
-    \text{\_\_int\_to\_i64}(v, n) \rightarrow \text{\_\_int\_to\_width}(v, 64)
+    \text{int\_to\_i64}(v, n) \rightarrow \text{int\_to\_width}(v, 64)
 }
 $$
 
-$\text{\_\_int\_to\_u8}(v)$ - Converts $v$ into an `u8` value, where `v` must be an $Integer$ typed value, widening, narrowing or signed conversion may be applied.
+$\text{int\_to\_u8}(v)$ - Converts $v$ into an `u8` value, where `v` must be an $\mathrm{Integer}$ typed value, widening, narrowing or signed conversion may be applied.
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Integer
+    \mathrm{T} \in \mathrm{Integer}
 }{
-    \text{\_\_int\_to\_u8}(v, n) \rightarrow \text{\_\_int\_to\_width}(v, 8)
+    \text{int\_to\_u8}(v, n) \rightarrow \text{int\_to\_width}(v, 8)
 }
 $$
 
-$\text{\_\_int\_to\_u16}(v)$ - Converts $v$ into an `u16` value, where `v` must be an $Integer$ typed value, widening, narrowing or signed conversion may be applied.
+$\text{int\_to\_u16}(v)$ - Converts $v$ into an `u16` value, where `v` must be an $\mathrm{Integer}$ typed value, widening, narrowing or signed conversion may be applied.
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Integer
+    \mathrm{T} \in \mathrm{Integer}
 }{
-    \text{\_\_int\_to\_u16}(v, n) \rightarrow \text{\_\_int\_to\_width}(v, 16)
+    \text{int\_to\_u16}(v, n) \rightarrow \text{int\_to\_width}(v, 16)
 }
 $$
 
-$\text{\_\_int\_to\_u32}(v)$ - Converts $v$ into an `u32` value, where `v` must be an $Integer$ typed value, widening, narrowing or signed conversion may be applied.
+$\text{int\_to\_u32}(v)$ - Converts $v$ into an `u32` value, where `v` must be an $\mathrm{Integer}$ typed value, widening, narrowing or signed conversion may be applied.
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Integer
+    \mathrm{T} \in \mathrm{Integer}
 }{
-    \text{\_\_int\_to\_u32}(v, n) \rightarrow \text{\_\_int\_to\_width}(v, 32)
+    \text{int\_to\_u32}(v, n) \rightarrow \text{int\_to\_width}(v, 32)
 }
 $$
 
-$\text{\_\_int\_to\_u64}(v)$ - Converts $v$ into an `u64` value, where `v` must be an $Integer$ typed value, widening or signed conversion may be applied.
+$\text{int\_to\_u64}(v)$ - Converts $v$ into an `u64` value, where `v` must be an $\mathrm{Integer}$ typed value, widening or signed conversion may be applied.
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Integer
+    \mathrm{T} \in \mathrm{Integer}
 }{
-    \text{\_\_int\_to\_u64}(v, n) \rightarrow \text{\_\_int\_to\_width}(v, 64)
+    \text{int\_to\_u64}(v, n) \rightarrow \text{int\_to\_width}(v, 64)
 }
 $$
 
-$\text{\_\_to\_i8}(v)$ - Converts $v$ into an `i8` value, where `v` must be an $Arithm$ typed value.
+$\text{to\_i8}(v)$ - Converts $v$ into an `i8` value, where `v` must be an $Arithm$ typed value.
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Integer
+    \mathrm{T} \in \mathrm{Integer}
 }{
-    \text{\_\_to\_i8}(v, n) \rightarrow \text{\_\_int\_to\_i8}(v, n)
-}
-$$
-
-$$
-\frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
-    \quad
-    \mathrm{T} \in Float
-}{
-    \text{\_\_to\_i8}(v, n) \rightarrow \text{\_\_float\_to\_i8}(v, n)
-}
-$$
-
-$\text{\_\_to\_i16}(v)$ - Converts $v$ into an `i16` value, where `v` must be an $Arithm$ typed value.
-
-$$
-\frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
-    \quad
-    \mathrm{T} \in Integer
-}{
-    \text{\_\_to\_i16}(v, n) \rightarrow \text{\_\_int\_to\_i16}(v, n)
+    \text{to\_i8}(v, n) \rightarrow \text{int\_to\_i8}(v, n)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Float
+    \mathrm{T} \in \mathrm{Float}
 }{
-    \text{\_\_to\_i16}(v, n) \rightarrow \text{\_\_float\_to\_i16}(v, n)
+    \text{to\_i8}(v, n) \rightarrow \text{\_\_float\_to\_i8}(v, n)
 }
 $$
 
-$\text{\_\_to\_i32}(v)$ - Converts $v$ into an `i32` value, where `v` must be an $Arithm$ typed value.
+$\text{to\_i16}(v)$ - Converts $v$ into an `i16` value, where `v` must be an $Arithm$ typed value.
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Integer
+    \mathrm{T} \in \mathrm{Integer}
 }{
-    \text{\_\_to\_i32}(v, n) \rightarrow \text{\_\_int\_to\_i32}(v, n)
-}
-$$
-
-$$
-\frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
-    \quad
-    \mathrm{T} \in Float
-}{
-    \text{\_\_to\_i32}(v, n) \rightarrow \text{\_\_float\_to\_i32}(v, n)
-}
-$$
-
-$\text{\_\_to\_i64}(v)$ - Converts $v$ into an `i64` value, where `v` must be an $Arithm$ typed value.
-$$
-\frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
-    \quad
-    \mathrm{T} \in Integer
-}{
-    \text{\_\_to\_i64}(v, n) \rightarrow \text{\_\_int\_to\_i64}(v, n)
+    \text{to\_i16}(v, n) \rightarrow \text{int\_to\_i16}(v, n)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Float
+    \mathrm{T} \in \mathrm{Float}
 }{
-    \text{\_\_to\_i64}(v, n) \rightarrow \text{\_\_float\_to\_i64}(v, n)
+    \text{to\_i16}(v, n) \rightarrow \text{\_\_float\_to\_i16}(v, n)
 }
 $$
 
-$\text{\_\_to\_u8}(v)$ - Converts $v$ into an `u8` value, where `v` must be an $Arithm$ typed value.
+$\text{to\_i32}(v)$ - Converts $v$ into an `i32` value, where `v` must be an $Arithm$ typed value.
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Integer
+    \mathrm{T} \in \mathrm{Integer}
 }{
-    \text{\_\_to\_u8}(v, n) \rightarrow \text{\_\_int\_to\_u8}(v, n)
-}
-$$
-
-$$
-\frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
-    \quad
-    \mathrm{T} \in Float
-}{
-    \text{\_\_to\_u8}(v, n) \rightarrow \text{\_\_float\_to\_u8}(v, n)
-}
-$$
-
-$\text{\_\_to\_u16}(v)$ - Converts $v$ into an `u16` value, where `v` must be an $Arithm$ typed value.
-
-$$
-\frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
-    \quad
-    \mathrm{T} \in Integer
-}{
-    \text{\_\_to\_u16}(v, n) \rightarrow \text{\_\_int\_to\_u16}(v, n)
+    \text{to\_i32}(v, n) \rightarrow \text{int\_to\_i32}(v, n)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Float
+    \mathrm{T} \in \mathrm{Float}
 }{
-    \text{\_\_to\_u16}(v, n) \rightarrow \text{\_\_float\_to\_u16}(v, n)
+    \text{to\_i32}(v, n) \rightarrow \text{\_\_float\_to\_i32}(v, n)
 }
 $$
 
-$\text{\_\_to\_u32}(v)$ - Converts $v$ into an `u32` value, where `v` must be an $Arithm$ typed value.
-
+$\text{to\_i64}(v)$ - Converts $v$ into an `i64` value, where `v` must be an $Arithm$ typed value.
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Integer
+    \mathrm{T} \in \mathrm{Integer}
 }{
-    \text{\_\_to\_u32}(v, n) \rightarrow \text{\_\_int\_to\_u32}(v, n)
-}
-$$
-
-$$
-\frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
-    \quad
-    \mathrm{T} \in Float
-}{
-    \text{\_\_to\_u32}(v, n) \rightarrow \text{\_\_float\_to\_u32}(v, n)
-}
-$$
-
-$\text{\_\_to\_u64}(v)$ - Converts $v$ into an `u64` value, where `v` must be an $Arithm$ typed value.
-
-$$
-\frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
-    \quad
-    \mathrm{T} \in Integer
-}{
-    \text{\_\_to\_u64}(v, n) \rightarrow \text{\_\_int\_to\_u64}(v, n)
+    \text{to\_i64}(v, n) \rightarrow \text{int\_to\_i64}(v, n)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
     \quad
-    \mathrm{T} \in Float
+    \mathrm{T} \in \mathrm{Float}
 }{
-    \text{\_\_to\_u64}(v, n) \rightarrow \text{\_\_float\_to\_u64}(v, n)
+    \text{to\_i64}(v, n) \rightarrow \text{\_\_float\_to\_i64}(v, n)
+}
+$$
+
+$\text{to\_u8}(v)$ - Converts $v$ into an `u8` value, where `v` must be an $Arithm$ typed value.
+
+$$
+\frac{
+    \text{\_\_typeof}(v) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+}{
+    \text{to\_u8}(v, n) \rightarrow \text{int\_to\_u8}(v, n)
+}
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Float}
+}{
+    \text{to\_u8}(v, n) \rightarrow \text{\_\_float\_to\_u8}(v, n)
+}
+$$
+
+$\text{to\_u16}(v)$ - Converts $v$ into an `u16` value, where `v` must be an $Arithm$ typed value.
+
+$$
+\frac{
+    \text{\_\_typeof}(v) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+}{
+    \text{to\_u16}(v, n) \rightarrow \text{int\_to\_u16}(v, n)
+}
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Float}
+}{
+    \text{to\_u16}(v, n) \rightarrow \text{\_\_float\_to\_u16}(v, n)
+}
+$$
+
+$\text{to\_u32}(v)$ - Converts $v$ into an `u32` value, where `v` must be an $Arithm$ typed value.
+
+$$
+\frac{
+    \text{\_\_typeof}(v) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+}{
+    \text{to\_u32}(v, n) \rightarrow \text{int\_to\_u32}(v, n)
+}
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Float}
+}{
+    \text{to\_u32}(v, n) \rightarrow \text{\_\_float\_to\_u32}(v, n)
+}
+$$
+
+$\text{to\_u64}(v)$ - Converts $v$ into an `u64` value, where `v` must be an $Arithm$ typed value.
+
+$$
+\frac{
+    \text{\_\_typeof}(v) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+}{
+    \text{to\_u64}(v, n) \rightarrow \text{int\_to\_u64}(v, n)
+}
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Float}
+}{
+    \text{to\_u64}(v, n) \rightarrow \text{\_\_float\_to\_u64}(v, n)
+}
+$$
+
+$\text{to\_f32}(v)$ - Converts $v$ into an `f32` value, where `v` must be an $Arithm$ typed value.
+
+$$
+\frac{
+    \text{\_\_typeof}(v) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+}{
+    \text{to\_f32}(v, n) \rightarrow \text{\_\_to\_f32}(v, n)
+}
+$$
+
+$\text{to\_f64}(v)$ - Converts $v$ into an `f64` value, where `v` must be an $Arithm$ typed value.
+
+$$
+\frac{
+    \text{\_\_typeof}(v) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+}{
+    \text{to\_f64}(v, n) \rightarrow \text{\_\_to\_f64}(v, n)
 }
 $$
 
@@ -397,101 +503,101 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
-    v\ \text{as}\ \mathrm{i8} \rightarrow \text{\_\_to\_i8}(v)
+    v\ \text{as}\ \mathrm{i8} \rightarrow \text{to\_i8}(v)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
-    v\ \text{as}\ \mathrm{i16} \rightarrow \text{\_\_to\_i16}(v)
+    v\ \text{as}\ \mathrm{i16} \rightarrow \text{to\_i16}(v)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
-    v\ \text{as}\ \mathrm{i32} \rightarrow \text{\_\_to\_i32}(v)
+    v\ \text{as}\ \mathrm{i32} \rightarrow \text{to\_i32}(v)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
-    v\ \text{as}\ \mathrm{i64} \rightarrow \text{\_\_to\_i64}(v)
+    v\ \text{as}\ \mathrm{i64} \rightarrow \text{to\_i64}(v)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
-    v\ \text{as}\ \mathrm{u8} \rightarrow \text{\_\_to\_u8}(v)
+    v\ \text{as}\ \mathrm{u8} \rightarrow \text{to\_u8}(v)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
-    v\ \text{as}\ \mathrm{u16} \rightarrow \text{\_\_to\_u16}(v)
+    v\ \text{as}\ \mathrm{u16} \rightarrow \text{to\_u16}(v)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
-    v\ \text{as}\ \mathrm{u32} \rightarrow \text{\_\_to\_u32}(v)
+    v\ \text{as}\ \mathrm{u32} \rightarrow \text{to\_u32}(v)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
-    v\ \text{as}\ \mathrm{u64} \rightarrow \text{\_\_to\_u64}(v)
+    v\ \text{as}\ \mathrm{u64} \rightarrow \text{to\_u64}(v)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
-    v\ \text{as}\ \mathrm{f32} \rightarrow \text{\_\_to\_f32}(v)
+    v\ \text{as}\ \mathrm{f32} \rightarrow \text{to\_f32}(v)
 }
 $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
-    v\ \text{as}\ \mathrm{f64} \rightarrow \text{\_\_to\_f64}(v)
+    v\ \text{as}\ \mathrm{f64} \rightarrow \text{to\_f64}(v)
 }
 $$
 
@@ -501,7 +607,7 @@ $$
 \frac{
     \Gamma\vdash e: \mathrm{bool}
     \quad
-    \mathrm{S} \in \mathrm{Integer}
+    \mathrm{S} \in \mathrm{\mathrm{Integer}}
 }{
     e\ \text{as}\ \mathrm{T}: \mathrm{T}
 }
@@ -671,7 +777,7 @@ The runtime will return the object itself or throw a `TypeCastException` if the 
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -685,7 +791,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -744,7 +850,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -758,7 +864,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -788,7 +894,7 @@ The runtime should throw a `TypeCastException` instance when converting an objec
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -804,7 +910,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{S}
+    \text{\_\_typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -846,7 +952,7 @@ Converting a value into nullable type does not change itself anything:
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
 }{
     v\ \text{as}\ \mathrm{T?} \rightarrow v
 }
@@ -866,7 +972,7 @@ But if the value is `null`, the runtime will throw a `TypeCastException` instanc
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{T}
+    \text{\_\_typeof}(v) = \mathrm{T}
 }{
     v\ \text{as}\ \mathrm{T} \rightarrow v
 }
@@ -874,7 +980,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(v) \rightarrow \mathrm{null}
+    \text{\_\_typeof}(v) = \mathrm{null}
 }{
     v\ \text{as}\ \mathrm{T} \rightarrow \text{throw}\ \text{new}\ \mathrm{TypeCastException}()
 }

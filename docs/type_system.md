@@ -135,6 +135,16 @@ $$
 }
 $$
 
+Every arithmetic type is unconditionally a type:
+
+$$
+\frac{
+}{
+    \forall i \in \mathrm{Arithm},
+    \Gamma\vdash i\ \mathrm{type}
+}
+$$
+
 ### Nullable Types
 
 Each nullable type's non-nullable version is its nullable version's parent type:
@@ -227,14 +237,14 @@ Selects and returns the most derived type from the parameters.
 
 $$
 GLB(A, B)=\begin{cases}
-B &\mathrm{B} <: \mathrm{A}\\
-A &\text{otherwise}
+    B &\mathrm{B} <: \mathrm{A}\\
+    A &\text{otherwise}
 \end{cases}
 $$
 
 ### Common Result Type
 
-The Common Result Type Function $CommonResult(A, B)$ infers the common result value type between two result types.
+The Common Result Type Function $\text{CommonResult}(A, B)$ infers the common result value type between two result types.
 
 $$
 \frac{
@@ -244,6 +254,78 @@ $$
     \quad
     A <: B \mid B <: A
 }{
-    CommonType(A, B) = LUB(A,B)
+    \text{CommonType}(A, B) = LUB(A,B)
+}
+$$
+
+$$
+\frac{
+    \mathrm{A} \in \mathrm{UnsignedInteger}
+    \quad
+    \mathrm{B} \in \mathrm{UnsignedInteger}
+    \quad
+    \text{\_\_int\_width}(A) \le \text{\_\_int\_width}(B)
+}{
+    \text{CommonType}(A, B) = B
+}
+$$
+
+$$
+\frac{
+    \mathrm{A} \in \mathrm{UnsignedInteger}
+    \quad
+    \mathrm{B} \in \mathrm{UnsignedInteger}
+    \quad
+    \text{\_\_int\_width}(A) > \text{\_\_int\_width}(B)
+}{
+    \text{CommonType}(A, B) = A
+}
+$$
+
+$$
+\frac{
+    \mathrm{A} \in \mathrm{SignedInteger}
+    \quad
+    \mathrm{B} \in \mathrm{SignedInteger}
+    \quad
+    \text{\_\_int\_width}(A) \le \text{\_\_int\_width}(B)
+}{
+    \text{CommonType}(A, B) = B
+}
+$$
+
+$$
+\frac{
+    \mathrm{A} \in \mathrm{SignedInteger}
+    \quad
+    \mathrm{B} \in \mathrm{SignedInteger}
+    \quad
+    \text{\_\_int\_width}(A) > \text{\_\_int\_width}(B)
+}{
+    \text{CommonType}(A, B) = A
+}
+$$
+
+$$
+\frac{
+    \mathrm{A} \in \mathrm{Float}
+    \quad
+    \mathrm{B} \in \mathrm{Float}
+    \quad
+    \text{\_\_float\_width}(A) \le \text{\_\_float\_width}(B)
+}{
+    \text{CommonType}(A, B) = B
+}
+$$
+
+$$
+\frac{
+    \mathrm{A} \in \mathrm{Float}
+    \quad
+    \mathrm{B} \in \mathrm{Float}
+    \quad
+    \text{\_\_float\_width}(A) > \text{\_\_float\_width}(B)
+}{
+    \text{CommonType}(A, B) = A
 }
 $$
