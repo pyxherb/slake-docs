@@ -8,6 +8,7 @@ $$
 }{
     \Gamma\vdash \And x:\mathrm{T\And}
 }
+(\text{T-AddRef})
 $$
 
 Performing dereference operation extracts the original value referred by the reference：
@@ -18,6 +19,7 @@ $$
 }{
     \Gamma\vdash \text{*}x:\mathrm{T}
 }
+(\text{T-Deref})
 $$
 
 Assignment to a reference is allowed by a non-reference value:
@@ -30,4 +32,5 @@ $$
 }{
     \Gamma\vdash x\text{=}y:\mathrm{T\And}
 }
+(\text{T-Assign})
 $$

@@ -34,7 +34,7 @@ $$
 }{
     \text{while}(e_1)\ b \mid \mu_0 \rightarrow b; \text{while}(e_1)\ b \mid \mu_1
 }
-(\text{E-WhileTrue})
+(\text{E-WhileStmtTrue})
 $$
 
 $$
@@ -43,7 +43,7 @@ $$
 }{
     \text{while}(e_1)\ b \mid \mu_0 \rightarrow \text{void} \mid \mu_1
 }
-(\text{E-WhileFalse})
+(\text{E-WhileStmtFalse})
 $$
 
 ## Do-while Statement
@@ -55,5 +55,5 @@ $$
 }{
     \text{do}\ b\ \text{while}(e_1) \mid \mu \rightarrow b; \text{while}(e_1)\ b \mid \mu
 }
-(\text{E-DoWhile})
+(\text{E-DoWhileStmt})
 $$
