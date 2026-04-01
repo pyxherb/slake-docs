@@ -12,6 +12,7 @@ $$
 }{
     e_1; \mid \mu_0 \rightarrow \text{void} \mid \mu_1
 }
+(\text{E-ExprStmt})
 $$
 
 $$
@@ -20,6 +21,7 @@ $$
 }{
     \Gamma\vdash t; : \mathrm{void}
 }
+(\text{T-ExprStmt})
 $$
 
 ## While Statement
@@ -32,6 +34,7 @@ $$
 }{
     \text{while}(e_1)\ b \mid \mu_0 \rightarrow b; \text{while}(e_1)\ b \mid \mu_1
 }
+(\text{E-WhileTrue})
 $$
 
 $$
@@ -40,6 +43,7 @@ $$
 }{
     \text{while}(e_1)\ b \mid \mu_0 \rightarrow \text{void} \mid \mu_1
 }
+(\text{E-WhileFalse})
 $$
 
 ## Do-while Statement
@@ -51,4 +55,5 @@ $$
 }{
     \text{do}\ b\ \text{while}(e_1) \mid \mu \rightarrow b; \text{while}(e_1)\ b \mid \mu
 }
+(\text{E-DoWhile})
 $$

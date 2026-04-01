@@ -2,7 +2,9 @@
 
 ## Operations
 
-$\text{BinaryExprMainOpType}(A, B)$ infers the main operation type of a common binary expression between types of two undecorated operands:
+$\text{BinaryExprMainOpType}(A, B)$ infers the main operation type of a common binary expression between types of two undecorated operands.
+
+If both operand types are $\mathrm{UnsignedInteger}$, $\mathrm{SignedInteger}$ or $\mathrm{Float}$ type, choose the wider one:
 
 $$
 \frac{
@@ -34,37 +36,27 @@ $$
 }
 $$
 
-$$
-\frac{
-    \mathrm{A} \in \mathrm{SignedInteger}
-    \quad
-    \mathrm{B} \in \mathrm{SignedInteger}
-}{
-    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \text{CommonType}(\mathrm{A}, \mathrm{B})
-}
-$$
+Or, if the type of RHS can be converted to type of LHS, use type of LHS.
 
 $$
 \frac{
-    \mathrm{A} \in \mathrm{Arithm}
+    \Gamma\vdash\mathrm{A}\ \mathrm{type}
     \quad
-    \mathrm{B} \in \mathrm{Arithm}
+    \Gamma\vdash\mathrm{B}\ \mathrm{type}
     \quad
-    \text{IsConvertible}(\mathrm{A}, \mathrm{B}) = \text{true}
-}{
-    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{B}
-}
-$$
-
-$$
-\frac{
-    \mathrm{A} \in \mathrm{Arithm}
-    \quad
-    \mathrm{B} \in \mathrm{Arithm}
-    \quad
-    \text{IsConvertible}(\mathrm{A}, \mathrm{B}) = \text{false}
+    \text{IsConvertible}(\mathrm{B}, \mathrm{A}) = \text{true}
 }{
     \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{A}
+}
+$$
+
+Otherwise, use type of RHS.
+
+$$
+\frac{
+    \text{otherwise}
+}{
+    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{B}
 }
 $$
 

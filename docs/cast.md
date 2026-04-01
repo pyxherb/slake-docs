@@ -55,7 +55,7 @@ $$
     \Gamma\vdash\mathrm{B}\ \mathrm{type}
     \quad
     \mathrm{A} <: \mathrm{B}
-    \mid
+    \vee
     \mathrm{B} <: \mathrm{A}
 }{
     \text{IsConvertible}(\mathrm{A}, \mathrm{B}) = \text{true}
@@ -499,6 +499,7 @@ $$
 }{
     e\ \text{as}\ \mathrm{T}: \mathrm{T}
 }
+(\text{T-ArithmCastAsArithm})
 $$
 
 $$
@@ -509,6 +510,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{i8} \rightarrow \text{to\_i8}(v)
 }
+(\text{E-CastAsI8})
 $$
 
 $$
@@ -519,6 +521,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{i16} \rightarrow \text{to\_i16}(v)
 }
+(\text{E-CastAsI16})
 $$
 
 $$
@@ -529,6 +532,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{i32} \rightarrow \text{to\_i32}(v)
 }
+(\text{E-CastAsI32})
 $$
 
 $$
@@ -539,6 +543,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{i64} \rightarrow \text{to\_i64}(v)
 }
+(\text{E-CastAsI64})
 $$
 
 $$
@@ -549,6 +554,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{u8} \rightarrow \text{to\_u8}(v)
 }
+(\text{E-CastAsU8})
 $$
 
 $$
@@ -559,6 +565,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{u16} \rightarrow \text{to\_u16}(v)
 }
+(\text{E-CastAsU16})
 $$
 
 $$
@@ -569,6 +576,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{u32} \rightarrow \text{to\_u32}(v)
 }
+(\text{E-CastAsU32})
 $$
 
 $$
@@ -579,6 +587,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{u64} \rightarrow \text{to\_u64}(v)
 }
+(\text{E-CastAsU64})
 $$
 
 $$
@@ -589,6 +598,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{f32} \rightarrow \text{to\_f32}(v)
 }
+(\text{E-CastAsF32})
 $$
 
 $$
@@ -599,6 +609,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{f64} \rightarrow \text{to\_f64}(v)
 }
+(\text{E-CastAsF64})
 $$
 
 `bool` type can be converted to integer types, but cannot be converted into floating-point types, or a `TypeCastException` instance should be thrown by the runtime:
@@ -619,12 +630,14 @@ $$
 }{
     v\ \text{as}\ \mathrm{i8} \rightarrow \text{0}\ \text{as}\ \mathrm{i8}
 }
+(\text{E-FalseAsI8})
 \quad
 \frac{
     v = \text{true}
 }{
     v\ \text{as}\ \mathrm{i8} \rightarrow \text{1}\ \text{as}\ \mathrm{i8}
 }
+(\text{E-TrueAsI8})
 $$
 
 $$
@@ -633,12 +646,14 @@ $$
 }{
     v\ \text{as}\ \mathrm{i16} \rightarrow \text{0}\ \text{as}\ \mathrm{i16}
 }
+(\text{E-FalseAsI16})
 \quad
 \frac{
     v = \text{true}
 }{
     v\ \text{as}\ \mathrm{i16} \rightarrow \text{1}\ \text{as}\ \mathrm{i16}
 }
+(\text{E-TrueAsI16})
 $$
 
 $$
@@ -647,12 +662,14 @@ $$
 }{
     v\ \text{as}\ \mathrm{i32} \rightarrow \text{0}\ \text{as}\ \mathrm{i32}
 }
+(\text{E-FalseAsI32})
 \quad
 \frac{
     v = \text{true}
 }{
     v\ \text{as}\ \mathrm{i32} \rightarrow \text{1}\ \text{as}\ \mathrm{i32}
 }
+(\text{E-TrueAsI32})
 $$
 
 $$
@@ -661,12 +678,14 @@ $$
 }{
     v\ \text{as}\ \mathrm{i64} \rightarrow \text{0}\ \text{as}\ \mathrm{i64}
 }
+(\text{E-FalseAsI64})
 \quad
 \frac{
     v = \text{true}
 }{
     v\ \text{as}\ \mathrm{i64} \rightarrow \text{1}\ \text{as}\ \mathrm{i64}
 }
+(\text{E-TrueAsI64})
 $$
 
 $$
@@ -675,12 +694,14 @@ $$
 }{
     v\ \text{as}\ \mathrm{u8} \rightarrow \text{0}\ \text{as}\ \mathrm{u8}
 }
+(\text{E-FalseAsU8})
 \quad
 \frac{
     v = \text{true}
 }{
     v\ \text{as}\ \mathrm{u8} \rightarrow \text{1}\ \text{as}\ \mathrm{u8}
 }
+(\text{E-TrueAsU8})
 $$
 
 $$
@@ -689,12 +710,14 @@ $$
 }{
     v\ \text{as}\ \mathrm{u16} \rightarrow \text{0}\ \text{as}\ \mathrm{u16}
 }
+(\text{E-FalseAsU16})
 \quad
 \frac{
     v = \text{true}
 }{
     v\ \text{as}\ \mathrm{u16} \rightarrow \text{1}\ \text{as}\ \mathrm{u16}
 }
+(\text{E-TrueAsU16})
 $$
 
 $$
@@ -703,12 +726,14 @@ $$
 }{
     v\ \text{as}\ \mathrm{u32} \rightarrow \text{0}\ \text{as}\ \mathrm{u32}
 }
+(\text{E-FalseAsU32})
 \quad
 \frac{
     v = \text{true}
 }{
     v\ \text{as}\ \mathrm{u32} \rightarrow \text{1}\ \text{as}\ \mathrm{u32}
 }
+(\text{E-TrueAsU32})
 $$
 
 $$
@@ -717,12 +742,14 @@ $$
 }{
     v\ \text{as}\ \mathrm{u64} \rightarrow \text{0}\ \text{as}\ \mathrm{u64}
 }
+(\text{E-FalseAsU64})
 \quad
 \frac{
     v = \text{true}
 }{
     v\ \text{as}\ \mathrm{u64} \rightarrow \text{1}\ \text{as}\ \mathrm{u64}
 }
+(\text{E-TrueAsU64})
 $$
 
 ## For Objects
@@ -741,6 +768,7 @@ $$
 }{
     e\ \text{as}\ \mathrm{T}: \mathrm{T}
 }
+(\text{T-ObjectUpCast})
 $$
 
 $$
@@ -757,6 +785,7 @@ $$
 }{
     e\ \text{as}\ \mathrm{T}: \mathrm{T}
 }
+(\text{T-ObjectDownCast})
 $$
 
 ```slake
@@ -779,7 +808,7 @@ $$
 \frac{
     \text{\_\_typeof}(v) = \mathrm{S}
     \quad
-    \mathrm{S} <: \mathrm{object?}
+    \mathrm{S} <: \mathrm{object}
     \quad
     \mathrm{T} <: \mathrm{object}
     \quad
@@ -787,13 +816,14 @@ $$
 }{
     v\ \text{as}\ \mathrm{T} \rightarrow v
 }
+(\text{E-ObjectCast})
 $$
 
 $$
 \frac{
     \text{\_\_typeof}(v) = \mathrm{S}
     \quad
-    \mathrm{S} <: \mathrm{object?}
+    \mathrm{S} <: \mathrm{object}
     \quad
     \mathrm{T} <: \mathrm{object}
     \quad
@@ -803,6 +833,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{T} \rightarrow \text{throw}\ \text{new}\ \mathrm{TypeCastException}()
 }
+(\text{E-ObjectCastFailed})
 $$
 
 ```slake
@@ -830,6 +861,7 @@ $$
 }{
     e\ \text{as?}\ \mathrm{T}: \mathrm{T}
 }
+(\text{T-NullableObjectUpCast})
 $$
 
 $$
@@ -846,6 +878,7 @@ $$
 }{
     e\ \text{as?}\ \mathrm{T}: \mathrm{T?}
 }
+(\text{T-NullableObjectDownCast})
 $$
 
 $$
@@ -860,6 +893,7 @@ $$
 }{
     v\ \text{as?}\ \mathrm{T} \rightarrow v
 }
+(\text{E-NullableObjectCast})
 $$
 
 $$
@@ -876,6 +910,7 @@ $$
 }{
     v\ \text{as?}\ \mathrm{T} \rightarrow \text{null}
 }
+(\text{E-NullableObjectCastFailed})
 $$
 
 ```slake
@@ -906,6 +941,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{T} \rightarrow \text{throw}\ \text{new}\ \mathrm{TypeCastException}()
 }
+(\text{E-ObjectCastUnrelated})
 $$
 
 $$
@@ -922,6 +958,7 @@ $$
 }{
     v\ \text{as?}\ \mathrm{T} \rightarrow \text{throw}\ \text{new}\ \mathrm{TypeCastException}()
 }
+(\text{E-NullableObjectCastUnrelated})
 $$
 
 ```slake
@@ -946,6 +983,7 @@ $$
 }{
     e\ \text{as}\ \mathrm{T?}: \mathrm{T?}
 }
+(\text{T-NonNullableAsNullable})
 $$
 
 Converting a value into nullable type does not change itself anything:
@@ -956,6 +994,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{T?} \rightarrow v
 }
+(\text{E-NonNullAsNullable})
 $$
 
 And conversion from nullable type to non-nullable type is also viable in compile-time:
@@ -966,6 +1005,7 @@ $$
 }{
     e\ \text{as}\ \mathrm{T}: \mathrm{T}
 }
+(\text{T-NullableAsNonNullable})
 $$
 
 But if the value is `null`, the runtime will throw a `TypeCastException` instance:
@@ -976,6 +1016,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{T} \rightarrow v
 }
+(\text{E-NonNullAsNonNullable})
 $$
 
 $$
@@ -984,6 +1025,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{T} \rightarrow \text{throw}\ \text{new}\ \mathrm{TypeCastException}()
 }
+(\text{E-NullAsNonNullable})
 $$
 
 Note that both conversions must be with operands with the same base type:
@@ -1014,6 +1056,7 @@ $$
 }{
     v\ \text{as}\ \mathrm{T} \rightarrow \text{throw}\ \text{new}\ \mathrm{TypeCastException}()
 }
+(\text{E-CastUnrelated})
 $$
 
 $$
@@ -1022,4 +1065,5 @@ $$
 }{
     v\ \text{as?}\ \mathrm{T} \rightarrow \text{throw}\ \text{new}\ \mathrm{TypeCastException}()
 }
+(\text{E-NullableCastUnrelated})
 $$

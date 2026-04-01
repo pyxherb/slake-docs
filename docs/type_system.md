@@ -14,6 +14,7 @@ $$
 }{
     \Gamma\vdash \mathrm{T} <: \mathrm{any}
 }
+(\text{T-AnyTop})
 $$
 
 #### never_t
@@ -26,6 +27,7 @@ $$
 }{
     \Gamma\vdash \mathrm{never\_t} <: \mathrm{T}
 }
+(\text{T-NeverBottom})
 $$
 
 #### Built-in Arithmetic Types
@@ -112,6 +114,7 @@ $$
     \forall i \in \mathrm{IntegerTraits \lang T \rang},
     \Gamma\vdash \mathrm{T} <: i
 }
+(\text{T-IntegerTraits})
 $$
 
 Floating-point types includes `f32` and `f64`:
@@ -133,9 +136,22 @@ $$
     \forall i \in \mathrm{FloatTraits \lang T \rang},
     \Gamma\vdash \mathrm{T} <: i
 }
+(\text{T-FloatTraits})
 $$
 
-Every arithmetic type is unconditionally a type:
+Arithmetic types include $\mathrm{Float}$ and $\mathrm{Integer}$ types.
+
+$$
+\mathrm{Arithm} ::=
+\mathrm{Float}
+\mid\mathrm{Integer}
+$$
+
+### Fundamental Types
+
+Fundamental types included arithmetic types and `bool`.
+
+All of arithmetic type is unconditionally a type:
 
 $$
 \frac{
@@ -143,6 +159,7 @@ $$
     \forall i \in \mathrm{Arithm},
     \Gamma\vdash i\ \mathrm{type}
 }
+(\text{T-FundamentalTypesAreType})
 $$
 
 ### Nullable Types
@@ -155,6 +172,7 @@ $$
 }{
     \Gamma\vdash\mathrm{T} <: \mathrm{T?}
 }
+(\text{T-NullableSub})
 $$
 
 If a type is a subtype of another type, the type's nullable version is subtype of another type's nullable version:
@@ -165,6 +183,7 @@ $$
 }{
     \Gamma\vdash \mathrm{T_1?} <: \mathrm{T_2?}
 }
+(\text{T-SubNullableSub})
 $$
 
 and `T?` is not `P`'s subtype where the `T` is subtype of `P`.
@@ -181,6 +200,7 @@ $$
 }{
     \Gamma\vdash\mathrm{null} <: \mathrm{T?}
 }
+(\text{T-Null})
 $$
 
 ### Array Types
@@ -252,7 +272,7 @@ $$
     \quad
     \Gamma\vdash \mathrm{B}\ \mathrm{type}
     \quad
-    A <: B \mid B <: A
+    A <: B \vee B <: A
 }{
     \text{CommonType}(A, B) = LUB(A,B)
 }
