@@ -64,18 +64,6 @@ Let statement defines one or more local variables.
 
 $$
 \frac{
-    \Gamma\vdash t: \mathrm{T}
-    \quad
-    x \notin \text{dom}(\Gamma)
-    \quad
-    \Gamma, x: \mathrm{T}\vdash \overline{s}: \mathrm{void}
-}{
-    \Gamma\vdash \text{let}\ x = t; \overline{s}: \mathrm{void}
-}
-$$
-
-$$
-\frac{
     \Gamma\vdash\mathrm{T}\ \mathrm{type}
     \quad
     x \notin \text{dom}(\Gamma)
@@ -84,6 +72,7 @@ $$
 }{
     \Gamma\vdash \text{let}\ x: \mathrm{T}; \overline{s}: \mathrm{void}
 }
+(\text{T-LetTyped})
 $$
 
 $$
@@ -98,13 +87,16 @@ $$
 }{
     \Gamma\vdash \text{let}\ x: \mathrm{T_2} = t; \overline{s}: \mathrm{void}
 }
+(\text{T-LetTypedInit})
 $$
 
 $$
 \frac{
-    m = \text{Normal}
+    \Gamma\vdash e: \mathrm{T}
 }{
-    \text{let}\ x: \mathrm{T}; \overline{s} \mid \mu \mid \_ \mid m \rightarrow \overline{s} \mid \mu[x \mapsto \text{\_\_defaultof}(\mathrm{T})] \mid \_ \mid m
+    \Gamma\vdash\text{let}\ x = e
+    \triangleq
+    \text{let}\ x: \mathrm{T} = e
 }
 $$
 
@@ -118,6 +110,7 @@ $$
 }{
     \text{let}\ x: \mathrm{T} = e; \overline{s} \mid \mu \mid \_ \mid m \rightarrow \text{let}\ x: \mathrm{T} = e'; \overline{s} \mid \mu' \mid \_ \mid m
 }
+(\text{E-LetTypedInitReduce-Normal})
 $$
 
 $$
@@ -128,4 +121,14 @@ $$
 }{
     \text{let}\ x: \mathrm{T} = v; \overline{s} \mid \mu \mid \_ \mid m \rightarrow \overline{s} \mid \mu[x \mapsto v] \mid \_ \mid m
 }
+(\text{E-LetTypedInit-Normal})
+$$
+
+$$
+\frac{
+    m = \text{Normal}
+}{
+    \text{let}\ x: \mathrm{T}; \overline{s} \mid \mu \mid \_ \mid m \rightarrow \text{let}\ x: \mathrm{T} = \text{\_\_defaultof}(); \overline{s} \mid \mu \mid \_ \mid m
+}
+(\text{E-LetTyped-Normal})
 $$

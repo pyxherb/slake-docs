@@ -18,6 +18,8 @@ $\mathrm{A} <: \mathrm{B}$ - A is a subtype of B
 
 $\mathrm{A} \not<: \mathrm{B}$ - A is not a subtype of B
 
+$t_0 \triangleq t_1$ - $t_0$ is equivalent to/can be rewritten in $t_1$
+
 $s_0 \rightarrow s_1$ - Configuration $s_0$ is changed to $s_1$
 
 $e$ - Configuration that included current expression/value $e$, for pure expressions.
