@@ -44,4 +44,6 @@ $\text{\_\_stack\_max}(\mu)$ - Evaluate maximum stack depth in the runtime.
 
 $\text{\_\_sizeof}(t)$ - Evaluate size of an instance of a type.
 
+$\text{\_\_default}(t)$ - Get default value of a type.
+
 $\text{\_\_alloca}(t, \mu)$ - Allocate an instance of a type on the stack.

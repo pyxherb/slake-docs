@@ -30,7 +30,7 @@ $$
     \quad
     \Gamma\vdash y:\mathrm{T}
 }{
-    \Gamma\vdash x\text{=}y:\mathrm{T\And}
+    \Gamma\vdash x = y:\mathrm{T\And}
 }
 (\text{T-Assign})
 $$

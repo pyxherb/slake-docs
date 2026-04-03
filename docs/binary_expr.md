@@ -78,6 +78,18 @@ First, the compiler must look up the operation type:
   * For `<`, `>`, `<=`, `>=`, `==`, `!=`, `===`, `!==`, the result type is `bool`.
   * For `<=>`, the result type is `i32`.
 
+## Assignment Expression
+
+$$
+\frac{
+    \Gamma(x) = \mathrm{T}
+    \quad
+    \Gamma\vdash e: \mathrm{T}
+}{
+    \Gamma\vdash (x = e)\ \triangleright\ \Gamma
+}
+$$
+
 ## Comma Expression
 
 Comma expression evaluates both side of the comma operator but discards the result of left operand and the result of the expression is the right operand:
