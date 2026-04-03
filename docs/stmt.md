@@ -67,8 +67,10 @@ $$
     \Gamma\vdash t: \mathrm{T}
     \quad
     x \notin \text{dom}(\Gamma)
+    \quad
+    \Gamma, x: \mathrm{T}\vdash \overline{s}: \mathrm{void}
 }{
-    \Gamma\vdash \text{let}\ x = t;\ \triangleright\ \Gamma[\text{x}\mapsto\mathrm{T}]
+    \Gamma\vdash \text{let}\ x = t; \overline{s}: \mathrm{void}
 }
 $$
 
@@ -76,19 +78,25 @@ $$
 \frac{
     \Gamma\vdash\mathrm{T}\ \mathrm{type}
     \quad
-    \Gamma\vdash t: \mathrm{T}
+    x \notin \text{dom}(\Gamma)
+    \quad
+    \Gamma, x: \mathrm{T}\vdash \overline{s}: \mathrm{void}
 }{
-    \Gamma\vdash \text{let}\ x: \mathrm{T};\ \triangleright\ \Gamma[\text{x}\mapsto\mathrm{T}]
+    \Gamma\vdash \text{let}\ x: \mathrm{T}; \overline{s}: \mathrm{void}
 }
 $$
 
 $$
 \frac{
-    \Gamma\vdash t: \mathrm{T}
+    \Gamma\vdash t: \mathrm{T_1}
     \quad
     x \notin \text{dom}(\Gamma)
+    \quad
+    \Gamma, x: \mathrm{T_2}\vdash \overline{s}: \mathrm{void}
+    \quad
+    \mathrm{T_1} <: \mathrm{T_2}
 }{
-    \Gamma\vdash \text{let}\ x: \mathrm{T} = t;\ \triangleright\ \Gamma[\text{x}\mapsto\mathrm{T}]
+    \Gamma\vdash \text{let}\ x: \mathrm{T_2} = t; \overline{s}: \mathrm{void}
 }
 $$
 
@@ -96,7 +104,7 @@ $$
 \frac{
     m = \text{Normal}
 }{
-    \text{let}\ x: \mathrm{T}; \mid \mu \mid \_ \mid m \rightarrow \text{void} \mid \mu[x \mapsto \text{\_\_defaultof}(\mathrm{T})] \mid \_ \mid m
+    \text{let}\ x: \mathrm{T}; \overline{s} \mid \mu \mid \_ \mid m \rightarrow \overline{s} \mid \mu[x \mapsto \text{\_\_defaultof}(\mathrm{T})] \mid \_ \mid m
 }
 $$
 
@@ -104,8 +112,20 @@ $$
 \frac{
     m = \text{Normal}
     \quad
-    e \mid \mu \mid \_ \mid m \rightarrow v \mid \mu' \mid \_ \mid m
+    e \mid \mu \mid \_ \mid m \rightarrow e' \mid \mu' \mid \_ \mid m
+    \quad
+    e\ \text{is not a value}
 }{
-    \text{let}\ x: \mathrm{T} = e; \mid \mu \mid \_ \mid m \rightarrow \text{void} \mid \mu[x \mapsto v] \mid \_ \mid m
+    \text{let}\ x: \mathrm{T} = e; \overline{s} \mid \mu \mid \_ \mid m \rightarrow \text{let}\ x: \mathrm{T} = e'; \overline{s} \mid \mu' \mid \_ \mid m
+}
+$$
+
+$$
+\frac{
+    m = \text{Normal}
+    \quad
+    v\ \text{is a value}
+}{
+    \text{let}\ x: \mathrm{T} = v; \overline{s} \mid \mu \mid \_ \mid m \rightarrow \overline{s} \mid \mu[x \mapsto v] \mid \_ \mid m
 }
 $$
