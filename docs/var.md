@@ -5,7 +5,7 @@
 Nullable variables can only be used after a null check or a non-null assignment:
 
 ```slake
-fn externalNullable() -> i32?;
+native fn external_nullable() -> i32?;
 
 fn test(cond: bool) -> i32 {
     let a: i32?;
@@ -21,7 +21,7 @@ fn test(cond: bool) -> i32 {
     a = 123;
     b = a;      // OK: a must not be null
 
-    let result: i32? = externalNullable();
+    let result: i32? = external_nullable();
 
     if (result != null)
         b += result;

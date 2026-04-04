@@ -24,9 +24,9 @@ $s_0 \rightarrow s_1$ - Configuration $s_0$ is changed to $s_1$
 
 $e$ - Configuration that included current expression/value $e$, for pure expressions.
 
-$e \mid \mu$ - Configuration that included current expression/value $e$ with global state $\mu$. This implies the operation does not change the coroutine state and the execution mode.
+$e \mid \gamma \mid \sigma \mid \mu$ - Configuration that included current expression/value $e$ with local variable bindings $\gamma$, stack $\sigma$ and global state $\mu$. This implies the operation does not change the coroutine state and the execution mode.
 
-$e \mid \mu \mid s \mid m$ - Configuration that included current expression/value $e$ with coroutine state $s$ and global state $\mu$ and the execution mode $m$, where $m \in \{\text{Normal}, \text{Coro}\}$, where $\text{Normal}$ represents executing in a normal/regular function, $\text{Coro}$ represents executing in a coroutine.
+$e \mid \gamma \mid \sigma \mid \mu \mid s \mid m$ - Configuration that included current expression/value $e$ with local variable bindings $\gamma$, stack $\sigma$, global state $\mu$, coroutine state $s$ and the execution mode $m$, where $m \in \{\text{Normal}, \text{Coro}\}$, where $\text{Normal}$ represents executing in a normal/regular function, $\text{Coro}$ represents executing in a coroutine.
 
 $GLB$ - Greatest lower bound, see [Type System](type_system.md).
 

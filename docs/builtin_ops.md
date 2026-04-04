@@ -42,6 +42,8 @@ $\text{\_\_stack\_depth}(\mu)$ - Evaluate current stack depth in the runtime.
 
 $\text{\_\_stack\_max}(\mu)$ - Evaluate maximum stack depth in the runtime.
 
+$\text{\_\_stack\_align\_diff}(t, \mu)$ - Evaluate difference between current stack top address of $\mu$ and next type $t$ aligned address.
+
 $\text{\_\_sizeof}(t)$ - Evaluate size of an instance of a type.
 
 $\text{\_\_defaultof}(t)$ - Get default value of a type.

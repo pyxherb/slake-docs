@@ -8,9 +8,9 @@ Expression statement evaluates the inner expression and then discards the result
 
 $$
 \frac{
-    e_1 \mid \mu_0 \rightarrow v_1 \mid \mu_1
+    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \rightarrow v_1 \mid \gamma \mid \sigma_1 \mid \mu_1
 }{
-    e_1;\ \overline{s} \mid \mu_0 \rightarrow \overline{s} \mid \mu_1
+    e_1;\ \overline{s} \mid \gamma \mid \sigma_0 \mid \mu_0 \rightarrow \overline{s} \mid \gamma \mid \sigma_1 \mid \mu_1
 }
 (\text{E-ExprStmt})
 $$
@@ -24,24 +24,28 @@ $$
 (\text{T-ExprStmt})
 $$
 
+## Block Statement
+
+
+
 ## While Statement
 
 `while` statement is the simplest form of loop.
 
 $$
 \frac{
-    e_1 \mid \mu_0 \rightarrow \text{true} \mid \mu_1
+    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \rightarrow \text{true} \mid \gamma \mid \sigma_1 \mid \mu_1
 }{
-    \text{while}(e_1)\ b\ \overline{s} \mid \mu_0 \rightarrow \{b\}; \text{while}(e_1)\ b\ \overline{s} \mid \mu_1
+    \text{while}(e_1)\ b\ \overline{s} \mid \gamma \mid \sigma_0 \mid \mu_0 \rightarrow \{b\}; \text{while}(e_1)\ b\ \overline{s} \mid \gamma \mid \sigma_1 \mid \mu_1
 }
 (\text{E-WhileStmtTrue})
 $$
 
 $$
 \frac{
-    e_1 \mid \mu_0 \rightarrow \text{false} \mid \mu_1
+    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \rightarrow \text{false} \mid \gamma \mid \sigma_1 \mid \mu_1
 }{
-    \text{while}(e_1)\ b\ \overline{s} \mid \mu_0 \rightarrow \overline{s} \mid \mu_1
+    \text{while}(e_1)\ b\ \overline{s} \mid \gamma \mid \sigma_0 \mid \mu_0 \rightarrow \overline{s} \mid \gamma \mid \sigma_1 \mid \mu_1
 }
 (\text{E-WhileStmtFalse})
 $$
@@ -53,7 +57,7 @@ Just like `while`, but `do`-`while` executes the body first.
 $$
 \frac{
 }{
-    \text{do}\ b\ \text{while}(e_1);\ \overline{s} \mid \mu \rightarrow \{b;\} \text{while}(e_1)\ b;\ \overline{s} \mid \mu
+    \text{do}\ b\ \text{while}(e_1);\ \overline{s} \mid \gamma \mid \sigma\mid \mu \rightarrow \{b;\} \text{while}(e_1)\ b;\ \overline{s} \mid \gamma \mid \sigma \mid \mu
 }
 (\text{E-DoWhileStmt})
 $$
@@ -104,22 +108,11 @@ $$
 \frac{
     m = \text{Normal}
     \quad
-    e \mid \mu \mid \_ \mid m \rightarrow e' \mid \mu' \mid \_ \mid m
-    \quad
-    e\ \text{is not a value}
-}{
-    \text{let}\ x: \mathrm{T} = e; \overline{s} \mid \mu \mid \_ \mid m \rightarrow \text{let}\ x: \mathrm{T} = e'; \overline{s} \mid \mu' \mid \_ \mid m
-}
-(\text{E-LetTypedInitReduce-Normal})
-$$
-
-$$
-\frac{
-    m = \text{Normal}
+    \text{alloca}\ \mathrm{T} \mid \gamma \mid \sigma \mid \mu = l \mid \gamma \mid \sigma' \mid \mu
     \quad
     v\ \text{is a value}
 }{
-    \text{let}\ x: \mathrm{T} = v; \overline{s} \mid \mu \mid \_ \mid m \rightarrow \overline{s} \mid \mu[x \mapsto v] \mid \_ \mid m
+    \text{let}\ x: \mathrm{T} = v; \overline{s} \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m \rightarrow \overline{s} \mid \gamma[x \mapsto l] \mid \sigma'[l \mapsto v] \mid \mu \mid \_ \mid m
 }
 (\text{E-LetTypedInit-Normal})
 $$
@@ -127,8 +120,25 @@ $$
 $$
 \frac{
     m = \text{Normal}
+    \quad
+    e \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m
+    \rightarrow
+    e' \mid \gamma \mid \sigma' \mid \mu' \mid \_ \mid m
+    \quad
+    e\ \text{is not a value}
 }{
-    \text{let}\ x: \mathrm{T}; \overline{s} \mid \mu \mid \_ \mid m \rightarrow \text{let}\ x: \mathrm{T} = \text{\_\_defaultof}(); \overline{s} \mid \mu \mid \_ \mid m
+    \text{let}\ x: \mathrm{T} = e; \overline{s} \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m
+    \rightarrow
+    \text{let}\ x: \mathrm{T} = e'; \overline{s} \mid \gamma \mid \sigma' \mid \mu' \mid \_ \mid m
+}
+(\text{E-LetTypedInitReduce-Normal})
+$$
+
+$$
+\frac{
+    m = \text{Normal}
+}{
+    \text{let}\ x: \mathrm{T}; \overline{s} \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m \rightarrow \text{let}\ x: \mathrm{T} = \text{\_\_defaultof}(\mathrm{T}); \overline{s} \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m
 }
 (\text{E-LetTyped-Normal})
 $$
