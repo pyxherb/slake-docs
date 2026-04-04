@@ -10,7 +10,7 @@ $$
 \frac{
     e_1 \mid \mu_0 \rightarrow v_1 \mid \mu_1
 }{
-    e_1; \mid \mu_0 \rightarrow \text{void} \mid \mu_1
+    e_1;\ \overline{s} \mid \mu_0 \rightarrow \overline{s} \mid \mu_1
 }
 (\text{E-ExprStmt})
 $$
@@ -32,7 +32,7 @@ $$
 \frac{
     e_1 \mid \mu_0 \rightarrow \text{true} \mid \mu_1
 }{
-    \text{while}(e_1)\ b \mid \mu_0 \rightarrow \{b\}; \text{while}(e_1)\ b \mid \mu_1
+    \text{while}(e_1)\ b\ \overline{s} \mid \mu_0 \rightarrow \{b\}; \text{while}(e_1)\ b\ \overline{s} \mid \mu_1
 }
 (\text{E-WhileStmtTrue})
 $$
@@ -41,7 +41,7 @@ $$
 \frac{
     e_1 \mid \mu_0 \rightarrow \text{false} \mid \mu_1
 }{
-    \text{while}(e_1)\ b \mid \mu_0 \rightarrow \text{void} \mid \mu_1
+    \text{while}(e_1)\ b\ \overline{s} \mid \mu_0 \rightarrow \overline{s} \mid \mu_1
 }
 (\text{E-WhileStmtFalse})
 $$
@@ -53,7 +53,7 @@ Just like `while`, but `do`-`while` executes the body first.
 $$
 \frac{
 }{
-    \text{do}\ b\ \text{while}(e_1) \mid \mu \rightarrow \{b;\} \text{while}(e_1)\ b \mid \mu
+    \text{do}\ b\ \text{while}(e_1);\ \overline{s} \mid \mu \rightarrow \{b;\} \text{while}(e_1)\ b;\ \overline{s} \mid \mu
 }
 (\text{E-DoWhileStmt})
 $$
