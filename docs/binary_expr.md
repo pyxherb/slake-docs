@@ -36,6 +36,28 @@ $$
 }
 $$
 
+Or if type of one side is a custom type, use that side:
+
+$$
+\frac{
+    \mathrm{A} <: \mathrm{class}
+    \vee
+    \mathrm{A} <: \mathrm{struct}
+}{
+    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{A}
+}
+$$
+
+$$
+\frac{
+    \mathrm{B} <: \mathrm{class}
+    \vee
+    \mathrm{B} <: \mathrm{struct}
+}{
+    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{B}
+}
+$$
+
 Or, if the type of RHS can be converted to type of LHS, use type of LHS.
 
 $$
