@@ -49,3 +49,56 @@ $\text{\_\_sizeof}(t)$ - Evaluate size of an instance of a type.
 $\text{\_\_defaultof}(t)$ - Get default value of a type.
 
 $\text{\_\_alloca}(t, \mu)$ - Allocate an instance of a type on the stack.
+
+$\text{\_\_add}(t, x, y)$ - Evaluate $(x + y)$ with operands, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, $\mathrm{f32}$, $\mathrm{f64}$, where:
+
+* Both operands must have the same type.
+* For $\mathrm{SignedInteger}$ types, overflow's behavior is undefined.
+* For $\mathrm{UnsignedInteger}$ types, the result is $(x + y)\ \text{mod}\ 2^{\text{\_\_int\_width}(t)}$.
+* For $\mathrm{Float}$ types, see the IEEE-754 standard.
+
+$\text{\_\_sub}(t, x, y)$ - Evaluate $(x - y)$ with operands, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, $\mathrm{f32}$, $\mathrm{f64}$, where:
+
+* Both operands must have the same type.
+* For $\mathrm{SignedInteger}$ types, underflow's behavior is undefined.
+* For $\mathrm{UnsignedInteger}$ types, the result is $(y - x)\ \text{mod}\ 2^{\text{\_\_int\_width}(t)}$.
+* For $\mathrm{Float}$ types, see the IEEE-754 standard.
+
+$\text{\_\_mul}(t, x, y)$ - Evaluate $(x \times y)$ with operands, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, $\mathrm{f32}$, $\mathrm{f64}$, where:
+
+* Both operands must have the same type.
+* For $\mathrm{SignedInteger}$ types, overflow's behavior is undefined.
+* For $\mathrm{UnsignedInteger}$ types, the result is $(x \times y)\ \text{mod}\ 2^{\text{\_\_int\_width}(t)}$.
+* For $\mathrm{Float}$ types, see the IEEE-754 standard.
+
+$\text{\_\_mul}(t, x, y)$ - Evaluate $(x \div y)$ with operands, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, $\mathrm{f32}$, $\mathrm{f64}$, where:
+
+* Both operands must have the same type.
+* For $\mathrm{Integer}$ types, the remainder will be discarded and the result will be rounded down to the nearest integer.
+  * If the value is $(0\ \text{as}\ t)$, the program should abort.
+* For $\mathrm{Float}$ types, see the IEEE-754 standard.
+
+$\text{\_\_mod}(t, x, y)$ - Evaluate $(x\ \text{mod}\ y)$ with operands, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, $\mathrm{f32}$, $\mathrm{f64}$, where:
+
+* Both operands must have the same type.
+* For $\mathrm{Integer}$ types:
+  * The program should abort if $y$ is $(0\ \text{as}\ t)$.
+  * Otherwise, the result is remainder of $(x \div y)$.
+
+* For $\mathrm{Float}$ types:
+  * The result is $\text{NaN}$ if $y$ is $+0$ or $-0$.
+  * If one side is $\text{NaN}$, the result is $\text{NaN}$
+  * If one side is $\text{Infinity}$ or $-\text{Infinity}$, the result is $\text{NaN}$
+  * Otherwise, the result is remainder of $(x \div y)$.
+
+$\text{\_\_and}(t, x, y)$ - Evaluate $(x\ \text{AND}\ y)$ with operands, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, where:
+
+* Both operands must have the same type.
+
+$\text{\_\_or}(t, x, y)$ - Evaluate $(x\ \text{OR}\ y)$ with operands, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, where:
+
+* Both operands must have the same type.
+
+$\text{\_\_xor}(t, x, y)$ - Evaluate $(x\ \text{XOR}\ y)$ with operands, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, where:
+
+* Both operands must have the same type.
