@@ -102,3 +102,15 @@ $\text{\_\_or}(t, x, y)$ - Evaluate $(x\ \text{OR}\ y)$ with operands, valid typ
 $\text{\_\_xor}(t, x, y)$ - Evaluate $(x\ \text{XOR}\ y)$ with operands, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, where:
 
 * Both operands must have the same type.
+
+$\text{\_\_roots}(\mu)$ - Extract root object set from a global state.
+
+$\text{\_\_reachable}(R)$ - Collect all reachable objects via root set $R$.
+
+$\text{\_\_unreachable}(R, \mu)$ - Collect all unreachable objects in global state $\mu$, starts from root set $R$.
+
+$\text{\_\_finalize}(x, \mu)$ - Delete object $x$ and remove it from global state $\mu$.
+
+$\text{\_\_sort\_by\_dtor\_prio}(L)$ - Sort elements in object list $L$ by destructor priority.
+
+$\text{\_\_restrict\_alive}(\mu, S)$ - Restrict alive object set to $S$ for global state $\mu$.
