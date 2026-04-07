@@ -28,6 +28,10 @@ $e \mid \gamma \mid \sigma \mid \mu$ - Configuration that included current expre
 
 $e \mid \gamma \mid \sigma \mid \mu \mid s \mid m$ - Configuration that included current expression/value $e$ with local variable bindings $\gamma$, stack $\sigma$, global state $\mu$, coroutine state $s$ and the execution mode $m$, where $m \in \{\text{Normal}, \text{Coro}\}$, where $\text{Normal}$ represents executing in a normal/regular function, $\text{Coro}$ represents executing in a coroutine.
 
+$e \mid \mu \mid G$ - Configuration that included current expression/value $e$ with global state $\mu$ and GC state $G$, see [Garbage Collection](gc.md).
+
+$e \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid G$ - Configuration that included current expression/value $e$ with local variable bindings $\gamma$, stack $\sigma$, global state $\mu$, coroutine state $s$, the execution mode $m$ and the GC state $G$.
+
 $GLB$ - Greatest lower bound, see [Type System](type_system.md).
 
 $LUB$ - Least upper bound, see [Type System](type_system.md).

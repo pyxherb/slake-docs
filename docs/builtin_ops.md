@@ -105,12 +105,22 @@ $\text{\_\_xor}(t, x, y)$ - Evaluate $(x\ \text{XOR}\ y)$ with operands, valid t
 
 $\text{\_\_roots}(\mu)$ - Extract root object set from a global state.
 
-$\text{\_\_reachable}(R)$ - Collect all reachable objects via root set $R$.
+$\text{\_\_unreachable}(\mu)$ - Get objects that are not marked by the garbage collector.
 
-$\text{\_\_unreachable}(R, \mu)$ - Collect all unreachable objects in global state $\mu$, starts from root set $R$.
+$\text{\_\_mark}(x, \mu)$ - Mark $x$ in $\mu$ as accessible.
 
-$\text{\_\_finalize}(x, \mu)$ - Delete object $x$ and remove it from global state $\mu$.
+$\text{\_\_clear\_marks}(\mu)$ - Clear objects marked accessible in $\mu$.
 
-$\text{\_\_sort\_by\_dtor\_prio}(L)$ - Sort elements in object list $L$ by destructor priority.
+$\text{\_\_children}(x)$ - Get objects referenced by $x$.
+
+$\text{\_\_finalize}(x, \mu)$ - Delete object $x$ and remove it from global state $\mu$ and execute corresponding native destructors, returns the new global state $\mu$.
+
+$\text{\_\_sort\_by\_dtor\_prio}(L)$ - Sort elements in object list $L$ by destructor priority
 
 $\text{\_\_restrict\_alive}(\mu, S)$ - Restrict alive object set to $S$ for global state $\mu$.
+
+$\text{\_\_allocated\_size}(\mu)$ - Returns memory allocated by the runtime.
+
+$\text{\_\_read}(x)$ - Read value from variable $v$.
+
+$\text{\_\_write}(x, v)$ - Write $v$ to variable $x$.
