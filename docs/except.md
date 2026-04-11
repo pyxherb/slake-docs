@@ -66,3 +66,142 @@ TryStmt ::= \text{try}\ Stmt\ CatchHandler^{+}\ FinalHandler^{?}
 $$
 
 User may use `try` and `catch` statement to handle the exception value thrown by the inner codes, and optionally use `final` handler to perform the final cleanups.
+
+$$
+\frac{
+    e\ \text{is not a value}
+}{
+    \text{try}\ e\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n \ \overline{s}
+    \rightarrow
+    \text{try}\ e'\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n \ \overline{s}
+}
+$$
+
+When an exception raised, the statement matches the exception value's type in series:
+
+$$
+\frac{
+    \text{\_\_typeof}(e) = \mathrm{E}
+    \quad
+    \mathrm{E} <: \mathrm{T_1}
+}{
+    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n \ \overline{s}
+    \rightarrow
+    \{ h_1 \} \overline{s}
+}
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(e) = \mathrm{E}
+    \quad
+    \mathrm{E} <: \mathrm{T_1}
+}{
+    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\  \text{final}\ h_f\ \overline{s}
+    \rightarrow
+    \text{try} \{ h_1 \} \text{final}\ h_f\ \overline{s}
+}
+$$
+
+If the handler does not match, the statement will match the rest one by one:
+
+$$
+\frac{
+    \text{\_\_typeof}(e) = \mathrm{E}
+    \quad
+    \mathrm{E} \not<: \mathrm{T_1}
+}{
+    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\ \overline{s}
+    \rightarrow
+    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\ \overline{s}
+}
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(e) = \mathrm{E}
+    \quad
+    \mathrm{E} \not<: \mathrm{T_1}
+}{
+    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\ \text{final}\ h_f\ \overline{s}
+    \rightarrow
+    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\ \text{final}\ h_f\ \overline{s}
+}
+$$
+
+If the last handler still does not match, the excepton will be spreaded out:
+
+$$
+\frac{
+    \text{\_\_typeof}(e) = \mathrm{E}
+    \quad
+    \mathrm{E} \not<: \mathrm{T_1}
+}{
+    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1\ \overline{s}
+    \rightarrow
+    \text{throw}\ e;
+}
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(e) = \mathrm{E}
+    \quad
+    \mathrm{E} \not<: \mathrm{T_1}
+}{
+    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1\ \text{final}\ h_f\ \overline{s}
+    \rightarrow
+    \text{try}\ \text{throw}\ e;\ \text{final}\ h_f
+}
+$$
+
+If the try block is executed normally, the `catch` handlers will not be triggered:
+
+$$
+\frac{
+    v\ \text{is a value}
+}{
+    \text{try}\ v;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\ \overline{s}
+    \rightarrow
+    \overline{s}
+}
+$$
+
+$$
+\frac{
+    v\ \text{is a value}
+}{
+    \text{try}\ v;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\ \text{final}\ h_f\ \overline{s}
+    \rightarrow
+    h_f;\overline{s}
+}
+$$
+
+$$
+\frac{
+}{
+    \text{try}\ \text{return}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\ \overline{s}
+    \rightarrow
+    \text{return}\ e;
+}
+$$
+
+The `final` statement will always execute before leaving the scope:
+
+$$
+\frac{
+}{
+    \text{try}\ \text{return}\ e;\text{final}\ h\ \overline{s}
+    \rightarrow
+    h; \text{return}\ e;
+}
+$$
+
+$$
+\frac{
+}{
+    \text{try}\ \text{throw}\ e;\ \text{final}\ h\ \overline{s}
+    \rightarrow
+    h; \text{throw}\ e;
+}
+$$
