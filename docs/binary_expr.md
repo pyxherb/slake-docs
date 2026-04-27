@@ -108,8 +108,48 @@ $$
     \quad
     \Gamma\vdash e: \mathrm{T}
 }{
-    \Gamma\vdash (x = e)\ \triangleright\ \Gamma
+    \Gamma\vdash x = e: \mathrm{T}\And
 }
+$$
+
+## `is` Expression
+
+The `is` expression checks if an object has type which is subtype of a specific type.
+
+$$
+\frac{
+    \Gamma\vdash\mathrm{T_1}\ \mathrm{type}
+    \quad
+    \Gamma\vdash e: \mathrm{T_2}
+    \quad
+    \mathrm{T_2} <: \mathrm{T_1}
+}{
+    \Gamma\vdash e\ \text{is}\ \mathrm{T_1}: \mathrm{bool}
+}
+(\text{T-IsExpr})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v) = \mathrm{S}
+    \quad
+    \mathrm{S} <: \mathrm{T}
+}{
+    v\ \text{is}\ \mathrm{T} \rightarrow \text{true}
+}
+(\text{E-IsExprTrue})
+$$
+
+
+$$
+\frac{
+    \text{\_\_typeof}(v) = \mathrm{S}
+    \quad
+    \mathrm{S} \not<: \mathrm{T}
+}{
+    v\ \text{is}\ \mathrm{T} \rightarrow \text{false}
+}
+(\text{E-IsExprFalse})
 $$
 
 ## Comma Expression
