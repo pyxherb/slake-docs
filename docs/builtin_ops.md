@@ -1,5 +1,21 @@
 # Built-in Operations
 
+## Static Operations
+
+$\text{\_\_ScopeOf}(t)$ - Get scope of a type or module.
+
+$\text{\_\_HasDecl}(s, name)$ - Check if there is a declaration named $name$ in scope $s$.
+
+$\text{\_\_ScopeDecl}(s, name)$ - Get a declaration named $name$ in scope $s$.
+
+$\text{\_\_AccessMode}(t)$ - Get access mode of a type or a module, where the value can be $\text{Public}$ or $\text{Private}$ or $\text{Protected}$.
+
+$\text{\_\_AccessFlags}(t)$ - Get access flags set of a type or a module, where the value can have $\{\text{Static}, \text{Native}\}$.
+
+$\text{\_\_ScopeReachable}(s, t, R)$ - Check if $s$ is reachable from $t$ via scope relationship $R$, where $R \in \{\text{Import}, \text{Extends}, \text{Implements}, \text{Lexical}\}$.
+
+## Dynamic Operations
+
 $\text{\_\_typeof}(v)$ - Evaluates type of the value $v$ in the runtime.
 
 $\text{\_\_int\_width}(t)$ - Evaluates width of the type $t$ where $t$ must be a type in $\mathrm{Integer}$.
