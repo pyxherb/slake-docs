@@ -141,7 +141,7 @@ $\text{\_\_read}(x)$ - Read value from variable $v$.
 
 $\text{\_\_write}(x, v)$ - Write $v$ to variable $x$.
 
-$\text{\_\_unwind}(t)$ - Unwind current stack with statement $t$ to be executed after unwinding.
+$\text{\_\_unwind}(t)$ - Unwind current stack with statement $t$ to be executed after unwinding. In specification, if this operation is performed without any stack frame, the behavior is undefined.
 
 $$
 \frac{
@@ -152,3 +152,5 @@ $$
     t \mid \gamma_{prev} \mid \sigma \mid \mu \mid s \mid m
 }
 $$
+
+$\text{\_\_uncaught}(e)$ - Report the uncaught exception $e$ to the user or perform corresponding handler which should be triggered when an exception is uncaught through the whole program.

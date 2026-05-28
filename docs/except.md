@@ -165,6 +165,18 @@ $$
 }
 $$
 
+$$
+\frac{
+    v\ \text{is a value}
+    \quad
+    \sigma = \empty
+}{
+    \text{throw}\ v; \mid \gamma \mid \sigma \mid \mu \mid s \mid m
+    \rightarrow
+    \text{\_\_uncaught}(v) \mid \gamma \mid \sigma \mid \mu \mid s \mid m
+}
+$$
+
 If the try block is executed normally, the `catch` handlers will not be triggered:
 
 $$
