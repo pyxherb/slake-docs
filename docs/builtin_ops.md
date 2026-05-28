@@ -140,3 +140,15 @@ $\text{\_\_allocated\_size}(\mu)$ - Returns memory allocated by the runtime.
 $\text{\_\_read}(x)$ - Read value from variable $v$.
 
 $\text{\_\_write}(x, v)$ - Write $v$ to variable $x$.
+
+$\text{\_\_unwind}(t)$ - Unwind current stack with statement $t$ to be executed after unwinding.
+
+$$
+\frac{
+}
+{
+    \text{\_\_unwind}(t) \mid \gamma \mid (K, \gamma_{prev}) \cdot \sigma \mid \mu \mid s \mid m
+    \rightarrow
+    t \mid \gamma_{prev} \mid \sigma \mid \mu \mid s \mid m
+}
+$$

@@ -46,11 +46,11 @@ $$
 (\text{E-ThrowFromInner})
 $$
 
-The `throw` expression will always bring the type depends on the outer environment, note that the exception value of `throw` must be derived from `Exception`:
+The `throw` expression will always bring the type depends on the outer environment, note that the exception value of `throw` must be derived from the builtin`except`:
 
 $$
 \frac{
-    \Gamma\vdash e:\mathrm{E} \quad \mathrm{E} <: \mathrm{Exception}
+    \Gamma\vdash e:\mathrm{E} \quad \mathrm{E} <: \mathrm{except}
 }{
     \Gamma\vdash \text{throw}\ e:\mathrm{T}
 }
@@ -152,6 +152,16 @@ $$
     \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1\ \text{final}\ h_f\ \overline{s}
     \rightarrow
     \text{try}\ \text{throw}\ e;\ \text{final}\ h_f
+}
+$$
+
+$$
+\frac{
+    v\ \text{is a value}
+}{
+    \text{throw}\ v; \mid \gamma \mid \sigma \mid \mu \mid s \mid m
+    \rightarrow
+    \text{\_\_unwind}(\text{throw}\ v) \mid \gamma \mid \sigma \mid \mu \mid s \mid m
 }
 $$
 

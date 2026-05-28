@@ -32,6 +32,10 @@ $e \mid \mu \mid G$ - Configuration that included current expression/value $e$ w
 
 $e \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid G$ - Configuration that included current expression/value $e$ with local variable bindings $\gamma$, stack $\sigma$, global state $\mu$, coroutine state $s$, the execution mode $m$ and the GC state $G$.
 
+$x \cdot y$ - Concatenate $x$ and $y$ to construct a list (in specification only).
+
+$(K, \gamma) \cdot \sigma$ - A stack frame with evaluation context $K$ and saved caller local variable binding $\gamma$, saved execution mode $m$ with previously saved stack frames $\sigma$.
+
 $GLB$ - Greatest lower bound, see [Type System](type_system.md).
 
 $LUB$ - Least upper bound, see [Type System](type_system.md).
