@@ -56,15 +56,15 @@ When a write operation occurs during the marking stage, the garbage collector sh
 
 $$
 \frac{
-    \text{\_\_write}(x, v); \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid \text{Marking}(W)
+    \text{\_\_write}(x, v); \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U \mid \text{Marking}(W)
     \rightarrow
-    \overline{s} \mid \gamma' \mid \sigma' \mid \mu' \mid s' \mid m' \mid \text{Marking}(W)
+    \overline{s} \mid \gamma' \mid \sigma' \mid \mu' \mid s' \mid m' \mid U'  \mid \text{Marking}(W)
     \quad
     \text{\_\_typeof}(v) <: \mathrm{object}
 }{
-    \text{\_\_write}(x, v); \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid \text{Marking}(W)
+    \text{\_\_write}(x, v); \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U  \mid \text{Marking}(W)
     \rightarrow
-    \overline{s} \mid \gamma' \mid \sigma' \mid \mu' \mid s' \mid m' \mid \text{Marking}(W \cup \{v\})
+    \overline{s} \mid \gamma' \mid \sigma' \mid \mu' \mid s' \mid m' \mid U' \mid \text{Marking}(W \cup \{v\})
 }
 $$
 

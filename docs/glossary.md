@@ -26,11 +26,17 @@ $e$ - Configuration that included current expression/value $e$, for pure express
 
 $e \mid \gamma \mid \sigma \mid \mu$ - Configuration that included current expression/value $e$ with local variable bindings $\gamma$, stack $\sigma$ and global state $\mu$. This implies the operation does not change the coroutine state and the execution mode.
 
+$e \mid \gamma \mid \sigma \mid \mu \mid U$ - Configuration that included current expression/value $e$ with local variable bindings $\gamma$, stack $\sigma$ and global state $\mu$. This implies the operation does not change the coroutine state and the execution mode. Note that the unsafe feature set $U$ is involved.
+
 $e \mid \gamma \mid \sigma \mid \mu \mid s \mid m$ - Configuration that included current expression/value $e$ with local variable bindings $\gamma$, stack $\sigma$, global state $\mu$, coroutine state $s$ and the execution mode $m$, where $m \in \{\text{Normal}, \text{Coro}\}$, where $\text{Normal}$ represents executing in a normal/regular function, $\text{Coro}$ represents executing in a coroutine.
+
+$e \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U$ - Configuration that included current expression/value $e$ with local variable bindings $\gamma$, stack $\sigma$, global state $\mu$, coroutine state $s$ and the execution mode $m$, where $m \in \{\text{Normal}, \text{Coro}\}$, where $\text{Normal}$ represents executing in a normal/regular function, $\text{Coro}$ represents executing in a coroutine. Note that the unsafe feature set $U$ is involved.
 
 $e \mid \mu \mid G$ - Configuration that included current expression/value $e$ with global state $\mu$ and GC state $G$, see [Garbage Collection](gc.md).
 
 $e \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid G$ - Configuration that included current expression/value $e$ with local variable bindings $\gamma$, stack $\sigma$, global state $\mu$, coroutine state $s$, the execution mode $m$ and the GC state $G$.
+
+$e \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U \mid G$ - Configuration that included current expression/value $e$ with local variable bindings $\gamma$, stack $\sigma$, global state $\mu$, coroutine state $s$, the execution mode $m$ and the GC state $G$. Note that the unsafe feature set $U$ is involved.
 
 $x \cdot y$ - Concatenate $x$ and $y$ to construct a list (in specification only).
 
