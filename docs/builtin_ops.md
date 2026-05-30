@@ -147,9 +147,9 @@ $$
 \frac{
 }
 {
-    \text{\_\_unwind}(t) \mid \gamma \mid (K, \gamma_{prev}) \cdot \sigma \mid \mu \mid s \mid m
+    \text{\_\_unwind}(t) \mid \gamma \mid (K, \gamma_{prev}, U_{prev}) \cdot \sigma \mid \mu \mid s \mid m
     \rightarrow
-    t \mid \gamma_{prev} \mid \sigma \mid \mu \mid s \mid m
+    t \mid \gamma_{prev} \mid \sigma \mid \mu \mid s \mid m \mid U_{prev}
 }
 $$
 

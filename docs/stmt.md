@@ -8,7 +8,7 @@ Expression statement evaluates the inner expression and then discards the result
 
 $$
 \frac{
-    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \rightarrow v_1 \mid \gamma \mid \sigma_1 \mid \mu_1
+    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0 \rightarrow v_1 \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
 }{
     e_1;\ \overline{s} \mid \gamma \mid \sigma_0 \mid \mu_0 \rightarrow \overline{s} \mid \gamma \mid \sigma_1 \mid \mu_1
 }
@@ -34,18 +34,25 @@ $$
 
 $$
 \frac{
-    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \rightarrow \text{true} \mid \gamma \mid \sigma_1 \mid \mu_1
+    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
+    \rightarrow
+    \text{true} \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
 }{
-    \text{while}(e_1)\ b\ \overline{s} \mid \gamma \mid \sigma_0 \mid \mu_0 \rightarrow \{b\}; \text{while}(e_1)\ b\ \overline{s} \mid \gamma \mid \sigma_1 \mid \mu_1
+    \text{while}(e_1)\ b\ \overline{s} \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
+    \rightarrow
+    \{b\}; \text{while}(e_1)\ b\ \overline{s} \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
 }
 (\text{E-WhileStmtTrue})
 $$
 
 $$
 \frac{
-    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \rightarrow \text{false} \mid \gamma \mid \sigma_1 \mid \mu_1
+    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
+    \rightarrow
+    \text{false} \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
 }{
-    \text{while}(e_1)\ b\ \overline{s} \mid \gamma \mid \sigma_0 \mid \mu_0 \rightarrow \overline{s} \mid \gamma \mid \sigma_1 \mid \mu_1
+    \text{while}(e_1)\ b\ \overline{s} \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
+    \rightarrow \overline{s} \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
 }
 (\text{E-WhileStmtFalse})
 $$
@@ -57,7 +64,9 @@ Just like `while`, but `do`-`while` executes the body first.
 $$
 \frac{
 }{
-    \text{do}\ b\ \text{while}(e_1);\ \overline{s} \mid \gamma \mid \sigma\mid \mu \rightarrow \{b;\} \text{while}(e_1)\ b;\ \overline{s} \mid \gamma \mid \sigma \mid \mu
+    \text{do}\ b\ \text{while}(e_1);\ \overline{s} \mid \gamma \mid \sigma\mid \mu \mid U
+    \rightarrow
+    \{b;\} \text{while}(e_1)\ b;\ \overline{s} \mid \gamma \mid \sigma \mid \mu \mid U
 }
 (\text{E-DoWhileStmt})
 $$
@@ -108,11 +117,13 @@ $$
 \frac{
     m = \text{Normal}
     \quad
-    \text{alloca}\ \mathrm{T} \mid \gamma \mid \sigma \mid \mu = l \mid \gamma \mid \sigma' \mid \mu
+    \text{alloca}\ \mathrm{T} \mid \gamma \mid \sigma \mid \mu \mid U = l \mid \gamma \mid \sigma' \mid \mu \mid U
     \quad
     v\ \text{is a value}
 }{
-    \text{let}\ x: \mathrm{T} = v; \overline{s} \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m \rightarrow \overline{s} \mid \gamma[x \mapsto l] \mid \sigma'[l \mapsto v] \mid \mu \mid \_ \mid m
+    \text{let}\ x: \mathrm{T} = v; \overline{s} \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m \mid U
+    \rightarrow
+    \overline{s} \mid \gamma[x \mapsto l] \mid \sigma'[l \mapsto v] \mid \mu \mid \_ \mid m \mid U
 }
 (\text{E-LetTypedInit-Normal})
 $$
@@ -121,15 +132,15 @@ $$
 \frac{
     m = \text{Normal}
     \quad
-    e \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m
+    e \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m \mid U
     \rightarrow
-    e' \mid \gamma \mid \sigma' \mid \mu' \mid \_ \mid m
+    e' \mid \gamma \mid \sigma' \mid \mu' \mid \_ \mid m \mid U'
     \quad
     e\ \text{is not a value}
 }{
-    \text{let}\ x: \mathrm{T} = e; \overline{s} \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m
+    \text{let}\ x: \mathrm{T} = e; \overline{s} \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m \mid U
     \rightarrow
-    \text{let}\ x: \mathrm{T} = e'; \overline{s} \mid \gamma \mid \sigma' \mid \mu' \mid \_ \mid m
+    \text{let}\ x: \mathrm{T} = e'; \overline{s} \mid \gamma \mid \sigma' \mid \mu' \mid \_ \mid m \mid U'
 }
 (\text{E-LetTypedInitReduce-Normal})
 $$
@@ -138,7 +149,9 @@ $$
 \frac{
     m = \text{Normal}
 }{
-    \text{let}\ x: \mathrm{T}; \overline{s} \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m \rightarrow \text{let}\ x: \mathrm{T} = \text{\_\_defaultof}(\mathrm{T}); \overline{s} \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m
+    \text{let}\ x: \mathrm{T}; \overline{s}
+    \rightarrow
+    \text{let}\ x: \mathrm{T} = \text{\_\_defaultof}(\mathrm{T}); \overline{s}
 }
 (\text{E-LetTyped-Normal})
 $$

@@ -159,9 +159,9 @@ $$
 \frac{
     v\ \text{is a value}
 }{
-    \text{throw}\ v; \mid \gamma \mid \sigma \mid \mu \mid s \mid m
+    \text{throw}\ v; \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
     \rightarrow
-    \text{\_\_unwind}(\text{throw}\ v) \mid \gamma \mid \sigma \mid \mu \mid s \mid m
+    \text{\_\_unwind}(\text{throw}\ v) \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
 }
 $$
 
@@ -171,9 +171,9 @@ $$
     \quad
     \sigma = \empty
 }{
-    \text{throw}\ v; \mid \gamma \mid \sigma \mid \mu \mid s \mid m
+    \text{throw}\ v; \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
     \rightarrow
-    \text{\_\_uncaught}(v) \mid \gamma \mid \sigma \mid \mu \mid s \mid m
+    \text{\_\_uncaught}(v) \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
 }
 $$
 

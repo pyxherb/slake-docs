@@ -158,11 +158,17 @@ Comma expression evaluates both side of the comma operator but discards the resu
 
 $$
 \frac{
-    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \rightarrow v_1 \mid \gamma \mid \sigma_1 \mid \mu_1
+    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
+    \rightarrow
+    v_1 \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
     \quad
-    e_2 \mid \gamma \mid \sigma_1 \mid \mu_1 \rightarrow v_2 \mid \gamma \mid \sigma_2 \mid \mu_2
+    e_2 \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
+    \rightarrow
+    v_2 \mid \gamma \mid \sigma_2 \mid \mu_2 \mid U_2
 }{
-(e_1, e_2) \mid \gamma \mid \sigma_0 \mid \mu_0 \rightarrow v_2 \mid \gamma \mid \sigma_2 \mid \mu_2
+    (e_1, e_2) \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
+    \rightarrow
+    v_2 \mid \gamma \mid \sigma_2 \mid \mu_2 \mid U_2
 }
 (\text{E-CommaExpr})
 $$

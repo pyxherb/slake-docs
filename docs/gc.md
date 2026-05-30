@@ -74,9 +74,9 @@ $$
 \frac{
     W = \empty
 }{
-    \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid \text{Marking}(W)
+    \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U \mid \text{Marking}(W)
     \rightarrow
-    \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid \text{Sweeping}(\text{\_\_sort\_by\_dtor\_prio}(\text{\_\_unreachable}(\mu)))
+    \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U \mid \text{Sweeping}(\text{\_\_sort\_by\_dtor\_prio}(\text{\_\_unreachable}(\mu)))
 }
 $$
 
@@ -86,9 +86,9 @@ $$
 \frac{
     L \ne \empty
 }{
-    \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid \text{Sweeping}(L)
+    \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U \mid \text{Sweeping}(L)
     \rightarrow
-    \overline{s} \mid \gamma \mid \sigma \mid \mu' \mid s \mid m \mid \text{Sweeping}(L \backslash L_0)
+    \overline{s} \mid \gamma \mid \sigma \mid \mu' \mid s \mid m \mid U \mid \text{Sweeping}(L \backslash L_0)
 }
 $$
 
@@ -100,9 +100,9 @@ $$
 \frac{
     L = \empty
 }{
-    \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid \text{Sweeping}(L)
+    \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U \mid \text{Sweeping}(L)
     \rightarrow
-    \overline{s} \mid \gamma \mid \sigma \mid \mu' \mid s \mid m \mid \text{Idle}
+    \overline{s} \mid \gamma \mid \sigma \mid \mu' \mid s \mid m \mid U \mid \text{Idle}
 }
 $$
 
