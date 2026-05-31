@@ -4,7 +4,29 @@
 
 $\text{BinaryExprMainOpType}(A, B)$ infers the main operation type of a common binary expression between types of two undecorated operands.
 
-If both operand types are $\mathrm{UnsignedInteger}$, $\mathrm{SignedInteger}$ or $\mathrm{Float}$ type, choose the wider one:
+If one side of the operand is nullable, choose that side, if both operands are nullable, choose the left one.
+
+$$
+\frac{
+    \Gamma\vdash\mathrm{A}\ \mathrm{type}
+    \quad
+    \Gamma\vdash\mathrm{B}\ \mathrm{type}
+}{
+    \text{BinaryExprMainOpType}(\mathrm{A?}, \mathrm{B}) = \mathrm{A}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash\mathrm{A}\ \mathrm{type}
+    \quad
+    \Gamma\vdash\mathrm{B}\ \mathrm{type}
+}{
+    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B?}) = \mathrm{B}
+}
+$$
+
+If both operand types are $\mathrm{UnsignedInteger}$, $\mathrm{SignedInteger}$ or $\mathrm{Float}$ type, choose the wider one.
 
 $$
 \frac{
@@ -12,7 +34,7 @@ $$
     \quad
     \mathrm{B} \in \mathrm{UnsignedInteger}
 }{
-    \text{BinaryExprMainOpType}(A, B) = \text{CommonType}(A, B)
+    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \text{CommonType}(\mathrm{A}, \mathrm{B})
 }
 $$
 
@@ -108,7 +130,7 @@ $$
     \quad
     \Gamma\vdash e: \mathrm{T}
 }{
-    \Gamma\vdash x = e: \mathrm{T}\And
+    \Gamma\vdash x = e: \mathrm{void}
 }
 $$
 
