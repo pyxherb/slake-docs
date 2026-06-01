@@ -64,7 +64,7 @@ $\text{\_\_sizeof}(t)$ - Evaluate size of an instance of a type.
 
 $\text{\_\_defaultof}(t)$ - Get default value of a type.
 
-$\text{\_\_alloca}(t, \mu)$ - Allocate an instance of a type on the stack.
+$\text{\_\_alloca}(t, \sigma)$ - Allocate an instance of a type on the stack (uninitialized).
 
 $\text{\_\_add}(t, x, y)$ - Evaluate $(x + y)$ with operands, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, $\mathrm{f32}$, $\mathrm{f64}$, where:
 

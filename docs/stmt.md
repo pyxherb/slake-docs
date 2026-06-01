@@ -117,13 +117,15 @@ $$
 \frac{
     m = \text{Normal}
     \quad
-    \text{alloca}\ \mathrm{T} \mid \gamma \mid \sigma \mid \mu \mid U = l \mid \gamma \mid \sigma' \mid \mu \mid U
+    \text{\_\_alloca}(\mathrm{T}, \sigma) \mid \gamma \mid \sigma \mid \mu \mid U
+    =
+    l \mid \gamma \mid \sigma' \mid \mu \mid U
     \quad
     v\ \text{is a value}
 }{
-    \text{let}\ x: \mathrm{T} = v; \overline{s} \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m \mid U
+    \text{let}\ x: \mathrm{T} = v; \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
     \rightarrow
-    \overline{s} \mid \gamma[x \mapsto l] \mid \sigma'[l \mapsto v] \mid \mu \mid \_ \mid m \mid U
+    \overline{s} \mid \gamma[x \mapsto l] \mid \sigma'[l \mapsto v] \mid \mu \mid s \mid m \mid U
 }
 (\text{E-LetTypedInit-Normal})
 $$
@@ -132,15 +134,15 @@ $$
 \frac{
     m = \text{Normal}
     \quad
-    e \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m \mid U
+    e \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
     \rightarrow
-    e' \mid \gamma \mid \sigma' \mid \mu' \mid \_ \mid m \mid U'
+    e' \mid \gamma \mid \sigma' \mid \mu' \mid s \mid m \mid U'
     \quad
     e\ \text{is not a value}
 }{
-    \text{let}\ x: \mathrm{T} = e; \overline{s} \mid \gamma \mid \sigma \mid \mu \mid \_ \mid m \mid U
+    \text{let}\ x: \mathrm{T} = e; \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
     \rightarrow
-    \text{let}\ x: \mathrm{T} = e'; \overline{s} \mid \gamma \mid \sigma' \mid \mu' \mid \_ \mid m \mid U'
+    \text{let}\ x: \mathrm{T} = e'; \overline{s} \mid \gamma \mid \sigma' \mid \mu' \mid s \mid m \mid U'
 }
 (\text{E-LetTypedInitReduce-Normal})
 $$

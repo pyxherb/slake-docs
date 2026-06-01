@@ -26,7 +26,55 @@ $$
 }
 $$
 
-If both operand types are $\mathrm{UnsignedInteger}$, $\mathrm{SignedInteger}$ or $\mathrm{Float}$ type, choose the wider one.
+If type of one side is a custom type, use that side:
+
+$$
+\frac{
+    \mathrm{A} <: \mathrm{class}
+    \vee
+    \mathrm{A} <: \mathrm{struct}
+}{
+    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{A}
+}
+$$
+
+$$
+\frac{
+    \mathrm{B} <: \mathrm{class}
+    \vee
+    \mathrm{B} <: \mathrm{struct}
+}{
+    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{B}
+}
+$$
+
+Or, if type of one side is $\text{bool}$, use $\text{bool}$:
+
+$$
+\frac{
+    \mathrm{A} <: \mathrm{bool}
+    \quad
+    \mathrm{B} \not<: \mathrm{class}
+    \quad
+    \mathrm{B} \not<: \mathrm{struct}
+}{
+    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{A}
+}
+$$
+
+$$
+\frac{
+    \mathrm{B} <: \mathrm{bool}
+    \quad
+    \mathrm{A} \not<: \mathrm{class}
+    \quad
+    \mathrm{A} \not<: \mathrm{struct}
+}{
+    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{B}
+}
+$$
+
+Or, if both operand types are $\mathrm{UnsignedInteger}$, $\mathrm{SignedInteger}$ or $\mathrm{Float}$ type, choose the wider one.
 
 $$
 \frac{
@@ -55,28 +103,6 @@ $$
     \mathrm{B} \in \mathrm{Float}
 }{
     \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \text{CommonType}(\mathrm{A}, \mathrm{B})
-}
-$$
-
-Or if type of one side is a custom type, use that side:
-
-$$
-\frac{
-    \mathrm{A} <: \mathrm{class}
-    \vee
-    \mathrm{A} <: \mathrm{struct}
-}{
-    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{A}
-}
-$$
-
-$$
-\frac{
-    \mathrm{B} <: \mathrm{class}
-    \vee
-    \mathrm{B} <: \mathrm{struct}
-}{
-    \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{B}
 }
 $$
 
@@ -122,6 +148,298 @@ First, the compiler must look up the operation type:
   * For `<`, `>`, `<=`, `>=`, `==`, `!=`, `===`, `!==`, the result type is `bool`.
   * For `<=>`, the result type is `i32`.
 
+## Adding Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+}{
+    \Gamma\vdash e_1 + e_2: \mathrm{T}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 + e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) + (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 + v_2 \rightarrow \text{\_\_add}(\mathrm{T}, v_1, v_2)
+}
+$$
+
+## Subtraction Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+}{
+    \Gamma\vdash e_1 - e_2: \mathrm{T}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 + e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) - (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+## Multiplication Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+}{
+    \Gamma\vdash e_1 * e_2: \mathrm{T}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 * e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) * (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+## Division Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+}{
+    \Gamma\vdash e_1 / e_2: \mathrm{T}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 / e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) / (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+## Modulo Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+}{
+    \Gamma\vdash e_1 \% e_2: \mathrm{T}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 \% e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) \% (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+## Bitwise AND Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+}{
+    \Gamma\vdash e_1 \And e_2: \mathrm{T}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 \And e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) \And (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+## Bitwise OR Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+}{
+    \Gamma\vdash e_1 | e_2: \mathrm{T}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 | e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) | (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+## Bitwise XOR Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+}{
+    \Gamma\vdash e_1 \wedge e_2: \mathrm{T}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 \wedge e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) \wedge (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+## Left-Shift Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{u32}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+}{
+    \Gamma\vdash e_1 << e_2: \mathrm{T}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+}{
+    \Gamma\vdash e_1 << e_2
+    \triangleq
+    e_1 << (e_2\ \text{as}\ \mathrm{u32})
+}
+$$
+
+## Right-Shift Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{u32}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+}{
+    \Gamma\vdash e_1 >> e_2: \mathrm{T}
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+}{
+    \Gamma\vdash e_1 >> e_2
+    \triangleq
+    e_1 >> (e_2\ \text{as}\ \mathrm{u32})
+}
+$$
+
 ## Assignment Expression
 
 $$
@@ -131,6 +449,20 @@ $$
     \Gamma\vdash e: \mathrm{T}
 }{
     \Gamma\vdash x = e: \mathrm{void}
+}
+$$
+
+$$
+\frac{
+    m = \text{Normal}
+    \quad
+    \gamma(x) = l
+    \quad
+    v\ \text{is a value}
+}{
+    x = v; \overline{s} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
+    \rightarrow
+    \overline{s} \mid \gamma \mid \sigma[l \mapsto v] \mid \mu \mid s \mid m \mid U
 }
 $$
 
@@ -161,7 +493,6 @@ $$
 }
 (\text{E-IsExprTrue})
 $$
-
 
 $$
 \frac{
@@ -201,7 +532,7 @@ $$
 \frac{
     \Gamma\vdash x: \mathrm{T_1} \quad \Gamma\vdash y: \mathrm{T_2}
 }{
-    \Gamma\vdash (x,y): \mathrm{T_2}
+    \Gamma\vdash x,y: \mathrm{T_2}
 }
 (\text{T-CommaExpr})
 $$
