@@ -160,6 +160,7 @@ $$
 }{
     \Gamma\vdash e_1 + e_2: \mathrm{T}
 }
+(\text{T-Add})
 $$
 
 $$
@@ -178,6 +179,26 @@ $$
 
 $$
 \frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 + e_2 \rightarrow v_1 + e_2
+}
+(\text{E-AddReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 + e_2 \rightarrow v_1 + v_2
+}
+(\text{E-AddReduce2})
+$$
+
+$$
+\frac{
     \text{\_\_typeof}(v_1) = \mathrm{T}
     \quad
     \text{\_\_typeof}(v_2) = \mathrm{T}
@@ -190,6 +211,7 @@ $$
 }{
     v_1 + v_2 \rightarrow \text{\_\_add}(\mathrm{T}, v_1, v_2)
 }
+(\text{E-Add})
 $$
 
 ## Subtraction Expression
@@ -204,6 +226,7 @@ $$
 }{
     \Gamma\vdash e_1 - e_2: \mathrm{T}
 }
+(\text{T-Sub})
 $$
 
 $$
@@ -214,10 +237,47 @@ $$
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
 }{
-    \Gamma\vdash e_1 + e_2
+    \Gamma\vdash e_1 - e_2
     \triangleq
     (e_1\ \text{as}\ \mathrm{T}) - (e_2\ \text{as}\ \mathrm{T})
 }
+$$
+
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 - e_2 \rightarrow v_1 - e_2
+}
+(\text{E-SubReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 - e_2 \rightarrow v_1 - v_2
+}
+(\text{E-SubReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 - v_2 \rightarrow \text{\_\_sub}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-Sub})
 $$
 
 ## Multiplication Expression
@@ -232,6 +292,7 @@ $$
 }{
     \Gamma\vdash e_1 * e_2: \mathrm{T}
 }
+(\text{T-Mul})
 $$
 
 $$
@@ -248,6 +309,43 @@ $$
 }
 $$
 
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 * e_2 \rightarrow v_1 * e_2
+}
+(\text{E-MulReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 * e_2 \rightarrow v_1 * v_2
+}
+(\text{E-MulReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 * v_2 \rightarrow \text{\_\_mul}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-Mul})
+$$
+
 ## Division Expression
 
 $$
@@ -260,6 +358,7 @@ $$
 }{
     \Gamma\vdash e_1 / e_2: \mathrm{T}
 }
+(\text{T-Div})
 $$
 
 $$
@@ -276,6 +375,43 @@ $$
 }
 $$
 
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 / e_2 \rightarrow v_1 / e_2
+}
+(\text{E-DivReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 / e_2 \rightarrow v_1 / v_2
+}
+(\text{E-DivReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 / v_2 \rightarrow \text{\_\_div}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-Div})
+$$
+
 ## Modulo Expression
 
 $$
@@ -288,6 +424,7 @@ $$
 }{
     \Gamma\vdash e_1 \% e_2: \mathrm{T}
 }
+(\text{T-Mod})
 $$
 
 $$
@@ -304,6 +441,43 @@ $$
 }
 $$
 
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 \% e_2 \rightarrow v_1 \% e_2
+}
+(\text{E-ModReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 \% e_2 \rightarrow v_1 \% v_2
+}
+(\text{E-ModReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 \% v_2 \rightarrow \text{\_\_mod}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-Mod})
+$$
+
 ## Bitwise AND Expression
 
 $$
@@ -316,6 +490,7 @@ $$
 }{
     \Gamma\vdash e_1 \And e_2: \mathrm{T}
 }
+(\text{T-And})
 $$
 
 $$
@@ -332,6 +507,43 @@ $$
 }
 $$
 
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 \And e_2 \rightarrow v_1 \And e_2
+}
+(\text{E-AndReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 \And e_2 \rightarrow v_1 \And v_2
+}
+(\text{E-AndReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 \And v_2 \rightarrow \text{\_\_and}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-And})
+$$
+
 ## Bitwise OR Expression
 
 $$
@@ -344,6 +556,7 @@ $$
 }{
     \Gamma\vdash e_1 | e_2: \mathrm{T}
 }
+(\text{T-Or})
 $$
 
 $$
@@ -360,6 +573,43 @@ $$
 }
 $$
 
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 | e_2 \rightarrow v_1 | e_2
+}
+(\text{E-OrReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 | e_2 \rightarrow v_1 | v_2
+}
+(\text{E-OrReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 | v_2 \rightarrow \text{\_\_or}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-Or})
+$$
+
 ## Bitwise XOR Expression
 
 $$
@@ -372,6 +622,7 @@ $$
 }{
     \Gamma\vdash e_1 \wedge e_2: \mathrm{T}
 }
+(\text{T-Xor})
 $$
 
 $$
@@ -388,6 +639,43 @@ $$
 }
 $$
 
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 \wedge e_2 \rightarrow v_1 \wedge e_2
+}
+(\text{E-XorReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 \wedge e_2 \rightarrow v_1 \wedge v_2
+}
+(\text{E-XorReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 \wedge v_2 \rightarrow \text{\_\_xor}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-Xor})
+$$
+
 ## Left-Shift Expression
 
 $$
@@ -400,6 +688,7 @@ $$
 }{
     \Gamma\vdash e_1 << e_2: \mathrm{T}
 }
+(\text{T-Shl})
 $$
 
 $$
@@ -407,11 +696,49 @@ $$
     \Gamma\vdash e_1: \mathrm{T_1}
     \quad
     \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
 }{
     \Gamma\vdash e_1 << e_2
     \triangleq
-    e_1 << (e_2\ \text{as}\ \mathrm{u32})
+    (e_1\ \text{as}\ \mathrm{T}) << (e_2\ \text{as}\ \mathrm{u32})
 }
+$$
+
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 << e_2 \rightarrow v_1 << e_2
+}
+(\text{E-ShlReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 << e_2 \rightarrow v_1 << v_2
+}
+(\text{E-ShlReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 << v_2 \rightarrow \text{\_\_shl}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-Shl})
 $$
 
 ## Right-Shift Expression
@@ -426,6 +753,7 @@ $$
 }{
     \Gamma\vdash e_1 >> e_2: \mathrm{T}
 }
+(\text{T-Shr})
 $$
 
 $$
@@ -433,11 +761,677 @@ $$
     \Gamma\vdash e_1: \mathrm{T_1}
     \quad
     \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
 }{
     \Gamma\vdash e_1 >> e_2
     \triangleq
-    e_1 >> (e_2\ \text{as}\ \mathrm{u32})
+    (e_1\ \text{as}\ \mathrm{T}) >> (e_2\ \text{as}\ \mathrm{u32})
 }
+$$
+
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 >> e_2 \rightarrow v_1 >> e_2
+}
+(\text{E-ShrReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 >> e_2 \rightarrow v_1 >> v_2
+}
+(\text{E-ShrReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 >> v_2 \rightarrow \text{\_\_shr}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-Shr})
+$$
+
+## Logical AND Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{bool}
+    \quad
+    \Gamma\vdash e_2: \mathrm{bool}
+}{
+    \Gamma\vdash e_1 \&\& e_2: \mathrm{bool}
+}
+(\text{T-LAnd})
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{bool}
+}{
+    \Gamma\vdash e_1 \&\& e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{bool}) \&\& (e_2\ \text{as}\ \mathrm{bool})
+}
+$$
+
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 \&\& e_2 \rightarrow v_1 \&\& e_2
+}
+(\text{E-LAndReduce1})
+$$
+
+$$
+\frac{
+    v_1 = \text{true}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 \&\& e_2 \rightarrow v_2
+}
+(\text{E-LAndReduce2})
+$$
+
+$$
+\frac{
+    v_1 = \text{false}
+}{
+    v_1 \&\& e_2 \rightarrow v_1
+}
+(\text{E-LAndReduce3})
+$$
+
+## Logical OR Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{bool}
+    \quad
+    \Gamma\vdash e_2: \mathrm{bool}
+}{
+    \Gamma\vdash e_1 || e_2: \mathrm{bool}
+}
+(\text{T-LOr})
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{bool}
+}{
+    \Gamma\vdash e_1 || e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{bool}) || (e_2\ \text{as}\ \mathrm{bool})
+}
+$$
+
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 || e_2 \rightarrow v_1 || e_2
+}
+(\text{E-LOrReduce1})
+$$
+
+$$
+\frac{
+    v_1 = \text{false}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 || e_2 \rightarrow v_2
+}
+(\text{E-LOrReduce2})
+$$
+
+$$
+\frac{
+    v_1 = \text{true}
+}{
+    v_1 || e_2 \rightarrow v_1
+}
+(\text{E-LOrReduce3})
+$$
+
+## Equality Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \vee
+    \mathrm{T} <: \mathrm{bool}
+}{
+    \Gamma\vdash e_1 == e_2: \mathrm{bool}
+}
+(\text{T-Eq})
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 == e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) == (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 == e_2 \rightarrow v_1 == e_2
+}
+(\text{E-EqReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 == e_2 \rightarrow v_1 == v_2
+}
+(\text{E-EqReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 == v_2 \rightarrow \text{\_\_eq}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-Eq})
+$$
+
+## Inequality Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \vee
+    \mathrm{T} <: \mathrm{bool}
+}{
+    \Gamma\vdash e_1 != e_2: \mathrm{bool}
+}
+(\text{T-Neq})
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 != e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) != (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 != e_2 \rightarrow v_1 != e_2
+}
+(\text{E-NeqReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 != e_2 \rightarrow v_1 != v_2
+}
+(\text{E-NeqReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 != v_2 \rightarrow \text{\_\_neq}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-Neq})
+$$
+
+## Less Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \vee
+    \mathrm{T} <: \mathrm{bool}
+}{
+    \Gamma\vdash e_1 < e_2: \mathrm{bool}
+}
+(\text{T-Lt})
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 < e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) < (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 < e_2 \rightarrow v_1 < e_2
+}
+(\text{E-LtReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 < e_2 \rightarrow v_1 < v_2
+}
+(\text{E-LtReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 < v_2 \rightarrow \text{\_\_lt}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-Lt})
+$$
+
+## Greater Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \vee
+    \mathrm{T} <: \mathrm{bool}
+}{
+    \Gamma\vdash e_1 > e_2: \mathrm{bool}
+}
+(\text{T-Gt})
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 > e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) > (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 > e_2 \rightarrow v_1 > e_2
+}
+(\text{E-GtReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 > e_2 \rightarrow v_1 > v_2
+}
+(\text{E-GtReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 > v_2 \rightarrow \text{\_\_gt}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-Gt})
+$$
+
+## Less-Equal Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \vee
+    \mathrm{T} <: \mathrm{bool}
+}{
+    \Gamma\vdash e_1 <= e_2: \mathrm{bool}
+}
+(\text{T-LtEq})
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 <= e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) <= (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 <= e_2 \rightarrow v_1 <= e_2
+}
+(\text{E-LtEqReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 <= e_2 \rightarrow v_1 <= v_2
+}
+(\text{E-LtEqReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 <= v_2 \rightarrow \text{\_\_lteq}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-LtEq})
+$$
+
+## Greater-Equal Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \vee
+    \mathrm{T} <: \mathrm{bool}
+}{
+    \Gamma\vdash e_1 >= e_2: \mathrm{bool}
+}
+(\text{T-GtEq})
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 >= e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) >= (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 >= e_2 \rightarrow v_1 >= e_2
+}
+(\text{E-GtEqReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 >= e_2 \rightarrow v_1 >= v_2
+}
+(\text{E-GtEqReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 >= v_2 \rightarrow \text{\_\_gteq}(\mathrm{T}, v_1, v_2)
+}
+(\text{E-GtEq})
+$$
+
+## Three-way Comparison Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \vee
+    \mathrm{T} <: \mathrm{bool}
+}{
+    \Gamma\vdash e_1 <=> e_2: \mathrm{bool}
+}
+(\text{T-Cmp})
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+}{
+    \Gamma\vdash e_1 <=> e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T}) <=> (e_2\ \text{as}\ \mathrm{T})
+}
+$$
+
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 <=> e_2 \rightarrow v_1 <=> e_2
+}
+(\text{E-CmpReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 <=> e_2 \rightarrow v_1 <=> v_2
+}
+(\text{E-CmpReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+    \quad
+    v_1 < v_2
+}{
+    v_1 <=> v_2 \rightarrow \text{1i32}
+}
+(\text{E-CmpLt})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+    \quad
+    v_2 < v_1
+}{
+    v_1 <=> v_2 \rightarrow \text{-1i32}
+}
+(\text{E-CmpGt})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+    \quad
+    v_1 = v_2
+}{
+    v_1 <=> v_2 \rightarrow \text{0i32}
+}
+(\text{E-CmpGt})
 $$
 
 ## Assignment Expression
@@ -449,6 +1443,19 @@ $$
     \Gamma\vdash e: \mathrm{T}
 }{
     \Gamma\vdash x = e: \mathrm{void}
+}
+(\text{T-Assign})
+$$
+
+$$
+\frac{
+    \Gamma(x) = \mathrm{T_1}
+    \quad
+    \Gamma\vdash e: \mathrm{T_2}
+}{
+    \Gamma\vdash x = e
+    \triangleq
+    x = (e\ \text{as}\ \mathrm{T_1})
 }
 $$
 
@@ -464,6 +1471,7 @@ $$
     \rightarrow
     \overline{s} \mid \gamma \mid \sigma[l \mapsto v] \mid \mu \mid s \mid m \mid U
 }
+(\text{E-Assign})
 $$
 
 ## `is` Expression
