@@ -1,6 +1,6 @@
 # Stack Operations
 
-## Assistant Operations
+## Auxiliary Definitions
 
 $$
 \frac{

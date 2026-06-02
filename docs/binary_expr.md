@@ -1,6 +1,6 @@
 # Binary Expression
 
-## Assistant Operations
+## Auxiliary Definitions
 
 $\text{BinaryExprMainOpType}(A, B)$ infers the main operation type of a common binary expression between types of two undecorated operands.
 
@@ -1730,7 +1730,7 @@ $$
     \quad
     \Gamma\vdash e: \mathrm{T_2}
     \quad
-    \mathrm{T_2} <: \mathrm{T_1}
+    \mathrm{T_1} <: \mathrm{T_2}
 }{
     \Gamma\vdash e\ \text{is}\ \mathrm{T_1}: \mathrm{bool}
 }
