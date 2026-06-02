@@ -1,6 +1,6 @@
 # Binary Expression
 
-## Operations
+## Assistant Operations
 
 $\text{BinaryExprMainOpType}(A, B)$ infers the main operation type of a common binary expression between types of two undecorated operands.
 
@@ -33,6 +33,8 @@ $$
     \mathrm{A} <: \mathrm{class}
     \vee
     \mathrm{A} <: \mathrm{struct}
+    \vee
+    \mathrm{A} <: \mathrm{interface}
 }{
     \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{A}
 }
@@ -43,6 +45,8 @@ $$
     \mathrm{B} <: \mathrm{class}
     \vee
     \mathrm{B} <: \mathrm{struct}
+    \vee
+    \mathrm{A} <: \mathrm{interface}
 }{
     \text{BinaryExprMainOpType}(\mathrm{A}, \mathrm{B}) = \mathrm{B}
 }
@@ -130,23 +134,39 @@ $$
 }
 $$
 
-## Non-overloaded Binary Expressions
+### Examples
 
-The non-overloaded binary expression requires a main operand type to determine which kind of operations can be performed by the type.
+$$
+\text{BinaryExprMainOpType}(\mathrm{i16}, \mathrm{i32}) = \mathrm{i32}
+$$
 
-First, the compiler must look up the operation type:
+$$
+\text{BinaryExprMainOpType}(\mathrm{u8}, \mathrm{u16}) = \mathrm{u16}
+$$
 
-* For `<<`, `>>` and all assignment and compound assignment operations, the main operand type is the variable-reference-removed type of LHS:
-  * For `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`, they require the LHS to be an l-value, RHS to have the same type as the main operand type or any convertible type of the main operand type, the result type is l-valued type of LHS.
-  * For `<<`, `>>`, they require the LHS to be integral type and the RHS to be `u32` typed or any r-value with type that can be implicitly converted to `u32`, the result type is variable-reference-removed type of LHS.
-  * For `<<=`, `>>=`, they require the LHS to be l-valued integral type and the RHS to be `u32` typed or any r-value with type that can be implicitly converted to `u32`, the result type is l-valued type of LHS.
-* For `[]`, the main operand type is the variable-reference-removed type of LHS, it requires the LHS to be array typed or `string` typed and the RHS must be `usize` typed or any r-value with type that can be implicitly converted to `usize`, the result type is l-valued element type of the LHS for array typed LHS or `u8` for `string` typed LHS.
-* For `&&`, the LHS and the RHS must be `bool` typed or implicitly convertible to `bool` type, the RHS should not be evaluated at the runtime if the LHS is evaluated to be `false`, the result type is `bool`.
-* For `||`, the LHS and the RHS must be `bool` typed or implicitly convertible to `bool` type, the RHS should not be evaluated at the runtime if the LHS is evaluated to be `true`, the result type is `bool`.
-* For any other kind of non-overloaded binary expression, if both sides of the operands can be converted to other side's variable-reference-removed type, the main operand type is the wider variable-reference-removed type of the same kind if viable, or if only one side can be converted to other side's variable-reference-removed type, the main operand type is variable-reference-removed type of the side which has type the other operand can be converted to. If there is no side's conversion is viable, use LHS's variable-reference-removed type to generate the error message (the error message should be emitted during the operand conversion).
-  * Once the main operand type is determined, the compiler should lookup if the operation is viable by the main operand type, and generate corresponding codes if viable or generate an error message otherwise. Both sides of the expression should be converted to the main operand type. The result type is the main operand type.
-  * For `<`, `>`, `<=`, `>=`, `==`, `!=`, `===`, `!==`, the result type is `bool`.
-  * For `<=>`, the result type is `i32`.
+$$
+\text{BinaryExprMainOpType}(\mathrm{f32}, \mathrm{f64}) = \mathrm{f64}
+$$
+
+$$
+\text{BinaryExprMainOpType}(\mathrm{i32}, \mathrm{isize}) = \mathrm{i32}
+$$
+
+$$
+\text{BinaryExprMainOpType}(\mathrm{isize}, \mathrm{i32}) = \mathrm{isize}
+$$
+
+$$
+\text{BinaryExprMainOpType}(\mathrm{i8}, \mathrm{bool}) = \mathrm{bool}
+$$
+
+$$
+\text{BinaryExprMainOpType}(\mathrm{std.interfaces.IAdd::<i32, i32>}, \mathrm{i32}) = \mathrm{std.interfaces.IAdd::<i32, i32>}
+$$
+
+$$
+\text{BinaryExprMainOpType}(\mathrm{object}, \mathrm{i32}) = \mathrm{object}
+$$
 
 ## Adding Expression
 
@@ -926,9 +946,7 @@ $$
     \quad
     \Gamma\vdash e_2: \mathrm{T}
     \quad
-    \mathrm{T} \in \mathrm{Arithm}
-    \vee
-    \mathrm{T} <: \mathrm{bool}
+    \mathrm{T} \in \mathrm{Fundamental}
 }{
     \Gamma\vdash e_1 == e_2: \mathrm{bool}
 }
@@ -994,9 +1012,7 @@ $$
     \quad
     \Gamma\vdash e_2: \mathrm{T}
     \quad
-    \mathrm{T} \in \mathrm{Arithm}
-    \vee
-    \mathrm{T} <: \mathrm{bool}
+    \mathrm{T} \in \mathrm{Fundamental}
 }{
     \Gamma\vdash e_1 != e_2: \mathrm{bool}
 }
@@ -1054,6 +1070,214 @@ $$
 (\text{E-Neq})
 $$
 
+## Physical/Strict Equality Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} <: \mathrm{object}
+}{
+    \Gamma\vdash e_1 === e_2: \mathrm{bool}
+}
+(\text{T-StrictEq})
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \mathrm{T_1} <: \mathrm{object}
+    \quad
+    \mathrm{T_2} <: \mathrm{object}
+    \quad
+    \mathrm{T_2} <: \mathrm{T_1}
+}{
+    \Gamma\vdash e_1 === e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T_1}) === (e_2\ \text{as}\ \mathrm{T_1})
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \mathrm{T_1} <: \mathrm{object}
+    \quad
+    \mathrm{T_2} <: \mathrm{object}
+    \quad
+    \mathrm{T_1} <: \mathrm{T_2}
+}{
+    \Gamma\vdash e_1 === e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T_2}) === (e_2\ \text{as}\ \mathrm{T_2})
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \mathrm{T_1} \not<: \mathrm{object}
+    \vee
+    \mathrm{T_2} \not<: \mathrm{object}
+}{
+    \Gamma\vdash e_1 === e_2
+    \triangleq
+    e_1 == e_2
+}
+$$
+
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 === e_2 \rightarrow v_1 === e_2
+}
+(\text{E-StrictEqReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 === e_2 \rightarrow v_1 === v_2
+}
+(\text{E-StrictEqReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} <: \mathrm{object}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 === v_2 \rightarrow \text{\_\_phy\_eq}(v_1, v_2)
+}
+(\text{E-StrictEq})
+$$
+
+## Physical/Strict Inequality Expression
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T}
+    \quad
+    \mathrm{T} <: \mathrm{object}
+}{
+    \Gamma\vdash e_1 !== e_2: \mathrm{bool}
+}
+(\text{T-StrictNeq})
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \mathrm{T_1} <: \mathrm{object}
+    \quad
+    \mathrm{T_2} <: \mathrm{object}
+    \quad
+    \mathrm{T_2} <: \mathrm{T_1}
+}{
+    \Gamma\vdash e_1 !== e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T_1}) !== (e_2\ \text{as}\ \mathrm{T_1})
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \mathrm{T_1} <: \mathrm{object}
+    \quad
+    \mathrm{T_2} <: \mathrm{object}
+    \quad
+    \mathrm{T_1} <: \mathrm{T_2}
+}{
+    \Gamma\vdash e_1 !== e_2
+    \triangleq
+    (e_1\ \text{as}\ \mathrm{T_2}) !== (e_2\ \text{as}\ \mathrm{T_2})
+}
+$$
+
+$$
+\frac{
+    \Gamma\vdash e_1: \mathrm{T_1}
+    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}
+    \quad
+    \mathrm{T_1} \not<: \mathrm{object}
+    \vee
+    \mathrm{T_2} \not<: \mathrm{object}
+}{
+    \Gamma\vdash e_1 !== e_2
+    \triangleq
+    e_1 != e_2
+}
+$$
+
+$$
+\frac{
+    e_1 \rightarrow v_1
+}{
+    e_1 !== e_2 \rightarrow v_1 !== e_2
+}
+(\text{E-StrictNeqReduce1})
+$$
+
+$$
+\frac{
+    v_1 \text{ is a value}
+    \quad
+    e_2 \rightarrow v_2
+}{
+    v_1 !== e_2 \rightarrow v_1 !== v_2
+}
+(\text{E-StrictNeqReduce2})
+$$
+
+$$
+\frac{
+    \text{\_\_typeof}(v_1) = \mathrm{T}
+    \quad
+    \text{\_\_typeof}(v_2) = \mathrm{T}
+    \quad
+    \mathrm{T} <: \mathrm{object}
+    \quad
+    v_1 \text{ is a value}
+    \quad
+    v_2 \text{ is a value}
+}{
+    v_1 !== v_2 \rightarrow \text{\_\_phy\_neq}(v_1, v_2)
+}
+(\text{E-StrictNeq})
+$$
+
 ## Less Expression
 
 $$
@@ -1062,9 +1286,7 @@ $$
     \quad
     \Gamma\vdash e_2: \mathrm{T}
     \quad
-    \mathrm{T} \in \mathrm{Arithm}
-    \vee
-    \mathrm{T} <: \mathrm{bool}
+    \mathrm{T} \in \mathrm{Fundamental}
 }{
     \Gamma\vdash e_1 < e_2: \mathrm{bool}
 }
@@ -1130,9 +1352,7 @@ $$
     \quad
     \Gamma\vdash e_2: \mathrm{T}
     \quad
-    \mathrm{T} \in \mathrm{Arithm}
-    \vee
-    \mathrm{T} <: \mathrm{bool}
+    \mathrm{T} \in \mathrm{Fundamental}
 }{
     \Gamma\vdash e_1 > e_2: \mathrm{bool}
 }
@@ -1198,9 +1418,7 @@ $$
     \quad
     \Gamma\vdash e_2: \mathrm{T}
     \quad
-    \mathrm{T} \in \mathrm{Arithm}
-    \vee
-    \mathrm{T} <: \mathrm{bool}
+    \mathrm{T} \in \mathrm{Fundamental}
 }{
     \Gamma\vdash e_1 <= e_2: \mathrm{bool}
 }
@@ -1266,9 +1484,7 @@ $$
     \quad
     \Gamma\vdash e_2: \mathrm{T}
     \quad
-    \mathrm{T} \in \mathrm{Arithm}
-    \vee
-    \mathrm{T} <: \mathrm{bool}
+    \mathrm{T} \in \mathrm{Fundamental}
 }{
     \Gamma\vdash e_1 >= e_2: \mathrm{bool}
 }
@@ -1334,9 +1550,7 @@ $$
     \quad
     \Gamma\vdash e_2: \mathrm{T}
     \quad
-    \mathrm{T} \in \mathrm{Arithm}
-    \vee
-    \mathrm{T} <: \mathrm{bool}
+    \mathrm{T} \in \mathrm{Fundamental}
 }{
     \Gamma\vdash e_1 <=> e_2: \mathrm{bool}
 }

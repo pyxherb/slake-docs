@@ -36,64 +36,69 @@ We have following trait set for the arithmetic types:
 
 $$
 \begin{aligned}
-\mathrm{ArithmTraits \lang T \rang} ::=&\ \mathrm{IAdd \lang T, T \rang}\\
-&\mid\mathrm{ISub \lang T,T \rang}\\
-&\mid\mathrm{IMul \lang T,T \rang}\\
-&\mid\mathrm{IDiv \lang T,T \rang}\\
-&\mid\mathrm{IMod \lang T,T \rang}\\
-&\mid\mathrm{IAddAssign \lang T,T \rang}\\
-&\mid\mathrm{ISubAssign \lang T,T \rang}\\
-&\mid\mathrm{IMulAssign \lang T,T \rang}\\
-&\mid\mathrm{IDivAssign \lang T,T \rang}\\
-&\mid\mathrm{IModAssign \lang T,T \rang}\\
-&\mid\mathrm{IEq \lang T,T \rang}\\
-&\mid\mathrm{INeq \lang T,T \rang}\\
-&\mid\mathrm{ILt \lang T,T \rang}\\
-&\mid\mathrm{IGt \lang T,T \rang}\\
-&\mid\mathrm{ILtEq \lang T,T \rang}\\
-&\mid\mathrm{IGtEq \lang T,T \rang}\\
-&\mid\mathrm{ICmp \lang T,T \rang}\\
-&\mid\mathrm{INeg \lang T,T \rang}\\
+\mathrm{ArithmTraits::<T>} ::=&\ \mathrm{IAdd::<T, T>}\\
+&\mid\mathrm{ISub::<T,T>}\\
+&\mid\mathrm{IMul::<T,T>}\\
+&\mid\mathrm{IDiv::<T,T>}\\
+&\mid\mathrm{IMod::<T,T>}\\
+&\mid\mathrm{IAddAssign::<T,T>}\\
+&\mid\mathrm{ISubAssign::<T,T>}\\
+&\mid\mathrm{IMulAssign::<T,T>}\\
+&\mid\mathrm{IDivAssign::<T,T>}\\
+&\mid\mathrm{IModAssign::<T,T>}\\
+&\mid\mathrm{IEq::<T,T>}\\
+&\mid\mathrm{INeq::<T,T>}\\
+&\mid\mathrm{ILt::<T,T>}\\
+&\mid\mathrm{IGt::<T,T>}\\
+&\mid\mathrm{ILtEq::<T,T>}\\
+&\mid\mathrm{IGtEq::<T,T>}\\
+&\mid\mathrm{ICmp::<T,T>}\\
+&\mid\mathrm{INeg::<T,T>}\\
 \end{aligned}
 $$
 
 $$
-\mathrm{FloatTraits \lang T \rang} ::= \mathrm{ArithmTraits \lang T \rang}\\
+\mathrm{FloatTraits::<T>} ::= \mathrm{ArithmTraits::<T>}\\
 $$
 
 $$
 \begin{aligned}
-\mathrm{IntegerTraits \lang T \rang} ::=&\ \mathrm{ArithmTraits \lang T \rang}\\
-&\mid\mathrm{IAnd \lang T,T \rang}\\
-&\mid\mathrm{IOr \lang T,T \rang}\\
-&\mid\mathrm{IXor \lang T,T \rang}\\
-&\mid\mathrm{ILsh \lang T,u32 \rang}\\
-&\mid\mathrm{IRsh \lang T,u32 \rang}\\
-&\mid\mathrm{IAndAssign \lang T,T \rang}\\
-&\mid\mathrm{IOrAssign \lang T,T \rang}\\
-&\mid\mathrm{IXorAssign \lang T,T \rang}\\
-&\mid\mathrm{ILshAssign \lang T,u32 \rang}\\
-&\mid\mathrm{IRshAssign \lang T,u32 \rang}\\
-&\mid\mathrm{INot \lang T,T \rang}\\
+\mathrm{IntegerTraits::<T>} ::=&\ \mathrm{ArithmTraits::<T>}\\
+&\mid\mathrm{IAnd::<T,T>}\\
+&\mid\mathrm{IOr::<T,T>}\\
+&\mid\mathrm{IXor::<T,T>}\\
+&\mid\mathrm{ILsh::<T,u32>}\\
+&\mid\mathrm{IRsh::<T,u32>}\\
+&\mid\mathrm{IAndAssign::<T,T>}\\
+&\mid\mathrm{IOrAssign::<T,T>}\\
+&\mid\mathrm{IXorAssign::<T,T>}\\
+&\mid\mathrm{ILshAssign::<T,u32>}\\
+&\mid\mathrm{IRshAssign::<T,u32>}\\
+&\mid\mathrm{INot::<T,T>}\\
 \end{aligned}
 $$
 
 Signed integer types included `i8`, `i16`, `i32` and `i64`:
 
-$$\mathrm{SignedInteger} ::=
+$$
+\mathrm{SignedInteger} ::=
 \mathrm{i8}
 \mid\mathrm{i16}
 \mid\mathrm{i32}
 \mid\mathrm{i64}
+\mid\mathrm{isize}
 $$
 
 Unsigned integer types included `u8`, `u16`, `u32` and `u64`:
 
-$$\mathrm{UnsignedInteger} ::=
+$$
+\mathrm{UnsignedInteger} ::=
 \mathrm{u8}
 \mid\mathrm{u16}
 \mid\mathrm{u32}
-\mid\mathrm{u64}$$
+\mid\mathrm{u64}
+\mid\mathrm{usize}
+$$
 
 For unsigned integer types, their relationship is defined as following:
 
@@ -111,7 +116,7 @@ $$
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
-    \forall i \in \mathrm{IntegerTraits \lang T \rang},
+    \forall i \in \mathrm{IntegerTraits::<T>},
     \Gamma\vdash \mathrm{T} <: i
 }
 (\text{T-IntegerTraits})
@@ -133,7 +138,7 @@ $$
     \quad
     \mathrm{T} \in \mathrm{Float}
 }{
-    \forall i \in \mathrm{FloatTraits \lang T \rang},
+    \forall i \in \mathrm{FloatTraits::<T>},
     \Gamma\vdash \mathrm{T} <: i
 }
 (\text{T-FloatTraits})
@@ -151,12 +156,18 @@ $$
 
 Fundamental types included arithmetic types and `bool`.
 
-All of arithmetic type is unconditionally a type:
+$$
+\mathrm{Fundamental} ::=
+\mathrm{Arithm}
+\mid\mathrm{bool}
+$$
+
+All of fundamental type are unconditionally a type:
 
 $$
 \frac{
 }{
-    \forall i \in \mathrm{Arithm},
+    \forall i \in \mathrm{Fundamental},
     \Gamma\vdash i\ \mathrm{type}
 }
 (\text{T-FundamentalTypesAreType})
@@ -225,13 +236,13 @@ $$
 
 Instantiated generic types, or monomorphized types are generated (or monomorphized) from generic types.
 
-Type operations between generic types are prohibited, which means if there is a generic type $\mathrm{T} \lang x \rang$ and if $x$ has not been filled yet, then the type operations for the type $\mathrm{T}$ are not available.
+Type operations between generic types are prohibited, which means if there is a generic type $\mathrm{T}::<x>$ and if $x$ has not been filled yet, then the type operations for the type $\mathrm{T}$ are not available.
 
 Unlike some programming languages, the instantiated generic types are **invariant** even the type parameters are covariant or contravariant:
 
 $$
 \Gamma\vdash\mathrm{Derived} <: \mathrm{Base} \nRightarrow
-\Gamma\vdash\mathrm{T \lang Derived \rang} <: \mathrm{T \lang Base \rang}
+\Gamma\vdash\mathrm{T::<Derived>} <: \mathrm{T::<Base>}
 $$
 
 ## Type Operations
@@ -284,6 +295,10 @@ $$
     \quad
     \mathrm{B} \in \mathrm{UnsignedInteger}
     \quad
+    \mathrm{A} \not<: \mathrm{usize}
+    \quad
+    \mathrm{A} \not<: \mathrm{usize}
+    \quad
     \text{\_\_int\_width}(A) \le \text{\_\_int\_width}(B)
 }{
     \text{CommonType}(A, B) = B
@@ -295,6 +310,10 @@ $$
     \mathrm{A} \in \mathrm{UnsignedInteger}
     \quad
     \mathrm{B} \in \mathrm{UnsignedInteger}
+    \quad
+    \mathrm{A} \not<: \mathrm{usize}
+    \quad
+    \mathrm{B} \not<: \mathrm{usize}
     \quad
     \text{\_\_int\_width}(A) > \text{\_\_int\_width}(B)
 }{
@@ -308,6 +327,10 @@ $$
     \quad
     \mathrm{B} \in \mathrm{SignedInteger}
     \quad
+    \mathrm{A} \not<: \mathrm{isize}
+    \quad
+    \mathrm{B} \not<: \mathrm{isize}
+    \quad
     \text{\_\_int\_width}(A) \le \text{\_\_int\_width}(B)
 }{
     \text{CommonType}(A, B) = B
@@ -319,6 +342,10 @@ $$
     \mathrm{A} \in \mathrm{SignedInteger}
     \quad
     \mathrm{B} \in \mathrm{SignedInteger}
+    \quad
+    \mathrm{A} \not<: \mathrm{isize}
+    \quad
+    \mathrm{B} \not<: \mathrm{isize}
     \quad
     \text{\_\_int\_width}(A) > \text{\_\_int\_width}(B)
 }{

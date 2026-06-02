@@ -119,6 +119,42 @@ $\text{\_\_xor}(t, x, y)$ - Evaluate $(x\ \text{XOR}\ y)$ with operands, valid t
 
 * Both operands must have the same type.
 
+$\text{\_\_eq}(t, x, y)$ - Evaluate if $x$ equals to $y$, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, $\mathrm{bool}$, where:
+
+* Both operands must have the same type.
+* For $\mathrm{Float}$ types, see the IEEE-754 standard.
+
+$\text{\_\_neq}(t, x, y)$ - Evaluate if $x$ is not equal to $y$, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, $\mathrm{bool}$, where:
+
+* Both operands must have the same type.
+* For $\mathrm{Float}$ types, see the IEEE-754 standard.
+
+$\text{\_\_phy\_eq}(t, x, y)$ - Evaluate if $x$ physically equals to $y$, where $t$ must subtype of $\mathrm{object}$ and type of $x$ and $y$ must be $t$.
+
+$\text{\_\_phy\_neq}(t, x, y)$ - Evaluate if $x$ is not physically equal to $y$, where $t$ must subtype of $\mathrm{object}$ and type of $x$ and $y$ must be $t$.
+
+$\text{\_\_lt}(t, x, y)$ - Evaluate if $x$ is less than $y$, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, where:
+
+* Both operands must have the same type.
+* For $\mathrm{Float}$ types, see the IEEE-754 standard.
+
+$\text{\_\_gt}(t, x, y)$ - Evaluate if $x$ is greater than $y$, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, where:
+
+* Both operands must have the same type.
+* For $\mathrm{Float}$ types, see the IEEE-754 standard.
+
+$\text{\_\_lteq}(t, x, y)$ - Evaluate if $x$ is less than or equal to $y$, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, where:
+
+* Both operands must have the same type.
+* For $\mathrm{Float}$ types, see the IEEE-754 standard.
+* $\text{bool}$ typed values must be converted to any supported types to compare. 
+
+$\text{\_\_gteq}(t, x, y)$ - Evaluate if $x$ is greater than or equal to $y$, valid types are $\mathrm{i8}$, $\mathrm{i16}$, $\mathrm{i32}$, $\mathrm{i64}$, $\mathrm{isize}$, $\mathrm{u8}$, $\mathrm{u16}$, $\mathrm{u32}$, $\mathrm{u64}$, $\mathrm{usize}$, where:
+
+* Both operands must have the same type.
+* For $\mathrm{Float}$ types, see the IEEE-754 standard.
+* $\text{bool}$ typed values must be converted to any supported types to compare.
+
 $\text{\_\_roots}(\mu)$ - Extract root object set from a global state.
 
 $\text{\_\_unreachable}(\mu)$ - Get objects that are not marked by the garbage collector.
