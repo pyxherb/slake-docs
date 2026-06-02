@@ -190,6 +190,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 + e_2
     \triangleq
@@ -256,6 +258,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 - e_2
     \triangleq
@@ -322,6 +326,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 * e_2
     \triangleq
@@ -388,6 +394,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 / e_2
     \triangleq
@@ -454,6 +462,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 \% e_2
     \triangleq
@@ -520,6 +530,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
 }{
     \Gamma\vdash e_1 \And e_2
     \triangleq
@@ -586,6 +598,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
 }{
     \Gamma\vdash e_1 | e_2
     \triangleq
@@ -652,6 +666,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Integer}
 }{
     \Gamma\vdash e_1 \wedge e_2
     \triangleq
@@ -715,12 +731,12 @@ $$
 \frac{
     \Gamma\vdash e_1: \mathrm{T_1}
     \quad
-    \Gamma\vdash e_2: \mathrm{T_2}
-    \quad
+    \Gamma\vdash e_2: \mathrm{T_2}\quad
+    \mathrm{T_1} \in \mathrm{Integer}
 }{
     \Gamma\vdash e_1 << e_2
     \triangleq
-    (e_1\ \text{as}\ \mathrm{T}) << (e_2\ \text{as}\ \mathrm{u32})
+    e_1 << (e_2\ \text{as}\ \mathrm{u32})
 }
 $$
 
@@ -755,6 +771,7 @@ $$
     v_1 \text{ is a value}
     \quad
     v_2 \text{ is a value}
+    
 }{
     v_1 << v_2 \rightarrow \text{\_\_shl}(\mathrm{T}, v_1, v_2)
 }
@@ -782,10 +799,11 @@ $$
     \quad
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
+    \mathrm{T_1} \in \mathrm{Integer}
 }{
     \Gamma\vdash e_1 >> e_2
     \triangleq
-    (e_1\ \text{as}\ \mathrm{T}) >> (e_2\ \text{as}\ \mathrm{u32})
+    e_1 >> (e_2\ \text{as}\ \mathrm{u32})
 }
 $$
 
@@ -960,6 +978,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Fundamental}
 }{
     \Gamma\vdash e_1 == e_2
     \triangleq
@@ -1026,6 +1046,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Fundamental}
 }{
     \Gamma\vdash e_1 != e_2
     \triangleq
@@ -1286,7 +1308,7 @@ $$
     \quad
     \Gamma\vdash e_2: \mathrm{T}
     \quad
-    \mathrm{T} \in \mathrm{Fundamental}
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 < e_2: \mathrm{bool}
 }
@@ -1300,6 +1322,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 < e_2
     \triangleq
@@ -1352,7 +1376,7 @@ $$
     \quad
     \Gamma\vdash e_2: \mathrm{T}
     \quad
-    \mathrm{T} \in \mathrm{Fundamental}
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 > e_2: \mathrm{bool}
 }
@@ -1366,6 +1390,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 > e_2
     \triangleq
@@ -1418,7 +1444,7 @@ $$
     \quad
     \Gamma\vdash e_2: \mathrm{T}
     \quad
-    \mathrm{T} \in \mathrm{Fundamental}
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 <= e_2: \mathrm{bool}
 }
@@ -1432,6 +1458,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 <= e_2
     \triangleq
@@ -1484,7 +1512,7 @@ $$
     \quad
     \Gamma\vdash e_2: \mathrm{T}
     \quad
-    \mathrm{T} \in \mathrm{Fundamental}
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 >= e_2: \mathrm{bool}
 }
@@ -1498,6 +1526,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 >= e_2
     \triangleq
@@ -1550,7 +1580,7 @@ $$
     \quad
     \Gamma\vdash e_2: \mathrm{T}
     \quad
-    \mathrm{T} \in \mathrm{Fundamental}
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 <=> e_2: \mathrm{bool}
 }
@@ -1564,6 +1594,8 @@ $$
     \Gamma\vdash e_2: \mathrm{T_2}
     \quad
     \text{BinaryExprMainOpType}(\mathrm{T_1}, \mathrm{T_2}) = \mathrm{T}
+    \quad
+    \mathrm{T} \in \mathrm{Arithm}
 }{
     \Gamma\vdash e_1 <=> e_2
     \triangleq
