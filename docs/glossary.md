@@ -8,9 +8,17 @@ $\mathrm{T?}$ - Nullable type
 
 $\Gamma$ - Type context
 
+$\Delta$ - Flow-sensitive type context
+
+$\Theta$ - Nullity context
+
 $\Gamma\vdash \mathrm{T}\ \mathrm{type}$ - In context $\Gamma$, $\mathrm{T}$ is a well-formed type.
 
+$\Gamma,\Delta\vdash \mathrm{T}\ \mathrm{type}$ - In flow-senseitive context $\Delta$, $\mathrm{T}$ is a well-formed type.
+
 $\Gamma\vdash t: \mathrm{T}$ - In context $\Gamma$, term $t$ has type $\mathrm{T}$
+
+$\Gamma,\Delta\vdash t: \mathrm{T}$ - In flow sensitive context $\Delta$, term $t$ has type $\mathrm{T}$
 
 $\Gamma\triangleright\Gamma'$ - Context $\Gamma$ updates to $\Gamma'$
 
