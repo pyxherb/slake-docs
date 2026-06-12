@@ -2,6 +2,10 @@
 
 $\Gamma$ is the variable binding context, $\Delta$ is the flow-sensitive variable type context, $\Theta$ is the nullity context.
 
+For this, we will define an analysis function $\llbracket \cdot \rrbracket$ for flow-based analysis.
+
+<!--Note: The analysis function should be applied in the precondition-->
+
 ## Assignments
 
 <!--Incompleted yet.-->
@@ -97,3 +101,12 @@ $$
 
 \end{cases}
 $$
+
+## Other Expressions and Statements
+
+$$
+\llbracket e \rrbracket(\Gamma, \Delta, \Theta) =
+(\Gamma, \Delta, \Theta)
+$$
+
+For other expressions and statements, the analysis function does not update anything.

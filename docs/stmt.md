@@ -26,7 +26,78 @@ $$
 
 ## Block Statement
 
+## If Statement
 
+`if` statement executes a branch which is determined by the condition expression.
+
+$$
+\frac{
+    \Gamma, \Delta \vdash e: \mathrm{bool}
+    \quad
+    (\Gamma', \Delta', \Theta') = \llbracket e \rrbracket(\Gamma, \Delta, \Theta)
+    \quad
+    (\Gamma_t, \Delta_t, \Theta_t) = \llbracket b_1 \rrbracket(\Gamma', \Delta', \Theta')
+    \quad
+    (\Gamma_f, \Delta_f, \Theta_f) = \llbracket b_2 \rrbracket(\Gamma', \Delta', \Theta')
+    \quad
+    (\Gamma'', \Delta'', \Theta'') = \text{\_\_MergeFlowContexts}((\Gamma_t, \Delta_t, \Theta_t), (\Gamma_f, \Delta_f, \Theta_f))
+}{
+    \Gamma, \Delta \vdash \text{if}(e_1)\ b_1\ \text{else}\ b_2: \text{void}
+}
+(\text{T-IfStmt})
+$$
+
+$$
+\frac{
+    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
+    \rightarrow
+    \text{true} \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
+}{
+    \text{if}(e_1)\ b_1\ \text{else}\ b_2\ \overline{s} \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
+    \rightarrow
+    \{b_1\} \overline{s} \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
+}
+(\text{E-IfStmtTrue})
+$$
+
+$$
+\frac{
+    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
+    \rightarrow
+    \text{false} \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
+}{
+    \text{if}(e_1)\ b_1\ \text{else}\ b_2\ \overline{s} \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
+    \rightarrow
+    \{b_2\} \overline{s} \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
+}
+(\text{E-IfStmtFalse})
+$$
+
+$$
+\frac{
+    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
+    \rightarrow
+    \text{true} \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
+}{
+    \text{if}(e_1)\ b_1\ \overline{s} \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
+    \rightarrow
+    \{b_1\} \overline{s} \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
+}
+(\text{E-IfStmtWithoutElseTrue})
+$$
+
+$$
+\frac{
+    e_1 \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
+    \rightarrow
+    \text{false} \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
+}{
+    \text{if}(e_1)\ b_1\ \overline{s} \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
+    \rightarrow
+    \overline{s} \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
+}
+(\text{E-IfStmtWithoutElseFalse})
+$$
 
 ## While Statement
 
@@ -40,7 +111,7 @@ $$
 }{
     \text{while}(e_1)\ b\ \overline{s} \mid \gamma \mid \sigma_0 \mid \mu_0 \mid U_0
     \rightarrow
-    \{b\}; \text{while}(e_1)\ b\ \overline{s} \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
+    \{b\} \text{while}(e_1)\ b\ \overline{s} \mid \gamma \mid \sigma_1 \mid \mu_1 \mid U_1
 }
 (\text{E-WhileStmtTrue})
 $$
@@ -66,7 +137,7 @@ $$
 }{
     \text{do}\ b\ \text{while}(e_1);\ \overline{s} \mid \gamma \mid \sigma\mid \mu \mid U
     \rightarrow
-    \{b;\} \text{while}(e_1)\ b;\ \overline{s} \mid \gamma \mid \sigma \mid \mu \mid U
+    \{b\} \text{while}(e_1)\ b\ \overline{s} \mid \gamma \mid \sigma \mid \mu \mid U
 }
 (\text{E-DoWhileStmt})
 $$
