@@ -49,7 +49,7 @@ $$
     &\Gamma'' = \Gamma'
     \\
     \\
-    &\Theta'' = \text{\$UpdateNullityParallel}(\Theta', \Theta_t, \Theta_f)
+    &\Theta'' = \text{UpdateNullityParallel}(\Theta', \Theta_t, \Theta_f)
     \end{aligned}
 }{
     \Gamma, \Delta, \Theta \vdash \text{if}(e)\ b_1\ \text{else}\ b_2: \text{void} \triangleright \Gamma'', \Delta'', \Theta''
@@ -198,7 +198,7 @@ $$
 \frac{
     m = \text{Normal}
     \quad
-    \text{\$alloca}(\mathrm{T}, \sigma) \mid \gamma \mid \sigma \mid \mu \mid U
+    \text{alloca}(\mathrm{T}, \sigma) \mid \gamma \mid \sigma \mid \mu \mid U
     =
     l \mid \gamma \mid \sigma' \mid \mu \mid U
     \quad
@@ -234,7 +234,7 @@ $$
 }{
     \text{let}\ x: \mathrm{T}; \overline{s}
     \rightarrow
-    \text{let}\ x: \mathrm{T} = \text{\$defaultof}(\mathrm{T}); \overline{s}
+    \text{let}\ x: \mathrm{T} = \text{defaultof}(\mathrm{T}); \overline{s}
 }
 (\text{E-LetTyped-Normal})
 $$

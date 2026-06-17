@@ -100,11 +100,11 @@ $\text{int\_to\_width}(v, n)$ - Converts $v$ into an unsigned uinteger value wit
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{SignedInteger}
     \quad
-    \text{\$int\_width}(\mathrm{T}) < n
+    \text{int\_width}(\mathrm{T}) < n
 }{
     \text{int\_to\_width}(v, n) \rightarrow \text{widen\_int}(v, n)
 }
@@ -112,11 +112,11 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{SignedInteger}
     \quad
-    \text{\$int\_width}(\mathrm{T}) = n
+    \text{int\_width}(\mathrm{T}) = n
 }{
     \text{int\_to\_width}(v, n) \rightarrow v
 }
@@ -124,11 +124,11 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{SignedInteger}
     \quad
-    \text{\$int\_width}(\mathrm{T}) > n
+    \text{int\_width}(\mathrm{T}) > n
 }{
     \text{int\_to\_width}(v, n) \rightarrow \text{narrow\_int}(v, n)
 }
@@ -136,21 +136,21 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{UnsignedInteger}
 }{
-    \text{int\_to\_width}(v, n) \rightarrow \text{int\_to\_width}(\text{\$to\_signed}(v), n)
+    \text{int\_to\_width}(v, n) \rightarrow \text{int\_to\_width}(\text{to\_signed}(v), n)
 }
 $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{UnsignedInteger}
     \quad
-    \text{\$int\_width}(\mathrm{T}) < n
+    \text{int\_width}(\mathrm{T}) < n
 }{
     \text{int\_to\_width}(v, n) \rightarrow \text{widen\_uint}(v, n)
 }
@@ -158,11 +158,11 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{UnsignedInteger}
     \quad
-    \text{\$int\_width}(\mathrm{T}) = n
+    \text{int\_width}(\mathrm{T}) = n
 }{
     \text{int\_to\_width}(v, n) \rightarrow v
 }
@@ -170,11 +170,11 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{UnsignedInteger}
     \quad
-    \text{\$int\_width}(\mathrm{T}) > n
+    \text{int\_width}(\mathrm{T}) > n
 }{
     \text{int\_to\_width}(v, n) \rightarrow \text{narrow\_uint}(v, n)
 }
@@ -182,11 +182,11 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{SignedInteger}
 }{
-    \text{int\_to\_width}(v, n) \rightarrow \text{int\_to\_width}(\text{\$to\_unsigned}(v), n)
+    \text{int\_to\_width}(v, n) \rightarrow \text{int\_to\_width}(\text{to\_unsigned}(v), n)
 }
 $$
 
@@ -194,7 +194,7 @@ $\text{int\_to\_i8}(v)$ - Converts $v$ into an `i8` value, where `v` must be an 
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -206,7 +206,7 @@ $\text{int\_to\_i16}(v)$ - Converts $v$ into an `i16` value, where `v` must be a
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -218,7 +218,7 @@ $\text{int\_to\_i32}(v)$ - Converts $v$ into an `i32` value, where `v` must be a
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -230,7 +230,7 @@ $\text{int\_to\_i64}(v)$ - Converts $v$ into an `i64` value, where `v` must be a
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -242,7 +242,7 @@ $\text{int\_to\_u8}(v)$ - Converts $v$ into an `u8` value, where `v` must be an 
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -254,7 +254,7 @@ $\text{int\_to\_u16}(v)$ - Converts $v$ into an `u16` value, where `v` must be a
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -266,7 +266,7 @@ $\text{int\_to\_u32}(v)$ - Converts $v$ into an `u32` value, where `v` must be a
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -278,7 +278,7 @@ $\text{int\_to\_u64}(v)$ - Converts $v$ into an `u64` value, where `v` must be a
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -290,7 +290,7 @@ $\text{to\_i8}(v)$ - Converts $v$ into an `i8` value, where `v` must be an $Arit
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -300,11 +300,11 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Float}
 }{
-    \text{to\_i8}(v, n) \rightarrow \text{\$float\_to\_i8}(v, n)
+    \text{to\_i8}(v, n) \rightarrow \text{float\_to\_i8}(v, n)
 }
 $$
 
@@ -312,7 +312,7 @@ $\text{to\_i16}(v)$ - Converts $v$ into an `i16` value, where `v` must be an $Ar
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -322,11 +322,11 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Float}
 }{
-    \text{to\_i16}(v, n) \rightarrow \text{\$float\_to\_i16}(v, n)
+    \text{to\_i16}(v, n) \rightarrow \text{float\_to\_i16}(v, n)
 }
 $$
 
@@ -334,7 +334,7 @@ $\text{to\_i32}(v)$ - Converts $v$ into an `i32` value, where `v` must be an $Ar
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -344,18 +344,18 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Float}
 }{
-    \text{to\_i32}(v, n) \rightarrow \text{\$float\_to\_i32}(v, n)
+    \text{to\_i32}(v, n) \rightarrow \text{float\_to\_i32}(v, n)
 }
 $$
 
 $\text{to\_i64}(v)$ - Converts $v$ into an `i64` value, where `v` must be an $Arithm$ typed value.
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -365,11 +365,11 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Float}
 }{
-    \text{to\_i64}(v, n) \rightarrow \text{\$float\_to\_i64}(v, n)
+    \text{to\_i64}(v, n) \rightarrow \text{float\_to\_i64}(v, n)
 }
 $$
 
@@ -377,7 +377,7 @@ $\text{to\_u8}(v)$ - Converts $v$ into an `u8` value, where `v` must be an $Arit
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -387,11 +387,11 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Float}
 }{
-    \text{to\_u8}(v, n) \rightarrow \text{\$float\_to\_u8}(v, n)
+    \text{to\_u8}(v, n) \rightarrow \text{float\_to\_u8}(v, n)
 }
 $$
 
@@ -399,7 +399,7 @@ $\text{to\_u16}(v)$ - Converts $v$ into an `u16` value, where `v` must be an $Ar
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -409,11 +409,11 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Float}
 }{
-    \text{to\_u16}(v, n) \rightarrow \text{\$float\_to\_u16}(v, n)
+    \text{to\_u16}(v, n) \rightarrow \text{float\_to\_u16}(v, n)
 }
 $$
 
@@ -421,7 +421,7 @@ $\text{to\_u32}(v)$ - Converts $v$ into an `u32` value, where `v` must be an $Ar
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -431,11 +431,11 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Float}
 }{
-    \text{to\_u32}(v, n) \rightarrow \text{\$float\_to\_u32}(v, n)
+    \text{to\_u32}(v, n) \rightarrow \text{float\_to\_u32}(v, n)
 }
 $$
 
@@ -443,7 +443,7 @@ $\text{to\_u64}(v)$ - Converts $v$ into an `u64` value, where `v` must be an $Ar
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
 }{
@@ -453,11 +453,11 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Float}
 }{
-    \text{to\_u64}(v, n) \rightarrow \text{\$float\_to\_u64}(v, n)
+    \text{to\_u64}(v, n) \rightarrow \text{float\_to\_u64}(v, n)
 }
 $$
 
@@ -465,11 +465,11 @@ $\text{to\_f32}(v)$ - Converts $v$ into an `f32` value, where `v` must be an $Ar
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
 }{
-    \text{to\_f32}(v, n) \rightarrow \text{\$to\_f32}(v, n)
+    \text{to\_f32}(v, n) \rightarrow \text{to\_f32}(v, n)
 }
 $$
 
@@ -477,11 +477,11 @@ $\text{to\_f64}(v)$ - Converts $v$ into an `f64` value, where `v` must be an $Ar
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
 }{
-    \text{to\_f64}(v, n) \rightarrow \text{\$to\_f64}(v, n)
+    \text{to\_f64}(v, n) \rightarrow \text{to\_f64}(v, n)
 }
 $$
 
@@ -504,7 +504,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -515,7 +515,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -526,7 +526,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -537,7 +537,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -548,7 +548,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -559,7 +559,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -570,7 +570,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -581,7 +581,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -592,7 +592,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -603,7 +603,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \in \mathrm{Arithm}
 }{
@@ -806,7 +806,7 @@ The runtime will return the object itself or throw a `TypeCastException` if the 
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object}
     \quad
@@ -821,7 +821,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object}
     \quad
@@ -883,7 +883,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -898,7 +898,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -929,7 +929,7 @@ The runtime should throw a `TypeCastException` instance when converting an objec
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -946,7 +946,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{object?}
     \quad
@@ -990,7 +990,7 @@ Converting a value into nullable type does not change itself anything:
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
 }{
     v\ \text{as}\ \mathrm{T?} \rightarrow v
 }
@@ -1012,7 +1012,7 @@ But if the value is `null`, the runtime will throw a `TypeCastException` instanc
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{T}
+    \text{typeof}(v) = \mathrm{T}
 }{
     v\ \text{as}\ \mathrm{T} \rightarrow v
 }
@@ -1021,7 +1021,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{null}
+    \text{typeof}(v) = \mathrm{null}
 }{
     v\ \text{as}\ \mathrm{T} \rightarrow \text{throw}\ \text{new}\ \mathrm{TypeCastException}()
 }

@@ -4,7 +4,7 @@
 
 $$
 \frac{
-    \text{\$stack\_depth}(\sigma) + \text{\$stack\_align\_diff}(\sigma, \mathrm{T}) + \text{\$sizeof}(\mathrm{T}) < \text{\$stack\_max}(\sigma)
+    \text{stack\_depth}(\sigma) + \text{stack\_align\_diff}(\sigma, \mathrm{T}) + \text{sizeof}(\mathrm{T}) < \text{stack\_max}(\sigma)
 }{
     \text{CheckStackBound}(\sigma, \mathrm{T}) = \text{true}
 }
@@ -12,7 +12,7 @@ $$
 
 $$
 \frac{
-    \text{\$stack\_depth}(\sigma) + \text{\$stack\_align\_diff}(\sigma, \mathrm{T}) + \text{\$sizeof}(\mathrm{T}) \ge \text{\$stack\_max}(\sigma)
+    \text{stack\_depth}(\sigma) + \text{stack\_align\_diff}(\sigma, \mathrm{T}) + \text{sizeof}(\mathrm{T}) \ge \text{stack\_max}(\sigma)
 }{
     \text{CheckStackBound}(\sigma, \mathrm{T}) = \text{false}
 }
@@ -26,13 +26,13 @@ $$
     \quad
     \text{CheckStackBound}(\sigma, \mathrm{T}) = \text{true}
     \quad
-    \text{\$alloca}(\mathrm{T}, \sigma) \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
+    \text{alloca}(\mathrm{T}, \sigma) \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
     =
     l \mid \gamma \mid \sigma' \mid \mu \mid s \mid m \mid U
 }{
     \text{alloca}\ \mathrm{T} \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
     \rightarrow
-    l \mid \gamma \mid \sigma'[l \mapsto \text{\$defaultof}(\mathrm{T})] \mid \mu \mid s \mid m \mid U
+    l \mid \gamma \mid \sigma'[l \mapsto \text{defaultof}(\mathrm{T})] \mid \mu \mid s \mid m \mid U
 }
 $$
 

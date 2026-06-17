@@ -1,6 +1,8 @@
 # Glossary
 
-$\text{\$name}$ - Built-in identifier
+$name$ - User-defined identifier
+
+$\text{name}$ - Built-in identifier
 
 $\mathrm{T}$ - Non-nullable type
 

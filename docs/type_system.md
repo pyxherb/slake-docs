@@ -299,7 +299,7 @@ $$
     \quad
     \mathrm{A} \not<: \mathrm{usize}
     \quad
-    \text{\$int\_width}(A) \le \text{\$int\_width}(B)
+    \text{int\_width}(A) \le \text{int\_width}(B)
 }{
     \text{CommonType}(A, B) = B
 }
@@ -315,7 +315,7 @@ $$
     \quad
     \mathrm{B} \not<: \mathrm{usize}
     \quad
-    \text{\$int\_width}(A) > \text{\$int\_width}(B)
+    \text{int\_width}(A) > \text{int\_width}(B)
 }{
     \text{CommonType}(A, B) = A
 }
@@ -331,7 +331,7 @@ $$
     \quad
     \mathrm{B} \not<: \mathrm{isize}
     \quad
-    \text{\$int\_width}(A) \le \text{\$int\_width}(B)
+    \text{int\_width}(A) \le \text{int\_width}(B)
 }{
     \text{CommonType}(A, B) = B
 }
@@ -347,7 +347,7 @@ $$
     \quad
     \mathrm{B} \not<: \mathrm{isize}
     \quad
-    \text{\$int\_width}(A) > \text{\$int\_width}(B)
+    \text{int\_width}(A) > \text{int\_width}(B)
 }{
     \text{CommonType}(A, B) = A
 }
@@ -359,7 +359,7 @@ $$
     \quad
     \mathrm{B} \in \mathrm{Float}
     \quad
-    \text{\$float\_width}(A) \le \text{\$float\_width}(B)
+    \text{float\_width}(A) \le \text{float\_width}(B)
 }{
     \text{CommonType}(A, B) = B
 }
@@ -371,7 +371,7 @@ $$
     \quad
     \mathrm{B} \in \mathrm{Float}
     \quad
-    \text{\$float\_width}(A) > \text{\$float\_width}(B)
+    \text{float\_width}(A) > \text{float\_width}(B)
 }{
     \text{CommonType}(A, B) = A
 }

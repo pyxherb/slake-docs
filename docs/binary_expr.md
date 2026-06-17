@@ -221,9 +221,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
     \quad
@@ -231,7 +231,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 + v_2 \rightarrow \text{\$add}(\mathrm{T}, v_1, v_2)
+    v_1 + v_2 \rightarrow \text{add}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-Add})
 $$
@@ -289,9 +289,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
     \quad
@@ -299,7 +299,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 - v_2 \rightarrow \text{\$sub}(\mathrm{T}, v_1, v_2)
+    v_1 - v_2 \rightarrow \text{sub}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-Sub})
 $$
@@ -357,9 +357,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
     \quad
@@ -367,7 +367,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 * v_2 \rightarrow \text{\$mul}(\mathrm{T}, v_1, v_2)
+    v_1 * v_2 \rightarrow \text{mul}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-Mul})
 $$
@@ -425,9 +425,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
     \quad
@@ -435,7 +435,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 / v_2 \rightarrow \text{\$div}(\mathrm{T}, v_1, v_2)
+    v_1 / v_2 \rightarrow \text{div}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-Div})
 $$
@@ -493,9 +493,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
     \quad
@@ -503,7 +503,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 \% v_2 \rightarrow \text{\$mod}(\mathrm{T}, v_1, v_2)
+    v_1 \% v_2 \rightarrow \text{mod}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-Mod})
 $$
@@ -561,9 +561,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
     \quad
@@ -571,7 +571,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 \And v_2 \rightarrow \text{\$and}(\mathrm{T}, v_1, v_2)
+    v_1 \And v_2 \rightarrow \text{and}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-And})
 $$
@@ -629,9 +629,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
     \quad
@@ -639,7 +639,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 | v_2 \rightarrow \text{\$or}(\mathrm{T}, v_1, v_2)
+    v_1 | v_2 \rightarrow \text{or}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-Or})
 $$
@@ -697,9 +697,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
     \quad
@@ -707,7 +707,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 \wedge v_2 \rightarrow \text{\$xor}(\mathrm{T}, v_1, v_2)
+    v_1 \wedge v_2 \rightarrow \text{xor}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-Xor})
 $$
@@ -762,9 +762,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
     \quad
@@ -773,7 +773,7 @@ $$
     v_2 \text{ is a value}
     
 }{
-    v_1 << v_2 \rightarrow \text{\$shl}(\mathrm{T}, v_1, v_2)
+    v_1 << v_2 \rightarrow \text{shl}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-Shl})
 $$
@@ -829,9 +829,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Integer}
     \quad
@@ -839,7 +839,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 >> v_2 \rightarrow \text{\$shr}(\mathrm{T}, v_1, v_2)
+    v_1 >> v_2 \rightarrow \text{shr}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-Shr})
 $$
@@ -1009,9 +1009,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
     \quad
@@ -1019,7 +1019,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 == v_2 \rightarrow \text{\$eq}(\mathrm{T}, v_1, v_2)
+    v_1 == v_2 \rightarrow \text{eq}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-Eq})
 $$
@@ -1077,9 +1077,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
     \quad
@@ -1087,7 +1087,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 != v_2 \rightarrow \text{\$neq}(\mathrm{T}, v_1, v_2)
+    v_1 != v_2 \rightarrow \text{neq}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-Neq})
 $$
@@ -1181,9 +1181,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} <: \mathrm{object}
     \quad
@@ -1191,7 +1191,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 === v_2 \rightarrow \text{\$phy\_eq}(v_1, v_2)
+    v_1 === v_2 \rightarrow \text{phy\_eq}(v_1, v_2)
 }
 (\text{E-StrictEq})
 $$
@@ -1285,9 +1285,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} <: \mathrm{object}
     \quad
@@ -1295,7 +1295,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 !== v_2 \rightarrow \text{\$phy\_neq}(v_1, v_2)
+    v_1 !== v_2 \rightarrow \text{phy\_neq}(v_1, v_2)
 }
 (\text{E-StrictNeq})
 $$
@@ -1353,9 +1353,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
     \quad
@@ -1363,7 +1363,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 < v_2 \rightarrow \text{\$lt}(\mathrm{T}, v_1, v_2)
+    v_1 < v_2 \rightarrow \text{lt}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-Lt})
 $$
@@ -1421,9 +1421,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
     \quad
@@ -1431,7 +1431,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 > v_2 \rightarrow \text{\$gt}(\mathrm{T}, v_1, v_2)
+    v_1 > v_2 \rightarrow \text{gt}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-Gt})
 $$
@@ -1489,9 +1489,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
     \quad
@@ -1499,7 +1499,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 <= v_2 \rightarrow \text{\$lteq}(\mathrm{T}, v_1, v_2)
+    v_1 <= v_2 \rightarrow \text{lteq}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-LtEq})
 $$
@@ -1557,9 +1557,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
     \quad
@@ -1567,7 +1567,7 @@ $$
     \quad
     v_2 \text{ is a value}
 }{
-    v_1 >= v_2 \rightarrow \text{\$gteq}(\mathrm{T}, v_1, v_2)
+    v_1 >= v_2 \rightarrow \text{gteq}(\mathrm{T}, v_1, v_2)
 }
 (\text{E-GtEq})
 $$
@@ -1625,9 +1625,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
     \quad
@@ -1644,9 +1644,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
     \quad
@@ -1663,9 +1663,9 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v_1) = \mathrm{T}
+    \text{typeof}(v_1) = \mathrm{T}
     \quad
-    \text{\$typeof}(v_2) = \mathrm{T}
+    \text{typeof}(v_2) = \mathrm{T}
     \quad
     \mathrm{T} \in \mathrm{Arithm}
     \quad
@@ -1739,7 +1739,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} <: \mathrm{T}
 }{
@@ -1750,7 +1750,7 @@ $$
 
 $$
 \frac{
-    \text{\$typeof}(v) = \mathrm{S}
+    \text{typeof}(v) = \mathrm{S}
     \quad
     \mathrm{S} \not<: \mathrm{T}
 }{
