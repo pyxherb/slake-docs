@@ -81,7 +81,7 @@ When an exception raised, the statement matches the exception value's type in se
 
 $$
 \frac{
-    \text{\_\_typeof}(e) = \mathrm{E}
+    \text{\$typeof}(e) = \mathrm{E}
     \quad
     \mathrm{E} <: \mathrm{T_1}
 }{
@@ -93,7 +93,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(e) = \mathrm{E}
+    \text{\$typeof}(e) = \mathrm{E}
     \quad
     \mathrm{E} <: \mathrm{T_1}
 }{
@@ -107,7 +107,7 @@ If the handler does not match, the statement will match the rest one by one:
 
 $$
 \frac{
-    \text{\_\_typeof}(e) = \mathrm{E}
+    \text{\$typeof}(e) = \mathrm{E}
     \quad
     \mathrm{E} \not<: \mathrm{T_1}
 }{
@@ -119,7 +119,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(e) = \mathrm{E}
+    \text{\$typeof}(e) = \mathrm{E}
     \quad
     \mathrm{E} \not<: \mathrm{T_1}
 }{
@@ -133,7 +133,7 @@ If the last handler still does not match, the excepton will be spreaded out:
 
 $$
 \frac{
-    \text{\_\_typeof}(e) = \mathrm{E}
+    \text{\$typeof}(e) = \mathrm{E}
     \quad
     \mathrm{E} \not<: \mathrm{T_1}
 }{
@@ -145,7 +145,7 @@ $$
 
 $$
 \frac{
-    \text{\_\_typeof}(e) = \mathrm{E}
+    \text{\$typeof}(e) = \mathrm{E}
     \quad
     \mathrm{E} \not<: \mathrm{T_1}
 }{
@@ -161,7 +161,7 @@ $$
 }{
     \text{throw}\ v; \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
     \rightarrow
-    \text{\_\_unwind}(\text{throw}\ v) \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
+    \text{\$unwind}(\text{throw}\ v) \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
 }
 $$
 
@@ -173,7 +173,7 @@ $$
 }{
     \text{throw}\ v; \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
     \rightarrow
-    \text{\_\_uncaught}(v) \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
+    \text{\$uncaught}(v) \mid \gamma \mid \sigma \mid \mu \mid s \mid m \mid U
 }
 $$
 

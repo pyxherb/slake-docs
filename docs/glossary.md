@@ -1,6 +1,6 @@
 # Glossary
 
-$\text{\_\_name}$ - Built-in identifier
+$\text{\$name}$ - Built-in identifier
 
 $\mathrm{T}$ - Non-nullable type
 
@@ -14,11 +14,11 @@ $\Theta$ - Nullity context
 
 $\Gamma\vdash \mathrm{T}\ \mathrm{type}$ - In context $\Gamma$, $\mathrm{T}$ is a well-formed type.
 
-$\Gamma,\Delta\vdash \mathrm{T}\ \mathrm{type}$ - In flow-senseitive context $\Delta$, $\mathrm{T}$ is a well-formed type.
+$\Gamma, \Delta, \Theta \vdash \mathrm{T}\ \mathrm{type}$ - In flow-senseitive context $\Delta$ and $\Theta$, $\mathrm{T}$ is a well-formed type.
 
 $\Gamma\vdash t: \mathrm{T}$ - In context $\Gamma$, term $t$ has type $\mathrm{T}$
 
-$\Gamma,\Delta\vdash t: \mathrm{T}$ - In flow sensitive context $\Delta$, term $t$ has type $\mathrm{T}$
+$\Gamma, \Delta, \Theta \vdash t: \mathrm{T}$ - In flow sensitive context $\Delta$ and $\Theta$, term $t$ has type $\mathrm{T}$
 
 $\Gamma\triangleright\Gamma'$ - Context $\Gamma$ updates to $\Gamma'$
 

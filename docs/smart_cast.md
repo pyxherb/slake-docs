@@ -9,7 +9,7 @@ For this, we will define an analysis function $\llbracket \cdot \rrbracket$ for 
 ## Auxiliary Definitions
 
 $$
-\text{\_\_UpdateNullityRecordParallel}(\tau, \overline{\Theta}) = \begin{cases}
+\text{\$UpdateNullityRecordParallel}(\tau, \overline{\Theta}) = \begin{cases}
 
 \text{Nullified}
 &
@@ -28,12 +28,12 @@ $$
 
 $$
 \begin{cases}
-\text{\_\_UpdateNullityRecordsParallel}(\Gamma_{outer}, \Theta_{outer}, \overline{\Theta}) =
+\text{\$UpdateNullityRecordsParallel}(\Gamma_{outer}, \Theta_{outer}, \overline{\Theta}) =
 \forall i \in (
     \text{dom}(\overline{\Theta}_1) \cup
     \text{dom}(\overline{\Theta}_2) \cup
     \dots),
-\Theta_{outer}[i \mapsto \text{\_\_UpdateNullityRecordParallel}(i, \overline{\Theta})]
+\Theta_{outer}[i \mapsto \text{\$UpdateNullityRecordParallel}(i, \overline{\Theta})]
 &\text{if}\ i \in \text{dom}(\Gamma_{outer})
 \end{cases}
 $$

@@ -30,21 +30,29 @@ $$
 
 `if` statement executes a branch which is determined by the condition expression.
 
+<!--TODO: Update \Delta-->
 $$
 \frac{
     \begin{aligned}
-    &\Gamma, \Delta \vdash e: \mathrm{bool}
+    &\Gamma, \Delta, \Theta \vdash e: \mathrm{bool}
     \\
     &(\Gamma', \Delta', \Theta') = \llbracket e \rrbracket(\Gamma, \Delta, \Theta)
     &\\
-    &(\Gamma_t, \Delta_t, \Theta_t) = \llbracket b_1 \rrbracket(\Gamma', \Delta', \Theta')
+    &\Gamma', \Delta', \Theta' \vdash b_1 : \mathrm{T_1}
+    \triangleright
+    \Gamma_t, \Delta_t, \Theta_t
     \\
-    &(\Gamma_f, \Delta_f, \Theta_f) = \llbracket b_2 \rrbracket(\Gamma', \Delta', \Theta')
+    &\Gamma', \Delta', \Theta' \vdash b_2 : \mathrm{T_2}
+    \triangleright
+    \Gamma_f, \Delta_f, \Theta_f
     \\
-    &\Theta'' = \text{\_\_UpdateNullityParallel}(\Gamma', \Theta_t, \Theta_f)
+    &\Gamma'' = \Gamma'
+    \\
+    \\
+    &\Theta'' = \text{\$UpdateNullityParallel}(\Theta', \Theta_t, \Theta_f)
     \end{aligned}
 }{
-    \Gamma, \Delta \vdash \text{if}(e)\ b_1\ \text{else}\ b_2: \text{void}
+    \Gamma, \Delta, \Theta \vdash \text{if}(e)\ b_1\ \text{else}\ b_2: \text{void} \triangleright \Gamma'', \Delta'', \Theta''
 }
 (\text{T-IfStmt})
 $$
@@ -190,7 +198,7 @@ $$
 \frac{
     m = \text{Normal}
     \quad
-    \text{\_\_alloca}(\mathrm{T}, \sigma) \mid \gamma \mid \sigma \mid \mu \mid U
+    \text{\$alloca}(\mathrm{T}, \sigma) \mid \gamma \mid \sigma \mid \mu \mid U
     =
     l \mid \gamma \mid \sigma' \mid \mu \mid U
     \quad
@@ -226,7 +234,7 @@ $$
 }{
     \text{let}\ x: \mathrm{T}; \overline{s}
     \rightarrow
-    \text{let}\ x: \mathrm{T} = \text{\_\_defaultof}(\mathrm{T}); \overline{s}
+    \text{let}\ x: \mathrm{T} = \text{\$defaultof}(\mathrm{T}); \overline{s}
 }
 (\text{E-LetTyped-Normal})
 $$
