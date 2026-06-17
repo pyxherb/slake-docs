@@ -11,7 +11,7 @@ A throw expression can interrupt current control flow catch an exception value (
 $$
 \frac{
 }{
-    e_1,...,e_n,(\text{throw}\ e_{err}),e_{n+2},...,e_{m} \rightarrow e_1, ..., e_n,\text{throw}\ e_{err}
+    e_1,\dots,e_n,(\text{throw}\ e_{err}),e_{n+2},\dots,e_{m} \rightarrow e_1, \dots, e_n,\text{throw}\ e_{err}
 }
 (\text{E-ThrowInterrupt})
 $$
@@ -21,7 +21,7 @@ Calling throw as a function will evaluate all of the arguments and discard their
 $$
 \frac{
 }{
-(\text{throw}\ e_{err})(e_1, e_2, e_3, ...) \rightarrow e_1,e_2,e_3,...,\text{throw}\ e_{err}
+(\text{throw}\ e_{err})(e_1, e_2, e_3, \dots) \rightarrow e_1,e_2,e_3,\dots,\text{throw}\ e_{err}
 }
 (\text{E-ThrowInvoke})
 $$
@@ -31,7 +31,7 @@ When a `throw` expression is in a function call's argument list, the arguments o
 $$
 \frac{
 }{
-    f(e_0, ..., e_n,\ (\text{throw}\ e_{err}), e_{n+2}, ..., e_m) \rightarrow e_0, ..., e_n, \text{throw}\ e_{err}
+    f(e_0, \dots, e_n,\ (\text{throw}\ e_{err}), e_{n+2}, \dots, e_m) \rightarrow e_0, \dots, e_n, \text{throw}\ e_{err}
 }
 (\text{E-ThrowArgsInterrupt})
 $$
@@ -71,9 +71,9 @@ $$
 \frac{
     e\ \text{is not a value}
 }{
-    \text{try}\ e\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n \ \overline{s}
+    \text{try}\ e\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ \dots\ \text{catch}(\mathrm{T_n})\ h_n \ \overline{s}
     \rightarrow
-    \text{try}\ e'\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n \ \overline{s}
+    \text{try}\ e'\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ \dots\ \text{catch}(\mathrm{T_n})\ h_n \ \overline{s}
 }
 $$
 
@@ -85,7 +85,7 @@ $$
     \quad
     \mathrm{E} <: \mathrm{T_1}
 }{
-    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n \ \overline{s}
+    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ \dots\ \text{catch}(\mathrm{T_n})\ h_n \ \overline{s}
     \rightarrow
     \{ h_1 \} \overline{s}
 }
@@ -97,7 +97,7 @@ $$
     \quad
     \mathrm{E} <: \mathrm{T_1}
 }{
-    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\  \text{final}\ h_f\ \overline{s}
+    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ \dots\ \text{catch}(\mathrm{T_n})\ h_n\  \text{final}\ h_f\ \overline{s}
     \rightarrow
     \text{try} \{ h_1 \} \text{final}\ h_f\ \overline{s}
 }
@@ -111,9 +111,9 @@ $$
     \quad
     \mathrm{E} \not<: \mathrm{T_1}
 }{
-    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\ \overline{s}
+    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ \dots\ \text{catch}(\mathrm{T_n})\ h_n\ \overline{s}
     \rightarrow
-    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\ \overline{s}
+    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_2})\ h_2\ \dots\ \text{catch}(\mathrm{T_n})\ h_n\ \overline{s}
 }
 $$
 
@@ -123,9 +123,9 @@ $$
     \quad
     \mathrm{E} \not<: \mathrm{T_1}
 }{
-    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\ \text{final}\ h_f\ \overline{s}
+    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ \dots\ \text{catch}(\mathrm{T_n})\ h_n\ \text{final}\ h_f\ \overline{s}
     \rightarrow
-    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\ \text{final}\ h_f\ \overline{s}
+    \text{try}\ \text{throw}\ e;\ \text{catch}(\mathrm{T_2})\ h_2\ \dots\ \text{catch}(\mathrm{T_n})\ h_n\ \text{final}\ h_f\ \overline{s}
 }
 $$
 
@@ -183,7 +183,7 @@ $$
 \frac{
     v\ \text{is a value}
 }{
-    \text{try}\ v;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\ \overline{s}
+    \text{try}\ v;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ \dots\ \text{catch}(\mathrm{T_n})\ h_n\ \overline{s}
     \rightarrow
     \overline{s}
 }
@@ -193,7 +193,7 @@ $$
 \frac{
     v\ \text{is a value}
 }{
-    \text{try}\ v;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\ \text{final}\ h_f\ \overline{s}
+    \text{try}\ v;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ \dots\ \text{catch}(\mathrm{T_n})\ h_n\ \text{final}\ h_f\ \overline{s}
     \rightarrow
     h_f;\overline{s}
 }
@@ -202,7 +202,7 @@ $$
 $$
 \frac{
 }{
-    \text{try}\ \text{return}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ ...\ \text{catch}(\mathrm{T_n})\ h_n\ \overline{s}
+    \text{try}\ \text{return}\ e;\ \text{catch}(\mathrm{T_1})\ h_1 \text{catch}(\mathrm{T_2})\ h_2\ \dots\ \text{catch}(\mathrm{T_n})\ h_n\ \overline{s}
     \rightarrow
     \text{return}\ e;
 }

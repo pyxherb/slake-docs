@@ -32,17 +32,19 @@ $$
 
 $$
 \frac{
-    \Gamma, \Delta \vdash e: \mathrm{bool}
-    \quad
-    (\Gamma', \Delta', \Theta') = \llbracket e \rrbracket(\Gamma, \Delta, \Theta)
-    \quad
-    (\Gamma_t, \Delta_t, \Theta_t) = \llbracket b_1 \rrbracket(\Gamma', \Delta', \Theta')
-    \quad
-    (\Gamma_f, \Delta_f, \Theta_f) = \llbracket b_2 \rrbracket(\Gamma', \Delta', \Theta')
-    \quad
-    (\Gamma'', \Delta'', \Theta'') = \text{\_\_MergeFlowContexts}((\Gamma_t, \Delta_t, \Theta_t), (\Gamma_f, \Delta_f, \Theta_f))
+    \begin{aligned}
+    &\Gamma, \Delta \vdash e: \mathrm{bool}
+    \\
+    &(\Gamma', \Delta', \Theta') = \llbracket e \rrbracket(\Gamma, \Delta, \Theta)
+    &\\
+    &(\Gamma_t, \Delta_t, \Theta_t) = \llbracket b_1 \rrbracket(\Gamma', \Delta', \Theta')
+    \\
+    &(\Gamma_f, \Delta_f, \Theta_f) = \llbracket b_2 \rrbracket(\Gamma', \Delta', \Theta')
+    \\
+    &\Theta'' = \text{\_\_UpdateNullityParallel}(\Gamma', \Theta_t, \Theta_f)
+    \end{aligned}
 }{
-    \Gamma, \Delta \vdash \text{if}(e_1)\ b_1\ \text{else}\ b_2: \text{void}
+    \Gamma, \Delta \vdash \text{if}(e)\ b_1\ \text{else}\ b_2: \text{void}
 }
 (\text{T-IfStmt})
 $$

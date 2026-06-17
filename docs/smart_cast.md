@@ -6,6 +6,38 @@ For this, we will define an analysis function $\llbracket \cdot \rrbracket$ for 
 
 <!--Note: The analysis function should be applied in the precondition-->
 
+## Auxiliary Definitions
+
+$$
+\text{\_\_UpdateNullityRecordParallel}(\tau, \overline{\Theta}) = \begin{cases}
+
+\text{Nullified}
+&
+\forall i, \tau \in \text{dom}(\overline{\Theta}_i) \wedge \overline{\Theta}_i(\tau) = \text{Nullified}
+\\
+\text{Denullified}
+&
+\forall i, \tau \in \text{dom}(\overline{\Theta}_i) \wedge \overline{\Theta}_i(\tau) = \text{Denullified}
+\\
+\text{Uncertain}
+&
+\text{otherwise}
+
+\end{cases}
+$$
+
+$$
+\begin{cases}
+\text{\_\_UpdateNullityRecordsParallel}(\Gamma_{outer}, \Theta_{outer}, \overline{\Theta}) =
+\forall i \in (
+    \text{dom}(\overline{\Theta}_1) \cup
+    \text{dom}(\overline{\Theta}_2) \cup
+    \dots),
+\Theta_{outer}[i \mapsto \text{\_\_UpdateNullityRecordParallel}(i, \overline{\Theta})]
+&\text{if}\ i \in \text{dom}(\Gamma_{outer})
+\end{cases}
+$$
+
 ## Assignments
 
 <!--Incompleted yet.-->
